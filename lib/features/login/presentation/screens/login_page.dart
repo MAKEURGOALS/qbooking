@@ -90,7 +90,7 @@ class _LoinPageState extends State<LoinPage> {
   }
 
   Future<UserCredential> signInWithFacebook() async {
-    await   FirebaseAuth.instance.signOut();
+    
     final LoginResult loginResult = await FacebookAuth.instance.login();
 
     final OAuthCredential facebookAuthCredential =

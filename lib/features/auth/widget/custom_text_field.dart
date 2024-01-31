@@ -18,7 +18,7 @@ class CustomTextField extends StatelessWidget {
       
       padding: const EdgeInsets. symmetric( horizontal: 20, vertical:10),
       
-      child: Container(
+      child: SizedBox(
         width: widht,
         height: height,
         child: TextFormField(
@@ -34,7 +34,7 @@ class CustomTextField extends StatelessWidget {
                 ),
             fillColor: Colors.grey.shade100,
             filled: true,
-            hintText: textfield,
+            label:Text(textfield) ,
             suffixIcon: IconButton(icon: Icon(icon), onPressed: onPressed,),
             
           ),
