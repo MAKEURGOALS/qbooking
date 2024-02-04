@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
-class ChangePageAllAndAvailableRoom extends StatelessWidget {
-  const ChangePageAllAndAvailableRoom({super.key});
+class ChangePageAllAndAvailableRoom extends StatefulWidget {
+   const ChangePageAllAndAvailableRoom({super.key, required this.onSelectedIndex});
+  final Function(int value) onSelectedIndex ;
+
+  @override
+  State<ChangePageAllAndAvailableRoom> createState() => _ChangePageAllAndAvailableRoomState();
+}
+
+class _ChangePageAllAndAvailableRoomState extends State<ChangePageAllAndAvailableRoom> {
+  int current =0 ;
 
   @override
   Widget build(BuildContext context) {
@@ -10,30 +18,43 @@ class ChangePageAllAndAvailableRoom extends StatelessWidget {
       child: Container(
         height: 40,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),
-        color: Colors.white,
+        color:Colors.white,
         
         
         ),
-        // decoration: BoxDecoration(borderRadius: BorderRadius.ci rcular(30)),
+      
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+           
               Expanded(
                 child: Container(
+                  decoration: BoxDecoration(
+                    color:current==0 ? Colors.black: Colors.white,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                   child: TextButton(
-                      onPressed: () {}, child: const Text('All Room')),
+                      onPressed: () {
+                        widget.onSelectedIndex(0);
+                        current = 0;
+                      }, child:  Text('All Room',style: TextStyle(color:current==0 ?Colors.white :Colors.black,),)),
                 ),
               ),
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.black,
+                    color: current==1 ? Colors.black: Colors.white,
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: TextButton(
-                      onPressed: () {}, child: const Text('Available Room')),
+                      onPressed: () {
+                        
+                        widget.onSelectedIndex(1);
+                        current = 1;
+                        
+                      }, child:  Text('Available Room',style: TextStyle(color:current==1 ?Colors.white :Colors.black,),)),
                 ),
               ),
             ],

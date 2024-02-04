@@ -1,73 +1,55 @@
+
 import 'package:flutter/material.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key});
+  final Function(int value ) onSelected; 
+   const CustomBottomNavigationBar({super.key, required this.onSelected});
 
   @override
-  State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
+  State<CustomBottomNavigationBar> createState() =>
+      _CustomBottomNavigationBarState();
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Favorite',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Bookings',
-      style: optionStyle,
-    ),
-     Text(
-      'Index 3: Notifications',
-      style: optionStyle,
-    ),
-     Text(
-      'Index 4: Profile',
-      style: optionStyle,
-    ),
-  ];
+  int currentIndex = 0;
+  
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+      
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.black,
+      showUnselectedLabels: true,
+      currentIndex: currentIndex,
+      backgroundColor: Colors.black,
+      onTap: (index) => setState(() {
+        currentIndex = index;
+        widget.onSelected(index);
+      }),
+        items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home,color: Colors.black,),
+            icon: Icon(Icons.home_outlined),
             label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border_outlined,color: Colors.black,),
-            label: 'Favorite',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark_outline),
+            ),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border),
+            label: 'Favorites',
+            ),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.bookmark_border),
             label: 'Bookings',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_outlined),
+            ),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.notifications_none_sharp),
             label: 'Notifications',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_3_sharp),
+            ),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.person_2_outlined),
             label: 'Profile',
-          ),
-          
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        onTap: _onItemTapped,
-      );
+            )
+            ]
+            );
+            
   }
 }

@@ -3,18 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 // import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:qbooking/homepage/widget/bottom_navigation_bar.dart';
-import 'package:qbooking/homepage/widget/box_room.dart';
+import 'package:qbooking/homepage/all_room_page.dart';
+import 'package:qbooking/homepage/availiable_room.dart';
 import 'package:qbooking/homepage/widget/change_page_all_availablr_room.dart';
 import 'package:qbooking/homepage/widget/search_bar.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
-  
-  int _selectedIndex =0;
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
   final user = FirebaseAuth.instance.currentUser;
+  final List<Widget> screens = [
+    const AllRoomPage(),
+    const AvailableRoomStatus()
+  ];
+  int currentIndex = 0;
+
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   void signUserOut() async {
@@ -25,30 +33,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          backgroundColor: Color.fromARGB(255, 220, 215, 215),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                CustomSerachBar(),
-                ChangePageAllAndAvailableRoom(),
-                BoxRoomHomePage(
-                  roomstate: '5.00',
-                  changeimage: 'assets/images/meeting.jpg',
-                ),
-                BoxRoomHomePage(
-                  roomstate: '4.00',
-                  changeimage: 'assets/images/meeting2.jpg',
-                ),
-                
-              ],
-            ),
+    return  SingleChildScrollView(
+      child: Column(
+        children: [
+          const CustomSerachBar(),
+          ChangePageAllAndAvailableRoom(
+            onSelectedIndex: (int value) => setState(() => currentIndex = value),
           ),
-         bottomNavigationBar: CustomBottomNavigationBar(),
-
-        ),
+        screens[currentIndex]
+        ],
       ),
     );
   }
