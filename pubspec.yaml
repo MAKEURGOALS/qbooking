@@ -43,6 +43,8 @@ dependencies:
   date_picker_timeline: ^1.2.5
   fl_chart: ^0.65.0
   csc_picker: ^0.2.7
+  barcode_widget: ^2.0.4
+  
   
   
   

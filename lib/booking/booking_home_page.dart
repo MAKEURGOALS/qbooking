@@ -22,34 +22,34 @@ class BookingHomePage extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
         ),
-        body:  const Padding(
-          padding: EdgeInsets.all(20.0),
+        body:   Padding(
+          padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextPictureStatus(),
-                SliderPicture(),
-                SizedBox(
+                const TextPictureStatus(),
+                const SliderPicture(),
+                const SizedBox(
                   height: 20,
                 ),
-                DatePickUp(),
-                SizedBox(
+                const DatePickUp(),
+                const SizedBox(
                   height: 20,
                 ),
-                TimePicker(),
-                SizedBox(
+                const TimePicker(),
+                const SizedBox(
                   height: 15,
                 ),
-                Text(
+                const Text(
                   "EQUIPMENT",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                Column(
+                const Column(
                   children: [
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -85,27 +85,27 @@ class BookingHomePage extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   "DETAILS:",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   "This room is equipped with all the necessary equipment for lectures, meetings and negotiations."
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
                   
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                ButtonBooking(titleButton: 'Booking now',)
+                ButtonBooking(titleButton: 'Booking now', color: Colors.black, titleColor: Colors.white, onTap: () { },)
 
                   ],
                 )

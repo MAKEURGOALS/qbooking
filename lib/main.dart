@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:qbooking/features/auth/auth_page.dart';
+import 'package:qbooking/feature/auth/auth_page.dart';
 import 'package:qbooking/firebase_options.dart';
 
 

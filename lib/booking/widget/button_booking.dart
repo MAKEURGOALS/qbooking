@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ButtonBooking extends StatelessWidget {
-  const ButtonBooking({super.key, required this.titleButton});
+  const ButtonBooking({super.key, required this.titleButton, required Color color, required Color titleColor, required Null Function() onTap});
   final String titleButton;
 
   @override
