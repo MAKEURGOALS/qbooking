@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qbooking/profile/widget/country_picker.dart';
 import 'package:qbooking/profile/widget/custom_input_profile.dart';
 import 'package:qbooking/profile/widget/drop_down_button.dart';
 import 'package:qbooking/profile/widget/profile_edit_image.dart';
@@ -24,6 +25,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ),
       ),
       body:   SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(children: [
            const ProfileEditImage(),
            const SizedBox(height: 40,),
@@ -39,6 +41,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           CustomInputProfile(textfield: 'Phone number', onPressed: () {  },),
            const SizedBox(height: 40,),
           CustomInputProfile(textfield: 'Country', onPressed: () {  },),
+          const CountryPicker()
         ]),
       ),
     );

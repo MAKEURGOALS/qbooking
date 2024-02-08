@@ -15,25 +15,27 @@ class _DropdownButtonAppState extends State<DropdownButtonApp> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Container(
-      width: 350,
-      height: 60,
-      decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.grey,
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(10))),
-      child: DropdownButton(
-        dropdownColor: Colors.grey,
-        underline: const SizedBox(),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          value: item,
-          items: gender
-              .map((item) => DropdownMenuItem(value: item, child: Text(item,style: const TextStyle(fontSize: 20),)))
-              .toList(),
-          onChanged: (value) => setState(() {
-                item = value.toString();
-              })),
-    ));
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40),
+          child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.grey,
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(10))),
+              child: DropdownButton(
+          // dropdownColor: Colors.grey,
+          underline: const SizedBox(),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            value: item,
+            items: gender
+                .map((item) => DropdownMenuItem(value: item, child: Text(item,style: const TextStyle(fontSize: 20),)))
+                .toList(),
+            onChanged: (value) => setState(() {
+                  item = value.toString();
+                })),
+            ),
+        ));
   }
 }

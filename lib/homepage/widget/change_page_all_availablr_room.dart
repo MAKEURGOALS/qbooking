@@ -16,7 +16,7 @@ class _ChangePageAllAndAvailableRoomState extends State<ChangePageAllAndAvailabl
     return Padding(
       padding: const EdgeInsets.only(right: 25, left: 25),
       child: Container(
-        height: 40,
+        height: 50,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),
         color:Colors.white,
         

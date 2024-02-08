@@ -6,8 +6,8 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 class LoginWithFacebook extends StatelessWidget {
    LoginWithFacebook({super.key, required this.welcome});
    final String welcome;
-  Map<String, dynamic>? _userData;
 
+  Map<String, dynamic>? _userData;
   Future<UserCredential> signInFacebook() async {
     final LoginResult loginResult = await FacebookAuth.instance.login(permissions: ['email']);
 

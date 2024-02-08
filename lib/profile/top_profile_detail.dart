@@ -7,6 +7,7 @@ class TopProfileDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
+      foregroundColor: Colors.white,
       backgroundColor: const Color(0xFF282828),
       title: const Text('Edit Profile'),
       shape: const RoundedRectangleBorder(
