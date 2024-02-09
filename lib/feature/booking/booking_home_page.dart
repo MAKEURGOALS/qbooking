@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/booking/widget/button_booking.dart';
-import 'package:qbooking/booking/widget/date_pick.dart';
-import 'package:qbooking/booking/widget/equipment.dart';
-import 'package:qbooking/booking/widget/slider_picture.dart';
-import 'package:qbooking/booking/widget/text_picture_status.dart';
-import 'package:qbooking/booking/widget/time_picker.dart';
+import 'package:qbooking/feature/booking/widget/button_booking.dart';
+import 'package:qbooking/feature/booking/widget/date_pick.dart';
+import 'package:qbooking/feature/booking/widget/equipment.dart';
+import 'package:qbooking/feature/booking/widget/slider_picture.dart';
+import 'package:qbooking/feature/booking/widget/text_picture_status.dart';
+import 'package:qbooking/feature/booking/widget/time_picker.dart';
 
 class BookingHomePage extends StatelessWidget {
   const BookingHomePage({super.key});

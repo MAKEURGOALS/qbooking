@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/booking/widget/slide_am_pm.dart';
+import 'package:qbooking/feature/booking/widget/slide_am_pm.dart';
 
 class TimePickerButton extends StatefulWidget {
   const TimePickerButton({

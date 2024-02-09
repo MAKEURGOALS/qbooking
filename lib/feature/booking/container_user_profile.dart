@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../booking/widget/button_booking.dart';
+import 'widget/button_booking.dart';
 
 
 
@@ -49,27 +49,27 @@ class ContainerUserProfile extends StatelessWidget {
                     // indent: 30,
                     // endIndent: 30,
                   ),
-                  TextContainerUser(
-                    titleCon: 'Schedule',
-                    iconContainer: Icons.calendar_month_outlined,
-                    endtitleCon: 'Now',
-                  ),
-                  TextContainerUser(
-                    titleCon: 'Hours',
-                    iconContainer: Icons.access_time,
-                    endtitleCon: 'Now',
-                  ),
+                  // TextContainerUser(
+                  //   titleCon: 'Schedule',
+                  //   iconContainer: Icons.calendar_month_outlined,
+                  //   endtitleCon: 'Now',
+                  // ),
+                  // TextContainerUser(
+                  //   titleCon: 'Hours',
+                  //   iconContainer: Icons.access_time,
+                  //   endtitleCon: 'Now',
+                  // ),
                   Divider(
                     color: Colors.white54,
                     thickness: 2,
                   ),
-                  TextContainerUser(
-                    titleCon: 'Note',
-                    iconContainer: Icons.library_books_outlined,
-                    endtitleCon: 'Thanks for your Booking',
-                  ),
+                  // TextContainerUser(
+                  //   titleCon: 'Note',
+                  //   iconContainer: Icons.library_books_outlined,
+                  //   endtitleCon: 'Thanks for your Booking',
+                  // ),
                   SizedBox(height: 50,),
-                  Qrcodedetail()
+                  // Qrcodedetail()
                 ],
               ),
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/booking/widget/time_button_pick.dart';
+import 'package:qbooking/feature/booking/widget/time_button_pick.dart';
 
 class TimePicker extends StatefulWidget {
   const TimePicker({super.key});

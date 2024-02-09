@@ -134,7 +134,7 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
                             ),
                           ),
                           const Icon(Icons.star_border_sharp),
-                          Text(widget.roomData.rate as String)
+                          Text(widget.roomData.rate.toString())
                         ],
                       )
                     ],
