@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ButtonBooking extends StatelessWidget {
-  const ButtonBooking({super.key, required this.titleButton, required Color color, required Color titleColor, required Null Function() onTap});
+  const ButtonBooking({super.key, required this.titleButton, required this.color, required this.onTap, required this.titleColor,  });
   final String titleButton;
+  final Color color;
+  final Function() onTap;
+  final Color titleColor;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         width: 150,
         decoration: BoxDecoration(

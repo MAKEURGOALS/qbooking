@@ -180,17 +180,17 @@ class _RegisterPageState extends State<RegisterPage> {
                     onTap: ()  {
                       signInWithGoogle();
                     },
-                    child: Iconlogin(
+                    child: const Iconlogin(
                       imagepaht: 'assets/iconslogo/google.png',
                       
                     ),
                   ),
 
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   // icon_Google
-                  Iconlogin(
+                  const Iconlogin(
                     imagepaht: 'assets/iconslogo/facebook.png',
                   )
                 ],

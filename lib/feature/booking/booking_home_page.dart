@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qbooking/feature/booking/qr_user_page.dart';
 import 'package:qbooking/feature/booking/widget/button_booking.dart';
 import 'package:qbooking/feature/booking/widget/date_pick.dart';
 import 'package:qbooking/feature/booking/widget/equipment.dart';
@@ -22,7 +23,7 @@ class BookingHomePage extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
         ),
-        body:   Padding(
+        body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
@@ -96,21 +97,26 @@ class BookingHomePage extends StatelessWidget {
                   height: 10,
                 ),
                 const Text(
-                  "This room is equipped with all the necessary equipment for lectures, meetings and negotiations."
-                ),
+                    "This room is equipped with all the necessary equipment for lectures, meetings and negotiations."),
                 const SizedBox(
                   height: 20,
                 ),
                 Row(
-                  
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                ButtonBooking(titleButton: 'Booking now', color: Colors.black, titleColor: Colors.white, onTap: () { },)
-
+                    ButtonBooking(
+                      titleButton: 'Booking now',
+                      color: Colors.black,
+                      titleColor: Colors.white,
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const QrUserPage()));
+                      },
+                    )
                   ],
                 )
-  
-
               ],
             ),
           ),
