@@ -8,6 +8,10 @@ RoomModel roomModelFromJson(String str) => RoomModel.fromJson(json.decode(str));
 
 String roomModelToJson(RoomModel data) => json.encode(data.toJson());
 
+List<RoomModel> roomsModelFromJson(String str) => List<RoomModel>.from(json.decode(str).map((x) => RoomModel.fromJson(x)));
+
+String roomsModelToJson(List<RoomModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
 class RoomModel {
   String? id;
   String? name;

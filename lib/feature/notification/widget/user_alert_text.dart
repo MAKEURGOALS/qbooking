@@ -1,42 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:qbooking/model/notification_model.dart';
+
+import '../../../constant/image_constant.dart';
 
 class UserAlertText extends StatelessWidget {
-  const UserAlertText({super.key, required this.imageUser});
-  final String imageUser;
+  const UserAlertText({super.key, required this.notificationData});
+  final NotificationModel notificationData;
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 7),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        
         children: [
-          CircleAvatar(
+          Row(
+            children: [
+              CircleAvatar(
             radius: 25,
-            backgroundImage: AssetImage(imageUser),
+            backgroundImage: AssetImage(notificationData.images ?? ImageConstant.room1),
           ),
           const SizedBox(width: 10,),
-          const Column(
+           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Have a great day with my amazing.."
+                notificationData.description ??""
               ),
               Text(
-                "Hi There",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                notificationData.subDescription ?? "",
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
+            ],
+          )
               
             ],
           ),
-          const SizedBox(width: 15,),
+          // const SizedBox(width: 60,),
     
-          const Column(
+           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                "9:56 AM",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                notificationData.time ?? "",
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              Icon(Icons.circle, size:10,color: Colors.red,)
+              const Icon(Icons.circle, size:10,color: Colors.red,)
             ],
           )
         ],

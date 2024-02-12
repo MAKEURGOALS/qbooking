@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:qbooking/data/notification_data.dart';
 import 'package:qbooking/feature/notification/setting_page.dart';
 import 'package:qbooking/feature/notification/widget/user_alert_text.dart';
-
+// import 'package:qbooking/feature/notification/widget/user_alert_text.dart';
 
 class NotificationHomePage extends StatelessWidget {
   const NotificationHomePage({super.key});
+ 
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { final allNotification = NotificationData.notiPage;
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -33,30 +35,10 @@ class NotificationHomePage extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
           ),
         ),
-        body: const SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              UserAlertText(
-                imageUser: 'assets/images/meeting.jpg',
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              UserAlertText(
-                imageUser: 'assets/images/meeting2.jpg',
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              UserAlertText(
-                imageUser: 'assets/images/meeting3.jpg',
-              ),
-            ],
-          ),
-        ));
+        body: ListView.builder(
+          shrinkWrap: true,
+          itemCount: allNotification.length,
+            itemBuilder: (context, index) => UserAlertText(
+                notificationData: allNotification[index])));
   }
 }

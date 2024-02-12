@@ -21,7 +21,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     const HomePage(),
     const FavoriteHomePage(),
     const BookingHomePage(),
-    const NotificationHomePage(),
+     const NotificationHomePage(),
     const ProfileHomePage()
   ];
   @override

@@ -1,28 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/constant/image_constant.dart';
+import 'package:qbooking/constant/key_storage_constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../constant/key_storage_constant.dart';
+import '../../../constant/image_constant.dart';
 import '../../../model/room_model.dart';
 
-class BoxRoomHomePage extends StatefulWidget {
-  const BoxRoomHomePage({super.key, required this.roomData});
-
-  final RoomModel roomData;
+class BoxFavorites extends StatefulWidget {
+  const BoxFavorites({super.key, required this.roomData});
+    final RoomModel roomData;
 
   @override
-  State<BoxRoomHomePage> createState() => _BoxRoomHomePageState();
+  State<BoxFavorites> createState() => _BoxFavoritesState();
 }
 
-class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
-  bool isFavorite = false;
-  void toggleFavorite() {
-    setState(() {
-      isFavorite = !isFavorite;
-    });
-  }
-
-  Future<void> saveFavorite(RoomModel roomData) async {
+class _BoxFavoritesState extends State<BoxFavorites> {
+   Future<void> saveFavorite(RoomModel roomData) async {
     try {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       final favoriteRoomsJson =
@@ -44,10 +36,9 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
       print(e.toString());
     }
   }
-
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return   Center(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: ClipRRect(
@@ -67,10 +58,9 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
                       right: 8,
                       child: GestureDetector(
                           onTap: () => saveFavorite(widget.roomData),
-                          child: Icon(
-                            isFavorite
-                                ? Icons.favorite
-                                : Icons.favorite_border_outlined,
+                          child: const Icon(
+                           Icons.favorite
+                             ,
                             color: Colors.red,
                           )),
                     ),
