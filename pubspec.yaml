@@ -45,6 +45,8 @@ dependencies:
   csc_picker: ^0.2.7
   barcode_widget: ^2.0.4
   shared_preferences: ^2.2.2
+  dio: ^5.4.0
+  jwt_decoder: ^2.0.1
   
   
   
