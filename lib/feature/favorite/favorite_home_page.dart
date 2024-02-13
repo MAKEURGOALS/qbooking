@@ -22,7 +22,7 @@ class FavoriteHomePage extends StatelessWidget {
         return [];
       }
     }
-
+   
     Future<void> unfavorites(RoomModel roomData) async {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       final favoriteRoomsJson =
@@ -34,7 +34,7 @@ class FavoriteHomePage extends StatelessWidget {
     }
 
     return Scaffold(
-        appBar: AppBar(
+        appBar: AppBar(  
           centerTitle: true,
           title: const Text(
             'Favorite',
@@ -64,6 +64,7 @@ class FavoriteHomePage extends StatelessWidget {
               return Text('State: ${snapshot.connectionState}');
             }
           },
-        ));
+        )
+        );
   }
 }
