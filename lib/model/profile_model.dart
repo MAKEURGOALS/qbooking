@@ -15,6 +15,7 @@ class ProfileModel {
     String? gender;
     String? phone;
     String? country;
+    String? image;
 
     ProfileModel({
         this.id,
@@ -23,6 +24,7 @@ class ProfileModel {
         this.gender,
         this.phone,
         this.country,
+        this.image,
     });
 
     factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
@@ -32,6 +34,7 @@ class ProfileModel {
         gender: json["gender"],
         phone: json["phone"],
         country: json["country"],
+        image: json["image"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -41,5 +44,6 @@ class ProfileModel {
         "gender": gender,
         "phone": phone,
         "country": country,
+        "image": image,
     };
 }

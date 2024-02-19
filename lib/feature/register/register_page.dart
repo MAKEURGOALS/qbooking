@@ -5,6 +5,8 @@ import 'package:qbooking/feature/auth/widget/custom_text_field.dart';
 import 'package:qbooking/feature/auth/widget/icon_login.dart';
 import 'package:qbooking/feature/auth/widget/my_button_login.dart';
 
+// import '../login/presentation/screens/login_page.dart';
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key,required this.onTap});
   final Function()? onTap;
@@ -151,7 +153,9 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               Mybutton(
                 text: 'Sign Up',
-                onTap: () => signUserUp(),
+                onTap: () {
+
+                },
               ),
               const SizedBox(height: 25,),
                const Divider(

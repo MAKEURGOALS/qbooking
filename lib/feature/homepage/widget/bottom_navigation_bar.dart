@@ -18,34 +18,34 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       
-      selectedItemColor: Colors.black,
+      selectedItemColor: Colors.blueAccent,
       unselectedItemColor: Colors.black,
-      showUnselectedLabels: true,
+      // showUnselectedLabels: true,
       currentIndex: currentIndex,
-      backgroundColor: Colors.black,
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       onTap: (index) => setState(() {
         currentIndex = index;
         widget.onSelected(index);
       }),
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: Icon(Icons.home),
             label: 'Home',
             ),
             BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
+            icon: Icon(Icons.favorite),
             label: 'Favorites',
             ),
             BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark_border),
+            icon: Icon(Icons.bookmark),
             label: 'Bookings',
             ),
             BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_none_sharp),
+            icon: Icon(Icons.notifications),
             label: 'Notifications',
             ),
             BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_outlined),
+            icon: Icon(Icons.person_2),
             label: 'Profile',
             )
             ]

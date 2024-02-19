@@ -9,6 +9,7 @@ import 'package:qbooking/feature/homepage/widget/change_page_all_availablr_room.
 import 'package:qbooking/feature/homepage/widget/search_bar.dart';
 
 
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -34,14 +35,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-      children: [
-        const CustomSerachBar(),
-        ChangePageAllAndAvailableRoom(
-          onSelectedIndex: (int value) => setState(() => currentIndex = value),
+    return  Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            const CustomSerachBar(),
+            ChangePageAllAndAvailableRoom(
+              onSelectedIndex: (int value) => setState(() => currentIndex = value),
+            ),
+          screens[currentIndex],
+          // const DashboardScreen()
+          ],
         ),
-      screens[currentIndex]
-      ],
+      ),
     );
   }
 }
