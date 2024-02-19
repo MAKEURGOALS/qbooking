@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qbooking/feature/login/presentation/screens/login_page.dart';
-import 'package:qbooking/feature/register/screens/register_page.dart';
+import 'package:qbooking/feature/register/register_page.dart';
 
 
 
@@ -23,7 +23,7 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
   @override
   Widget build(BuildContext context) {
     if (showLoingPage) {
-      return LoinPage(onTap: togglePage);
+      return const LoinPage();
       
     }else {
       return RegisterPage(onTap:togglePage);

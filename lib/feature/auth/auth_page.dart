@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:qbooking/feature/auth/login_or_register.dart';
 import 'package:qbooking/feature/dashboard/dashboard_screen.dart';
+
+import '../login/presentation/screens/login_page.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -17,7 +18,7 @@ class AuthPage extends StatelessWidget {
             return  const DashboardScreen();
           }
           else {
-            return  const LoginOrRegister();
+            return  const LoinPage();
           }
         } ,
        ),
