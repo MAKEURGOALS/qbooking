@@ -1,4 +1,5 @@
 class ApiPathConstant {
-  static const String login = "/contact/login/";
-  static String refreshToken = "/contact/refreshToken";
+  static const String login = "/api/contact/login/";
+  static const String register = "/api/contact/register/";
+  static String refreshToken = "/api/contact/refreshToken";
 } 
