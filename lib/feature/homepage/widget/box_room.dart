@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/constant/image_constant.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:qbooking/constant/image_path_constant.dart';
+// import 'package:qbooking/constant/image_constant.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../constant/key_storage_constant.dart';
-import '../../../model/room_model.dart';
+// import '../../../constant/key_storage_constant.dart';
+// import '../../../model/room_model_one_model.dart';
+import '../../../model/room_model_one_model.dart';
+// import '../state/room_state.dart';
 
 class BoxRoomHomePage extends StatefulWidget {
   const BoxRoomHomePage({super.key, required this.roomData});
@@ -22,151 +25,110 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
     });
   }
 
-  Future<void> saveFavorite(RoomModel roomData) async {
-    try {
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      final favoriteRoomsJson =
-          preferences.getString(KeyStorageConstant.favoriteRooms);
-      final List<RoomModel> favoriteRooms = favoriteRoomsJson != null
-          ? roomsModelFromJson(favoriteRoomsJson)
-          : [];
-      final listSameRoom =
-          favoriteRooms.where((element) => element.id == roomData.id).toList();
-      if (listSameRoom.isNotEmpty) {
-      } else {
-        favoriteRooms.addAll([roomData]);
-      }
-
-      preferences.setString(
-          KeyStorageConstant.favoriteRooms, roomsModelToJson(favoriteRooms));
-      print(preferences.getString(KeyStorageConstant.favoriteRooms));
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Card(
-            // shape: RoundedRectangleBorder(
-            //   borderRadius: BorderRadius.circular(15.0),
-            // ),
-            child: Column(
-              children: [
-                Stack(
-                  children: [
-                    Image.asset(
-                        widget.roomData.images?[0] ?? ImageConstant.room1),
-                    Positioned(
-                      top: 8,
-                      right: 8,
-                      child: GestureDetector(
-                          onTap: () => saveFavorite(widget.roomData),
-                          child: Icon(
-                            isFavorite
-                                ? Icons.favorite
-                                : Icons.favorite_border_outlined,
-                            color: Colors.red,
-                          )),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(30),
+        child: Card(
+          // shape: RoundedRectangleBorder(
+          //   borderRadius: BorderRadius.circular(15.0),
+          // ),
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Image.network(
+                    'https://1399-2400-c180-21-ddb7-dbb-1e2a-1577-30e.ngrok-free.app${ImagePathConstant.room}${widget.roomData.images?[0]}',
+                    fit: BoxFit.cover,
+                    height: 250,
+                    width: double.infinity,
+                  ),
+                  Positioned(
+                    top: 8,
+                    right: 8,
+                    child: GestureDetector(
+                        onTap: toggleFavorite, //saveFavorite(widget.roomData),
+                        child: Icon(
+                          isFavorite
+                              ? Icons.favorite
+                              : Icons.favorite_border_outlined,
+                          color: Colors.red,
+                        )),
+                  ),
+                ],
+              ),
+              // room bottom Details
+              Column(
+                children: [
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          const Text(
-                            'IQURI Room',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            width: 100,
-                          ),
-                          if (widget.roomData.isAvailable == true)
-                            const Row(
-                              children: [
-                                Icon(
-                                  Icons.circle,
-                                  color: Colors.green,
-                                  size: 10,
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  'available now',
-                                  style: TextStyle(
-                                      fontSize: 13, color: Colors.green),
-                                ),
-                              ],
-                            )
-                          else
-                            const Row(
-                              children: [
-                                Icon(
-                                  Icons.circle,
-                                  color: Colors.red,
-                                  size: 10,
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  'Unavailable now',
-                                  style: TextStyle(
-                                      fontSize: 13, color: Colors.red),
-                                ),
-                              ],
-                            )
-                        ],
+                      Text(
+                        widget.roomData.roomName.toString(),
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      const Row(
+                      const SizedBox(
+                        width: 100,
+                      ),
+                       Row(
                         children: [
-                          Text(
-                            'Meeting room 204',
-                            style: TextStyle(
-                              fontSize: 13,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
                           Icon(
                             Icons.circle,
-                            color: Colors.black,
+                            color: widget.roomData.isActiveStatus != null ? Colors.green : Colors.red,
                             size: 10,
                           ),
-                          SizedBox(
-                            width: 10,
+                          const SizedBox(
+                            width: 5,
                           ),
-                          Text('Floor 2')
+                          Text(
+                            widget.roomData.isActiveStatus !=null ?'available now': 'Unavailable now' ,
+                            style: TextStyle(fontSize: 13, 
+                            color: widget.roomData.isActiveStatus !=null ? Colors.green : Colors.red),
+                          ),
                         ],
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              widget.roomData.description ?? "",
-                              style: const TextStyle(fontSize: 13),
-                            ),
-                          ),
-                          const Icon(Icons.star_border_sharp),
-                          Text(widget.roomData.rate.toString())
-                        ],
-                      )
+                    
                     ],
                   ),
-                )
-              ],
-            ),
+                  Row(
+                    children: [
+                      Text(
+                        'Meeting ${widget.roomData.roomName}',
+                        style: const TextStyle(
+                          fontSize: 13,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      const Icon(
+                        Icons.circle,
+                        color: Colors.black,
+                        size: 10,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text('Floor ${widget.roomData.floor}')
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          widget.roomData.description ?? "",
+                          style: const TextStyle(fontSize: 13),
+                        ),
+                      ),
+                      const Icon(Icons.star_border_sharp),
+                      const Text("3.5")
+                    ],
+                  )
+                ],
+              )
+            ],
           ),
         ),
       ),

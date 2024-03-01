@@ -1,6 +1,9 @@
+
+
 import 'package:flutter/material.dart';
 
 import '../../../../widget/show_dialog.dart';
+import '../../../widget/show_error_dialog.dart';
 import '../../login/presentation/screens/login_page.dart';
 import '../data/register_remote_data_source.dart';
 
@@ -12,28 +15,35 @@ class RegisterState with ChangeNotifier {
   String? passwordError;
   String? confirmPasswordError;
 
-  bool validatePassword() {
+
+
+  bool validatePassword(BuildContext text) {
     if (passwordController.text.length < 6) {
       passwordError = 'Password must be at least 6 characters';
+      showErrorDialog(text, "Password must be at least 6 characters");
       return false;
+      
     } else {
       passwordError = null;
       return true; 
     }
   }
 
-  bool validateConfirmPassword() {
+  bool validateConfirmPassword(BuildContext text) {
     if (confirmPasswordController.text != passwordController.text) {
       confirmPasswordError = "Passwords don't match";
+      showErrorDialog(text, "Passwords don't match");
       return false;
     } else {
       confirmPasswordError = null;
       return true;
     }
   }
+  
 
   Future<void> register(BuildContext context) async {
-    if (validatePassword() && validateConfirmPassword()) {
+    if (validatePassword(context) && validateConfirmPassword(context)) {
+      
       // Password and confirm password are valid, proceed with registration
       const LoadingDialog().show(context);
 
@@ -52,12 +62,16 @@ class RegisterState with ChangeNotifier {
         }, (right) {
           const LoadingDialog().hide(context);
           print(right);
+           Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const LoginPage()));
+          contactController.clear();
+          passwordController.clear();
+          confirmPasswordController.clear();
           // Registration successful, you can navigate to a different screen or show a success message
         });
       } catch (e) {
         const LoadingDialog().hide(context);
-         Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const LoinPage()));
+        
         print(e);
         // Handle other potential errors during registration
       }
@@ -67,3 +81,6 @@ class RegisterState with ChangeNotifier {
     }
   }
 }
+
+
+

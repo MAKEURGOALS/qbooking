@@ -35,15 +35,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: SafeArea(
-        child: Column(
+    return  SafeArea(
+      child: Scaffold(
+        backgroundColor:const Color.fromRGBO(232, 232, 232, 0.2),
+        body: Column(
           children: [
             const CustomSerachBar(),
             ChangePageAllAndAvailableRoom(
               onSelectedIndex: (int value) => setState(() => currentIndex = value),
             ),
-          screens[currentIndex],
+          Expanded(child: screens[currentIndex]),
           // const DashboardScreen()
           ],
         ),

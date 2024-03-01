@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../model/response_login_model.dart';
 
+// connect to api
 class LoginRemoteDataSource extends DioClient {
   Future<Either<String, String>> login(
       {required String contact, required String password}) async {
@@ -23,7 +24,7 @@ class LoginRemoteDataSource extends DioClient {
       return right("login success");
     } on DioException catch (e) {
       print(e.response?.data);
-      print(e.response?.statusCode);
+      // print(e.response?.statusCode);
       return left("Something went wrong");
     } catch (e) {
       print(e);

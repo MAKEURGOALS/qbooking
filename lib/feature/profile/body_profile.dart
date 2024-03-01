@@ -1,3 +1,4 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -8,6 +9,7 @@ import 'package:qbooking/feature/profile/privacy_home_page.dart';
 import 'package:qbooking/feature/profile/term_home_page.dart';
 import 'package:qbooking/feature/profile/widget/list_home_page_profile.dart';
 
+import '../login/presentation/screens/login_page.dart';
 
 class BodyProfile extends StatelessWidget {
   BodyProfile({super.key});
@@ -30,7 +32,7 @@ class BodyProfile extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
-                signUserOut(); // Perform the sign out action
+                signUserOut(context); // Perform the sign out action
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, // Use red color for confirmation
@@ -44,12 +46,16 @@ class BodyProfile extends StatelessWidget {
   }
 
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-
-  void signUserOut() async {
+// user singOut from app
+  void signUserOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
     await _googleSignIn.signOut();
     FacebookAuth.instance.logOut();
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
+
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -81,11 +87,10 @@ class BodyProfile extends StatelessWidget {
           icon: Icons.language,
           onPress: () {
             Navigator.push<void>(
-              context,
-              MaterialPageRoute<void>(
-                builder: (BuildContext context) => const Language(),
-              )
-            );
+                context,
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) => const Language(),
+                ));
           },
         ),
         const Padding(
@@ -104,8 +109,6 @@ class BodyProfile extends StatelessWidget {
                 builder: (BuildContext context) => const PrivacyHomePage(),
               ),
             );
-
-
           },
         ),
         const Padding(

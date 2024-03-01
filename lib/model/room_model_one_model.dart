@@ -4,19 +4,25 @@
 
 import 'dart:convert';
 
-RoomModel roomModelFromJson(String str) => RoomModel.fromJson(json.decode(str));
+List<RoomModel> roomModelFromJson(String str) => List<RoomModel>.from(json.decode(str).map((x) => RoomModel.fromJson(x)));
 
-String roomModelToJson(RoomModel data) => json.encode(data.toJson());
+String roomModelToJson(List<RoomModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+
+// RoomModel roomModelFromJson(String str) => RoomModel.fromJson(json.decode(str));
+
+// String roomModelToJson(RoomModel data) => json.encode(data.toJson());
 
 class RoomModel {
     String? id;
-    String? images;
+    // String? images;
     String? roomName;
     bool? isActiveStatus;
     String? floor;
     String? typeRoom;
     String? description;
     bool? isActiveBooked;
+    List<String>? images;
 
     RoomModel({
         this.id,
@@ -31,23 +37,25 @@ class RoomModel {
 
     factory RoomModel.fromJson(Map<String, dynamic> json) => RoomModel(
         id: json["id"],
-        images: json["images"],
         roomName: json["roomName"],
         isActiveStatus: json["isActiveStatus"],
         floor: json["floor"],
         typeRoom: json["typeRoom"],
         description: json["description"],
         isActiveBooked: json["isActiveBooked"],
+        images: List<String>.from(json["images"].map((x) => x)),
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "images": images,
+        // "images": images,
         "roomName": roomName,
         "isActiveStatus": isActiveStatus,
         "floor": floor,
         "typeRoom": typeRoom,
         "description": description,
         "isActiveBooked": isActiveBooked,
+        "images":
+           images != null ? List<dynamic>.from(images!.map((x) => x)) : [],
     };
 }

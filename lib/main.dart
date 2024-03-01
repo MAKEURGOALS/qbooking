@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qbooking/feature/auth/auth_page.dart';
+import 'package:qbooking/feature/homepage/state/room_state.dart';
 import 'package:qbooking/firebase_options.dart';
 
-import 'feature/dashboard/dashboard_screen.dart';
+import 'feature/auth/auth_page.dart';
 import 'feature/login/presentation/state/login_state.dart';
 import 'feature/register/state/register_state.dart';
 
@@ -22,9 +22,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => LoginState()) , ChangeNotifierProvider(create: (context) =>RegisterState())],
+      providers: [
+        ChangeNotifierProvider(create: (context) => LoginState()),
+        ChangeNotifierProvider(create: (context) => RegisterState()),
+        ChangeNotifierProvider(create: (context) => RoomState())
+      ],
       child: const MaterialApp(
-        home: DashboardScreen(), // Fix the typo here
+        home: AuthPage(), // Fix the typo here
       ),
     );
   }

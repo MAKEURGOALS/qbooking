@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class TopProfileDetail extends StatelessWidget {
-  const TopProfileDetail({super.key,  });
+  TopProfileDetail({super.key,  });
+  final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -9,14 +11,14 @@ class TopProfileDetail extends StatelessWidget {
       centerTitle: true,
       foregroundColor: Colors.white,
       backgroundColor: const Color(0xFF282828),
-      title: const Text('Edit Profile'),
+      title: const Text('Profile'),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(30.0),
           bottomRight: Radius.circular(30.0),
         ),
       ),
-      bottom: const PreferredSize(
+      bottom:  const PreferredSize(
         preferredSize: Size.fromHeight(100),
         child: Padding(
           padding: EdgeInsets.only(bottom: 50, left: 30),
@@ -36,7 +38,8 @@ class TopProfileDetail extends StatelessWidget {
                   ),
                   SizedBox(height: 7,),
                   Text(
-                    'sudo@gmail.com',
+                    // auth.currentUser?.email ?? '',
+                    "Sudo mkdir",
                     style: TextStyle(color: Colors.white),
                   ),
                 ],
