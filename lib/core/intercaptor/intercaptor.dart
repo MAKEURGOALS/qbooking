@@ -22,7 +22,7 @@ class ApiInterceptors extends Interceptor  {
      SharedPreferences preferences = await SharedPreferences.getInstance();
     // final String refreshToken = await preferences.getString(KeyStorageConstant.refreshToken) ?? '';
     final String token =  preferences.getString( KeyStorageConstant.token) ?? '';
-    const baseUrl ="https://798b-115-84-114-118.ngrok-free.app";
+    const baseUrl ="https://1399-2400-c180-21-ddb7-dbb-1e2a-1577-30e.ngrok-free.app";
     // if (isTokenExpired(token)) {
     //   try {
     //     dio.options.baseUrl = AppApiConstant.baseUrl;
@@ -47,7 +47,7 @@ class ApiInterceptors extends Interceptor  {
     options.baseUrl = baseUrl;
     options.headers.addAll({
 
-      'Authorization': token,
+      'Authorization': "Bearer $token",
     });
     handler.next(options);
   }
