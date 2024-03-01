@@ -1,36 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField(
+class EmailTextField extends StatelessWidget {
+  const  EmailTextField(
       {super.key,
       required this.textfield,
       this.icon,
       required this.obscureText,
       required this.onPressed,
-      this.widht,
-      this.height,
       required this.controller,
       });
 
   final String textfield;
   final IconData? icon;
   final bool obscureText;
-  final double? widht;
-  final double? height;
   final TextEditingController controller;
   final Function() onPressed;
-  
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: SizedBox(
-        width: widht,
-        height: height,
+        
         child: TextFormField(
-          validator: RequiredValidator(errorText: "Please enter Password"),
+          validator: MultiValidator([
+            RequiredValidator(errorText: "Please Enter Email Address"),
+            EmailValidator(errorText: "Wrong Type of Email")
+          ]),
           controller: controller,
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
