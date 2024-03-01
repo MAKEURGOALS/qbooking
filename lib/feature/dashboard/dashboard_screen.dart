@@ -18,7 +18,7 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
    int selectedIndex = 0; // create parameter khuen ma phuea hai mun hu va hao lueak index to dh
   final List <Widget> screens = [
-    const HomePage(),
+    const HomePage(), 
     const FavoriteHomePage(),
     const BookingHomePage(),
      const NotificationHomePage(),
