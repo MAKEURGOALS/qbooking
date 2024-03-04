@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TopProfileDetail extends StatelessWidget {
   TopProfileDetail({super.key,  });
@@ -7,7 +8,13 @@ class TopProfileDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Color(0xFF282828),
+      )
+    );
     return AppBar(
+      
       centerTitle: true,
       foregroundColor: Colors.white,
       backgroundColor: const Color(0xFF282828),
@@ -49,5 +56,6 @@ class TopProfileDetail extends StatelessWidget {
         ),
       ),
     );
+    
   }
 }

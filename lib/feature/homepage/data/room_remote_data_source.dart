@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:qbooking/constant/api_path_constant.dart';
-import 'package:qbooking/model/room_model_one_model.dart';
+import 'package:qbooking/feature/homepage/model/room_model_one_model.dart';
 
 import '../../../core/intercaptor/dio_client.dart';
 

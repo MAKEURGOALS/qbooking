@@ -38,12 +38,14 @@ class RoomModel {
     factory RoomModel.fromJson(Map<String, dynamic> json) => RoomModel(
         id: json["id"],
         roomName: json["roomName"],
-        isActiveStatus: json["isActiveStatus"],
+        isActiveStatus: json["is_active_status"],
         floor: json["floor"],
         typeRoom: json["typeRoom"],
         description: json["description"],
-        isActiveBooked: json["isActiveBooked"],
-        images: List<String>.from(json["images"].map((x) => x)),
+        isActiveBooked: json["is_active_booked"],
+        // images: List<String>.from(json["images"].map((x) => x)),
+        images: List<String>.from(json["images"].map((x) => x ?? '')), // Replace null with an empty string
+
     );
 
     Map<String, dynamic> toJson() => {

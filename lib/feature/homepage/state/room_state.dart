@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:qbooking/feature/homepage/data/room_remote_data_source.dart';
 
-import '../../../model/room_model_one_model.dart';
+import '../model/room_model_one_model.dart';
 
 class RoomState  with ChangeNotifier {
   Future<List<RoomModel>> getAllRoom () async{

@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -14,48 +13,54 @@ import '../login/presentation/screens/login_page.dart';
 class BodyProfile extends StatelessWidget {
   BodyProfile({super.key});
 
-  // function confirm logOut user
+  // Function to confirm the logout action
   Future<void> _showLogoutConfirmationDialog(BuildContext context) async {
     return showDialog<void>(
       context: context,
+      barrierDismissible: false, // User must tap button to close the dialog
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Confirm Sign Out'),
           content: const Text('Are you sure you want to sign out?'),
           actions: <Widget>[
             TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
+              onPressed: () => Navigator.of(context).pop(), // Close the dialog
               child: const Text('Cancel'),
             ),
             ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-                signUserOut(context); // Perform the sign out action
+              onPressed: () async {
+                Navigator.of(context).pop(); // Close the dialog first
+                await signUserOut(); // Perform the sign out action
+                if (!context.mounted) return;
+                navigateToLoginPage(context);         // Navigate to the login page after signing out
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red, // Use red color for confirmation
+                backgroundColor:
+                    Colors.black, // Use red color for the sign out button
               ),
-              child: const Text('Sign Out'),
+              child: const Text('Sign Out', style: TextStyle(color: Colors.white),),
             ),
           ],
         );
       },
     );
+    
   }
 
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 // user singOut from app
-  void signUserOut(BuildContext context) async {
+  Future<void> signUserOut() async {
     await FirebaseAuth.instance.signOut();
     await _googleSignIn.signOut();
-    FacebookAuth.instance.logOut();
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
-
+    await FacebookAuth.instance.logOut();
   }
 
-
+  void navigateToLoginPage(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginPage()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +135,7 @@ class BodyProfile extends StatelessWidget {
           },
         ),
         const SizedBox(
-          height: 100,
+          height: 200,
         ),
 
         // button SignOut

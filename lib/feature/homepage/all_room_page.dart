@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qbooking/feature/homepage/state/room_state.dart';
 import 'package:qbooking/feature/homepage/widget/box_room.dart';
-import 'package:qbooking/model/room_model_one_model.dart';
+import 'package:qbooking/feature/homepage/model/room_model_one_model.dart';
 
 class AllRoomPage extends StatelessWidget {
   const AllRoomPage({super.key});
