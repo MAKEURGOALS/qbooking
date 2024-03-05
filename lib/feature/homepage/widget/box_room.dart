@@ -7,6 +7,7 @@ import 'package:qbooking/constant/image_path_constant.dart';
 // import '../../../model/room_model_one_model.dart';
 import '../../../constant/api_path_constant.dart';
 import '../model/room_model_one_model.dart';
+import 'slide_image.dart';
 // import '../state/room_state.dart';
 
 class BoxRoomHomePage extends StatefulWidget {
@@ -22,7 +23,7 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
   bool isFavorite = false;
   void toggleFavorite() {
     setState(() {
-      isFavorite = !isFavorite; 
+      isFavorite = !isFavorite;
     });
   }
 
@@ -31,55 +32,64 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(10),
         child: Card(
-          // shape: RoundedRectangleBorder(
-          //   borderRadius: BorderRadius.circular(15.0),
-          // ),
           child: Column(
             children: [
-              Stack(
-                children: [
-                  Image.network(
-                    '${ApiPathConstant.baseURL}${ImagePathConstant.room}${widget.roomData.images?[0]}',
-                    fit: BoxFit.cover,
-                    height: 250,
-                    width: double.infinity,
-                    loadingBuilder: (BuildContext context, Widget child,
-                        ImageChunkEvent? loadingProgress) {
-                      if (loadingProgress == null) {
-                        return child;
-                      } else {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-                    },
-                    errorBuilder: (BuildContext context, Object error,
-                        StackTrace? stackTrace) {
-                      return const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.error, size: 50, color: Colors.red),
-                          Text('Image Not Available',
-                              style: TextStyle(color: Colors.red)),
-                        ],
-                      );
-                    },
-                  ),
-                  Positioned(
-                    top: 8,
-                    right: 8,
-                    child: GestureDetector(
-                      onTap: toggleFavorite, //saveFavorite(widget.roomData),
-                      child: Icon(
-                        isFavorite
-                            ? Icons.favorite
-                            : Icons.favorite_border_outlined,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              // Stack(
+              //   children: [
+              //     ClipRRect(
+              //       borderRadius: const BorderRadius.only(
+              //         topLeft: Radius.circular(10),
+              //         topRight: Radius.circular(10),
+              //       ),
+              //       child: Image.network(
+              //         '${ApiPathConstant.baseURL}${ImagePathConstant.room}${widget.roomData.images?[0]}',
+              //         fit: BoxFit.cover,
+              //         height: 270,
+              //         width: double.infinity,
+              //         loadingBuilder: (BuildContext context, Widget child,
+              //             ImageChunkEvent? loadingProgress) {
+              //           if (loadingProgress == null) {
+              //             return child;
+              //           } else {
+              //             return const Center(
+              //                 child: CircularProgressIndicator());
+              //           }
+              //         },
+              //         errorBuilder: (BuildContext context, Object error,
+              //             StackTrace? stackTrace) {
+              //           return const Column(
+              //             mainAxisAlignment: MainAxisAlignment.center,
+              //             children: [
+              //               Icon(Icons.error, size: 50, color: Colors.red),
+              //               Text('Image Not Available',
+              //                   style: TextStyle(color: Colors.red)),
+              //             ],
+              //           );
+              //         },
+              //       ),
+              //     ),
+              //     Positioned(
+              //       top: 8,
+              //       right: 8,
+              //       child: GestureDetector(
+              //         onTap: toggleFavorite, //saveFavorite(widget.roomData),
+              //         child: Icon(
+              //           isFavorite
+              //               ? Icons.favorite
+              //               : Icons.favorite_border_outlined,
+              //           color: Colors.red,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+
+              SlideImage(roomData: widget.roomData),
+
+
+
               // room bottom Details
               Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -96,12 +106,12 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
                           width: 135,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: Row(
                             children: [
                               Icon(
                                 Icons.circle,
-                                color: widget.roomData.isActiveStatus != false 
+                                color: widget.roomData.isActiveStatus != false
                                     ? Colors.green
                                     : Colors.red,
                                 size: 10,
@@ -110,14 +120,15 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
                                 width: 5,
                               ),
                               Text(
-                                widget.roomData.isActiveStatus != false 
+                                widget.roomData.isActiveStatus != false
                                     ? 'available now'
                                     : 'Unavailable now',
                                 style: TextStyle(
                                     fontSize: 13,
-                                    color: widget.roomData.isActiveStatus != false 
-                                        ? Colors.green
-                                        : Colors.red),
+                                    color:
+                                        widget.roomData.isActiveStatus != false
+                                            ? Colors.green
+                                            : Colors.red),
                               ),
                             ],
                           ),
