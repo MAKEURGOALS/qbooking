@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:qbooking/feature/auth/widget/custom_text_field.dart';
-import 'package:qbooking/feature/auth/widget/icon_login.dart';
-import 'package:qbooking/feature/auth/widget/my_button_login.dart';
+
+import '../../../widget/custom_text_field.dart';
+import '../../../widget/icon_login.dart';
+import '../../../widget/my_button_login.dart';
+
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key,required this.onTap});

@@ -6,6 +6,10 @@ class FavoriteHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final RoomModel roomModelData;
+    //  final provider = Provider.of<GetFavoriteProvider>(context);
+    //  final favoriteRoom = provider.getRoom;
+
     // Future<List<RoomModel>> getFavoriteRoom() async {
     //   try {
     //     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -19,7 +23,7 @@ class FavoriteHomePage extends StatelessWidget {
     //     return [];
     //   }
     // }
-   
+
     // Future<void> unfavorites(RoomModel roomData) async {
     //   SharedPreferences preferences = await SharedPreferences.getInstance();
     //   final favoriteRoomsJson =
@@ -27,41 +31,44 @@ class FavoriteHomePage extends StatelessWidget {
     //   final List<RoomModel> favoriteRooms = favoriteRoomsJson != null
     //       ? roomsModelFromJson(favoriteRoomsJson)
     //       : [];
-    //   favoriteRooms.where((element) => element.id != roomData.id); 
+    //   favoriteRooms.where((element) => element.id != roomData.id);
     // }
 
     return Scaffold(
-        appBar: AppBar(  
-          centerTitle: true,
-          title: const Text(
-            'Favorite',
-            style: TextStyle(color: Colors.black),
-          ),
-          backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          'Favorite',
+          style: TextStyle(color: Colors.black),
         ),
-        // body: FutureBuilder<List<RoomModel>>(
-        //   future: getFavoriteRoom(),
-        //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        //     if (snapshot.connectionState == ConnectionState.waiting) {
-        //       return const CircularProgressIndicator();
-        //     } else if (snapshot.connectionState == ConnectionState.done) {
-        //       if (snapshot.hasError) {
-        //         return const Text('Error');
-        //       } else if (snapshot.hasData) {
-        //         return ListView.builder(
-        //             shrinkWrap: true,
-        //             itemCount: snapshot.data.length,
-        //             itemBuilder: (context, index) => BoxFavorites(
-        //                   roomData: snapshot.data[index],
-        //                 ));
-        //       } else {
-        //         return const Text('Empty data');
-        //       }
-        //     } else {
-        //       return Text('State: ${snapshot.connectionState}');
-        //     }
-        //   },
-        // )
-        );
+        backgroundColor: Colors.white,
+      ),
+
+      // body: FutureBuilder<List<RoomModel>>(
+      //   future: getFavoriteRoom(),
+      //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+      //     if (snapshot.connectionState == ConnectionState.waiting) {
+      //       return const CircularProgressIndicator();
+      //     } else if (snapshot.connectionState == ConnectionState.done) {
+      //       if (snapshot.hasError) {
+      //         return const Text('Error');
+      //       } else if (snapshot.hasData) {
+      //         return ListView.builder(
+      //             shrinkWrap: true,
+      //             itemCount: snapshot.data.length,
+      //             itemBuilder: (context, index) => BoxRoomHomePage(
+      //                   roomData: snapshot.data[index],
+      //                 ));
+      //       } else {
+      //         return const Text('Empty data');
+      //       }
+      //     } else {
+      //       return Text('State: ${snapshot.connectionState}');
+      //     }
+      //   },
+      // )
+
+      
+    );
   }
 }

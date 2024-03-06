@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/feature/homepage/all_room_page.dart';
-import 'package:qbooking/feature/homepage/availiable_room.dart';
+import 'package:qbooking/feature/homepage/presentation/widget/all_room_page.dart';
+import 'package:qbooking/feature/homepage/presentation/widget/availiable_room.dart';
 
 
 class SwapAllRoomAvailableRoom extends StatefulWidget {

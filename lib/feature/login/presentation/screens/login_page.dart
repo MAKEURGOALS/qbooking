@@ -6,7 +6,10 @@ import 'package:provider/provider.dart';
 
 import 'package:qbooking/widget/show_dialog.dart';
 
-import '../../../auth/widget/widgets.dart';
+import '../../../../widget/custom_text_field.dart';
+import '../../../../widget/email_text_field.dart';
+import '../../../../widget/icon_login.dart';
+import '../../../../widget/my_button_login.dart';
 import '../../../register/register_page.dart';
 import '../state/login_state.dart';
 

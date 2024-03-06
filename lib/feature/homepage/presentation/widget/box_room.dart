@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../model/room_model_one_model.dart';
+import '../../data/model/room_model_one_model.dart';
 import 'slide_image.dart';
 
 class BoxRoomHomePage extends StatefulWidget {
@@ -28,61 +28,7 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
         child: Card(
           child: Column(
             children: [
-              // Stack(
-              //   children: [
-              //     ClipRRect(
-              //       borderRadius: const BorderRadius.only(
-              //         topLeft: Radius.circular(10),
-              //         topRight: Radius.circular(10),
-              //       ),
-              //       child: Image.network(
-              //         '${ApiPathConstant.baseURL}${ImagePathConstant.room}${widget.roomData.images?[0]}',
-              //         fit: BoxFit.cover,
-              //         height: 270,
-              //         width: double.infinity,
-              //         loadingBuilder: (BuildContext context, Widget child,
-              //             ImageChunkEvent? loadingProgress) {
-              //           if (loadingProgress == null) {
-              //             return child;
-              //           } else {
-              //             return const Center(
-              //                 child: CircularProgressIndicator());
-              //           }
-              //         },
-              //         errorBuilder: (BuildContext context, Object error,
-              //             StackTrace? stackTrace) {
-              //           return const Column(
-              //             mainAxisAlignment: MainAxisAlignment.center,
-              //             children: [
-              //               Icon(Icons.error, size: 50, color: Colors.red),
-              //               Text('Image Not Available',
-              //                   style: TextStyle(color: Colors.red)),
-              //             ],
-              //           );
-              //         },
-              //       ),
-              //     ),
-              //     Positioned(
-              //       top: 8,
-              //       right: 8,
-              //       child: GestureDetector(
-              //         onTap: toggleFavorite, //saveFavorite(widget.roomData),
-              //         child: Icon(
-              //           isFavorite
-              //               ? Icons.favorite
-              //               : Icons.favorite_border_outlined,
-              //           color: Colors.red,
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-
               SlideImage(roomData: widget.roomData),
-
-
-
-              // room bottom Details
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Column(
@@ -116,11 +62,11 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
                                     ? 'available now'
                                     : 'Unavailable now',
                                 style: TextStyle(
-                                    fontSize: 13,
-                                    color:
-                                        widget.roomData.isActiveStatus != false
-                                            ? Colors.green
-                                            : Colors.red),
+                                  fontSize: 13,
+                                  color: widget.roomData.isActiveStatus != false
+                                      ? Colors.green
+                                      : Colors.red,
+                                ),
                               ),
                             ],
                           ),

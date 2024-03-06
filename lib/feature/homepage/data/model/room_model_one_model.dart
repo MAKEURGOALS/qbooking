@@ -15,7 +15,6 @@ String roomModelToJson(List<RoomModel> data) => json.encode(List<dynamic>.from(d
 
 class RoomModel {
     String? id;
-    // String? images;
     String? roomName;
     bool? isActiveStatus;
     String? floor;
@@ -43,7 +42,6 @@ class RoomModel {
         typeRoom: json["typeRoom"],
         description: json["description"],
         isActiveBooked: json["is_active_booked"],
-        // images: List<String>.from(json["images"].map((x) => x)),
         images: List<String>.from(json["images"].map((x) => x ?? '')), // Replace null with an empty string
 
     );

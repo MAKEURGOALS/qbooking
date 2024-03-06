@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../../../constant/api_path_constant.dart';
-import '../../../constant/image_path_constant.dart';
-import '../model/room_model_one_model.dart';
+import 'package:provider/provider.dart';
+import 'package:qbooking/feature/favorite/service/get_favorite_service.dart';
+import '../../../../constant/api_path_constant.dart';
+import '../../../../constant/image_path_constant.dart';
+import '../../data/model/room_model_one_model.dart';
 
 class SlideImage extends StatefulWidget {
   const SlideImage({super.key, required this.roomData});
@@ -16,13 +18,12 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
   int currentIndex = 0;
   bool isFavorite = false;
 
-   void toggleFavorite() {
+  void toggleFavorite() {
     setState(() {
       isFavorite = !isFavorite;
     });
   }
   // Check if the URL is correct
-
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
                   placeholder: (context, url) =>
                       const CircularProgressIndicator(),
                   errorWidget: (context, url, error) => const Center(
-                    child:  Column(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
@@ -53,13 +54,14 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
                           color: Colors.red,
                           size: 50.0,
                         ),
-                        Text("Failed to load network image", style: TextStyle(fontSize:20, fontWeight: FontWeight.bold))
+                        Text("Failed to load network image",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold))
                       ],
                     ),
                   ),
                   imageUrl:
                       '${ApiPathConstant.baseURL}${ApiPathConstant.roomPicture}${widget.roomData.images?[index]}',
-                  
                 ),
               ),
               Positioned(
@@ -79,19 +81,23 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
                 ),
               ),
               Positioned(
-                    top: 8,
-                    right: 8,
-                    child: GestureDetector(
-                      onTap: toggleFavorite, //saveFavorite(widget.roomData),
-                      child: Icon(
-                        isFavorite
-                            ? Icons.favorite
-                            : Icons.favorite_border_outlined,
-                        color: Colors.red,
-                        size: 30,
-                      ),
-                    ),
+                top: 8,
+                right: 8,
+                child: GestureDetector(
+                  onTap: () {
+                    toggleFavorite;
+                    // Provider.of<GetFavoriteProvider>(context, listen: false)
+                    //     .addFavoriteRoom(widget.roomData);
+                  }, //saveFavorite(widget.roomData),
+                  child: Icon(
+                    isFavorite
+                        ? Icons.favorite
+                        : Icons.favorite_border_outlined,
+                    color: Colors.red,
+                    size: 30,
                   ),
+                ),
+              ),
             ],
           );
         },

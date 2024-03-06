@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 // import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:qbooking/feature/homepage/all_room_page.dart';
-import 'package:qbooking/feature/homepage/availiable_room.dart';
-import 'package:qbooking/feature/homepage/widget/change_page_all_availablr_room.dart';
-import 'package:qbooking/feature/homepage/widget/search_bar.dart';
+import 'package:qbooking/feature/homepage/presentation/widget/all_room_page.dart';
+import 'package:qbooking/feature/homepage/presentation/widget/availiable_room.dart';
+import 'package:qbooking/feature/homepage/presentation/widget/change_page_all_availablr_room.dart';
+import 'package:qbooking/feature/homepage/presentation/widget/search_bar.dart';
 
 
 

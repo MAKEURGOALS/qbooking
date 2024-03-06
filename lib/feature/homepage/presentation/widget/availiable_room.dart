@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:qbooking/data/room_data.dart';
-import 'package:qbooking/feature/homepage/widget/box_room.dart';
+import 'package:qbooking/feature/homepage/presentation/widget/box_room.dart';
 
-import 'model/room_model_one_model.dart';
-import 'state/room_state.dart';
+import '../../data/model/room_model_one_model.dart';
+import '../state/room_state.dart';
 
 class AvailableRoomStatus extends StatelessWidget {
   const AvailableRoomStatus({super.key});
