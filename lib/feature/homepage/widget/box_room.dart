@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/constant/image_path_constant.dart';
-// import 'package:qbooking/constant/image_constant.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-
-// import '../../../constant/key_storage_constant.dart';
-// import '../../../model/room_model_one_model.dart';
-import '../../../constant/api_path_constant.dart';
 import '../model/room_model_one_model.dart';
 import 'slide_image.dart';
-// import '../state/room_state.dart';
 
 class BoxRoomHomePage extends StatefulWidget {
   const BoxRoomHomePage({super.key, required this.roomData});

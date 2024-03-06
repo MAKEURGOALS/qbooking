@@ -14,6 +14,15 @@ class SlideImage extends StatefulWidget {
 
 class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
   int currentIndex = 0;
+  bool isFavorite = false;
+
+   void toggleFavorite() {
+    setState(() {
+      isFavorite = !isFavorite;
+    });
+  }
+  // Check if the URL is correct
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +42,24 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: CachedNetworkImage(
-                  imageUrl: '${ApiPathConstant.baseURL}${ImagePathConstant.room}${widget.roomData.images?[index]}',
-                  placeholder: (context, url) => const CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                  fit: BoxFit.contain,
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => const Center(
+                    child:  Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.error,
+                          color: Colors.red,
+                          size: 50.0,
+                        ),
+                        Text("Failed to load network image", style: TextStyle(fontSize:20, fontWeight: FontWeight.bold))
+                      ],
+                    ),
+                  ),
+                  imageUrl:
+                      '${ApiPathConstant.baseURL}${ApiPathConstant.roomPicture}${widget.roomData.images?[index]}',
+                  
                 ),
               ),
               Positioned(
@@ -55,6 +78,20 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
                   ),
                 ),
               ),
+              Positioned(
+                    top: 8,
+                    right: 8,
+                    child: GestureDetector(
+                      onTap: toggleFavorite, //saveFavorite(widget.roomData),
+                      child: Icon(
+                        isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border_outlined,
+                        color: Colors.red,
+                        size: 30,
+                      ),
+                    ),
+                  ),
             ],
           );
         },
@@ -62,4 +99,3 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
     );
   }
 }
-
