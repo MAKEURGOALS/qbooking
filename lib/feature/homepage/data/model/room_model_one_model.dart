@@ -35,7 +35,7 @@ class RoomModel {
     });
 
     factory RoomModel.fromJson(Map<String, dynamic> json) => RoomModel(
-        id: json["id"],
+        id: json["_id"],
         roomName: json["roomName"],
         isActiveStatus: json["is_active_status"],
         floor: json["floor"],
@@ -47,7 +47,7 @@ class RoomModel {
     );
 
     Map<String, dynamic> toJson() => {
-        "id": id,
+        "_id": id,
         // "images": images,
         "roomName": roomName,
         "isActiveStatus": isActiveStatus,

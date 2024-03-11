@@ -1,9 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:qbooking/feature/favorite/service/get_favorite_service.dart';
 import '../../../../constant/api_path_constant.dart';
-import '../../../../constant/image_path_constant.dart';
+import '../../../favorite/service/get_room_service.dart';
 import '../../data/model/room_model_one_model.dart';
 
 class SlideImage extends StatefulWidget {
@@ -85,9 +83,8 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
                 right: 8,
                 child: GestureDetector(
                   onTap: () {
-                    toggleFavorite;
-                    // Provider.of<GetFavoriteProvider>(context, listen: false)
-                    //     .addFavoriteRoom(widget.roomData);
+                    saveFavorite(widget.roomData);
+                    
                   }, //saveFavorite(widget.roomData),
                   child: Icon(
                     isFavorite
