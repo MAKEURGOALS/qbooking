@@ -1,40 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../constant/key_storage_constant.dart';
+import 'package:provider/provider.dart';
 import '../homepage/data/model/room_model_one_model.dart';
 import '../homepage/presentation/widget/box_room.dart';
+import 'presentation/state/favorite_room_state.dart';
 
 class FavoriteHomePage extends StatelessWidget {
   const FavoriteHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Future<List<RoomModel>> getFavoriteRoom() async {
-      try {
-        SharedPreferences preferences = await SharedPreferences.getInstance();
-        final favoriteRoomsJson =
-            preferences.getString(KeyStorageConstant.favoriteRooms);
-            
-            print(favoriteRoomsJson);
-        final List<RoomModel> favoriteRooms = favoriteRoomsJson != null
-            ? roomModelFromJson(favoriteRoomsJson)
-            : [];
-        return favoriteRooms;
-      } catch (e) {
-        return [];
-      }
-    }
-
-    Future<void> unFavorites(RoomModel roomData) async {
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      final favoriteRoomsJson =
-          preferences.getString(KeyStorageConstant.favoriteRooms);
-      final List<RoomModel> favoriteRooms =
-          favoriteRoomsJson != null ? roomModelFromJson(favoriteRoomsJson) : [];
-      favoriteRooms.where((element) => element.id != roomData.id);
-    }
-
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -45,7 +19,7 @@ class FavoriteHomePage extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
         body: FutureBuilder<List<RoomModel>>(
-          future: getFavoriteRoom(),
+          future: context.read<FavoriteRoomState>().getFavoriteRoom(),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();
@@ -66,6 +40,7 @@ class FavoriteHomePage extends StatelessWidget {
               return Text('State: ${snapshot.connectionState}');
             }
           },
-        ));
+        )
+        );
   }
 }

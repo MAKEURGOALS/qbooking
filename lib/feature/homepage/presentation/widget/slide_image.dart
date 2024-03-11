@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qbooking/feature/favorite/presentation/state/favorite_room_state.dart';
 import '../../../../constant/api_path_constant.dart';
 import '../../../favorite/service/get_room_service.dart';
 import '../../data/model/room_model_one_model.dart';
@@ -14,13 +16,9 @@ class SlideImage extends StatefulWidget {
 
 class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
   int currentIndex = 0;
-  bool isFavorite = false;
 
-  void toggleFavorite() {
-    setState(() {
-      isFavorite = !isFavorite;
-    });
-  }
+
+ 
   // Check if the URL is correct
 
   @override
@@ -81,19 +79,14 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
               Positioned(
                 top: 8,
                 right: 8,
-                child: GestureDetector(
-                  onTap: () {
-                    saveFavorite(widget.roomData);
-                    
-                  }, //saveFavorite(widget.roomData),
-                  child: Icon(
-                    isFavorite
-                        ? Icons.favorite
-                        : Icons.favorite_border_outlined,
-                    color: Colors.red,
-                    size: 30,
-                  ),
-                ),
+                child: IconButton(
+                    onPressed: () {context.read<FavoriteRoomState>().saveFavorite(widget.roomData);},
+                    icon: Icon(context.read<FavoriteRoomState>().isRoomFavorited(widget.roomData.id ?? "")
+                       ? Icons.favorite 
+                        : Icons.favorite_border),
+                        color: context.read<FavoriteRoomState>().isRoomFavorited(widget.roomData.id ?? "") ? Colors.red : null,
+                        iconSize: 30.0,
+                        ),
               ),
             ],
           );
