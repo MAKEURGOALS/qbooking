@@ -17,8 +17,6 @@ class SlideImage extends StatefulWidget {
 class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
   int currentIndex = 0;
 
-
- 
   // Check if the URL is correct
 
   @override
@@ -58,6 +56,8 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
                   ),
                   imageUrl:
                       '${ApiPathConstant.baseURL}${ApiPathConstant.roomPicture}${widget.roomData.images?[index]}',
+                  fit: BoxFit.cover,
+                  width: double.infinity,
                 ),
               ),
               Positioned(
@@ -79,14 +79,24 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
               Positioned(
                 top: 8,
                 right: 8,
-                child: IconButton(
-                    onPressed: () {context.read<FavoriteRoomState>().saveFavorite(widget.roomData);},
-                    icon: Icon(context.read<FavoriteRoomState>().isRoomFavorited(widget.roomData.id ?? "")
-                       ? Icons.favorite 
-                        : Icons.favorite_border),
-                        color: context.read<FavoriteRoomState>().isRoomFavorited(widget.roomData.id ?? "") ? Colors.red : null,
-                        iconSize: 30.0,
-                        ),
+                child: Consumer<FavoriteRoomState>(
+                  builder: (context, state, child) {
+                    return IconButton(
+                      onPressed: () {
+                        state.saveFavorite(widget.roomData);
+                      },
+                      icon: Icon(
+                        state.isRoomFavorited(widget.roomData.id ?? "")
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        size: 30,
+                      ),
+                      color: state.isRoomFavorited(widget.roomData.id ?? "")
+                          ? Colors.red
+                          : null,
+                    );
+                  },
+                ),
               ),
             ],
           );

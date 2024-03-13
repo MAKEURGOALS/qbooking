@@ -14,7 +14,7 @@ class FavoriteRoomState with ChangeNotifier {
       final favoriteRoomsJson =
           preferences.getString(KeyStorageConstant.favoriteRooms);
 
-      print(favoriteRoomsJson);
+      debugPrint(favoriteRoomsJson);
       final List<RoomModel> data =
           favoriteRoomsJson != null ? roomModelFromJson(favoriteRoomsJson) : [];
       favoriteRooms = data;
@@ -69,16 +69,21 @@ class FavoriteRoomState with ChangeNotifier {
       final listSameRoom =
           favoriteRooms.where((element) => element.id == roomData.id).toList();
       if (listSameRoom.isNotEmpty) {
-          favoriteRooms.remove([]);
+          favoriteRooms.removeWhere((element) => element.id == roomData.id);
       } else {
-        favoriteRooms.addAll([...favoriteRooms,roomData]);
+        favoriteRooms.add(roomData);
       }
 
+      this.favoriteRooms = favoriteRooms;
+      
       preferences.setString(
           KeyStorageConstant.favoriteRooms, roomModelToJson(favoriteRooms));
-      print(preferences.getString(KeyStorageConstant.favoriteRooms));
+      debugPrint(preferences.getString(KeyStorageConstant.favoriteRooms));
+      
+      notifyListeners(); 
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
+      
     }
   }
 
