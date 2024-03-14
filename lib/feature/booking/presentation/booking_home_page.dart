@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/feature/booking/qr_user_page.dart';
-import 'package:qbooking/feature/booking/widget/button_booking.dart';
-import 'package:qbooking/feature/booking/widget/date_pick.dart';
-import 'package:qbooking/feature/booking/widget/equipment.dart';
-import 'package:qbooking/feature/booking/widget/slider_picture.dart';
-import 'package:qbooking/feature/booking/widget/text_picture_status.dart';
-import 'package:qbooking/feature/booking/widget/time_picker.dart';
+import 'package:qbooking/feature/booking/presentation/qr_user_page.dart';
+import 'package:qbooking/feature/booking/presentation/widget/button_booking.dart';
+import 'package:qbooking/feature/booking/presentation/widget/date_pick.dart';
+import 'package:qbooking/feature/booking/presentation/widget/equipment.dart';
+import 'package:qbooking/feature/booking/presentation/widget/slider_picture.dart';
+import 'package:qbooking/feature/booking/presentation/widget/text_picture_status.dart';
+import 'package:qbooking/feature/booking/presentation/widget/time_picker.dart';
 import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
 
-import '../../constant/colors_constant.dart';
+import '../../../constant/colors_constant.dart';
 
 class BookingHomePage extends StatelessWidget {
   const BookingHomePage({super.key, required this.roomData,});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../homepage/data/model/room_model_one_model.dart';
-import '../homepage/presentation/widget/box_room.dart';
-import 'presentation/state/favorite_room_state.dart';
+import '../../homepage/data/model/room_model_one_model.dart';
+import '../../homepage/presentation/widget/box_room.dart';
+import 'state/favorite_room_state.dart';
 
 class FavoriteHomePage extends StatelessWidget {
   const FavoriteHomePage({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/feature/booking/widget/button_booking.dart';
-import 'package:qbooking/feature/booking/widget/date_pick.dart';
+import 'package:qbooking/feature/booking/presentation/widget/button_booking.dart';
+import 'package:qbooking/feature/booking/presentation/widget/date_pick.dart';
 import 'package:qbooking/feature/filter/widget/equipment_filter.dart';
 
 import 'widget/flow_chart.dart';

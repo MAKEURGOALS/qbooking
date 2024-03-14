@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/feature/booking/widget/container_user_profile.dart';
+import 'package:qbooking/feature/booking/presentation/widget/container_user_profile.dart';
 
 class QrUserPage extends StatelessWidget {
   const QrUserPage({super.key});

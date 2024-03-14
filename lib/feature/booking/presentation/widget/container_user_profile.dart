@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/feature/booking/widget/barcode_user.dart';
-import 'package:qbooking/feature/booking/widget/circle_pic_user.dart';
-import 'package:qbooking/feature/booking/widget/text_container_user_qr.dart';
+import 'package:qbooking/feature/booking/presentation/widget/barcode_user.dart';
+import 'package:qbooking/feature/booking/presentation/widget/circle_pic_user.dart';
+import 'package:qbooking/feature/booking/presentation/widget/text_container_user_qr.dart';
 
 import 'button_booking.dart';
 

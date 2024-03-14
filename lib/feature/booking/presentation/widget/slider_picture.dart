@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../homepage/data/model/room_model_one_model.dart';
+import '../../../homepage/data/model/room_model_one_model.dart';
 
 class SliderPicture extends StatefulWidget {
   const SliderPicture({Key? key, required this.roomData}) : super(key: key);
@@ -43,7 +43,7 @@ class _SliderPictureState extends State<SliderPicture>
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         // Return a widget to display in case of an error
-                        return  Center(child: Text('Failed to load image'));
+                        return   const Center(child:  Text('Failed to load image'));
                       },
                     ),
                   ),

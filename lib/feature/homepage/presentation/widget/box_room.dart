@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/feature/booking/booking_home_page.dart';
+import 'package:qbooking/feature/booking/presentation/booking_home_page.dart';
 import '../../data/model/room_model_one_model.dart';
 import 'slide_image.dart';
 
@@ -18,12 +18,15 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: InkWell(
+        // yaiy nar pai bg detail rooms
         onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => BookingHomePage(
                       roomData: widget.roomData,
-                    ))),
+                    )
+                    )
+                    ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Card(

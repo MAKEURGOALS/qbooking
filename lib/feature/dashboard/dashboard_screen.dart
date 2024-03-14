@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/feature/favorite/favorite_home_page.dart';
+import 'package:qbooking/feature/favorite/presentation/favorite_home_page.dart';
 import 'package:qbooking/feature/homepage/presentation/home_page.dart';
 import 'package:qbooking/feature/homepage/presentation/widget/bottom_navigation_bar.dart';
 import 'package:qbooking/feature/notification/notification_home_page.dart';
 import 'package:qbooking/feature/profile/profile_home_page.dart';
 
-import '../booking/booking_home_page.dart';
 
 
 class DashboardScreen extends StatefulWidget {
