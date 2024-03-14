@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../homepage/data/model/room_model_one_model.dart';
+
 class SliderPicture extends StatefulWidget {
-  const SliderPicture({Key? key}) : super(key: key);
+  const SliderPicture({Key? key, required this.roomData}) : super(key: key);
+  final RoomModel roomData;
 
   @override
   State<SliderPicture> createState() => _SliderPictureState();
@@ -9,11 +12,6 @@ class SliderPicture extends StatefulWidget {
 
 class _SliderPictureState extends State<SliderPicture>
     with TickerProviderStateMixin {
-  final List<String> myPicture = [
-    'assets/images/meeting.jpg',
-    'assets/images/meeting2.jpg',
-    'assets/images/meeting3.jpg',
-  ];
   int currentIndex = 0;
 
   @override
@@ -28,7 +26,7 @@ class _SliderPictureState extends State<SliderPicture>
             height: 200,
             width: MediaQuery.of(context).size.width,
             child: PageView.builder(
-              itemCount: myPicture.length,
+              itemCount: widget.roomData.images?.length ?? 0,
               physics: const BouncingScrollPhysics(),
               controller: PageController(initialPage: 0, viewportFraction: 1.0),
               onPageChanged: (value) {
@@ -40,9 +38,13 @@ class _SliderPictureState extends State<SliderPicture>
                   margin: const EdgeInsets.all(8),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
-                    child: Image.asset(
-                      myPicture[index],
+                    child: Image.network(
+                      widget.roomData.images![index],
                       fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        // Return a widget to display in case of an error
+                        return  Center(child: Text('Failed to load image'));
+                      },
                     ),
                   ),
                 );
@@ -53,7 +55,7 @@ class _SliderPictureState extends State<SliderPicture>
             selectedColor: Colors.black,
             color: Colors.grey,
             controller: TabController(
-              length: myPicture.length,
+              length: widget.roomData.images!.length,
               initialIndex: currentIndex,
               vsync: this,
             ),

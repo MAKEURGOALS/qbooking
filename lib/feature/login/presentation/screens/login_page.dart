@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
+import 'package:qbooking/feature/auth/state/google_sign_in_state.dart';
 
 import 'package:qbooking/widget/show_dialog.dart';
 
@@ -78,23 +79,29 @@ class _LoinPageState extends State<LoginPage> {
   }
 
 // login With google
-  Future<void> signInWithGoogle() async {
-    try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+Future<void> signInWithGoogle() async {
+ try {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
 
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
-
-      await FirebaseAuth.instance.signInWithCredential(credential);
-    } on Exception catch (e) {
-      print("Can't sign with google >$e");
+    await FirebaseAuth.instance.signInWithCredential(credential);
+ } on FirebaseAuthException catch (e) {
+    if (e.code == 'account-exists-with-different-credential') {
+      // Handle the error when the account already exists with a different credential
+    } else if (e.code == 'invalid-credential') {
+      // Handle the error when the credential is invalid
     }
-  }
+    print("FirebaseAuthException: $e");
+ } catch (e) {
+    print("Can't sign with Google > $e");
+ }
+}
+
 
   Future<UserCredential> signInWithFacebook() async {
     final LoginResult loginResult = await FacebookAuth.instance.login();
@@ -201,9 +208,7 @@ class _LoinPageState extends State<LoginPage> {
                     children: [
                       // IconFaceBook
                       InkWell(
-                        onTap: () {
-                          signInWithGoogle();
-                        },
+                        onTap: ()=> GoogleSignInSate().googleSignIn(),
                         child: const Iconlogin(
                           imagepaht: 'assets/iconslogo/google.png',
                         ),

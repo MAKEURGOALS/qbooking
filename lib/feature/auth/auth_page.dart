@@ -51,15 +51,3 @@ class _AuthPageState extends State<AuthPage> {
   }
 }
 
-//  StreamBuilder<User?>(
-//         stream: FirebaseAuth.instance.authStateChanges(),
-//         builder: (context, snapshot) {
-//           // user is Login
-//           if (snapshot.hasData){
-//             return  const DashboardScreen();
-//           }
-//           else {
-//             return  const LoginPage();
-//           }
-//         } ,
-//        ),

@@ -6,6 +6,7 @@ import '../../widget/custom_text_field.dart';
 import '../../widget/email_text_field.dart';
 import '../../widget/icon_login.dart';
 import '../../widget/my_button_login.dart';
+import '../auth/state/google_sign_in_state.dart';
 import '../login/presentation/screens/login_page.dart';
 import 'state/register_state.dart';
 
@@ -202,9 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     // IconFaceBook
                     InkWell(
-                      onTap: () {
-                        signInWithGoogle();
-                      },
+                      onTap: ()=> GoogleSignInSate().googleSignIn(),
                       child: const Iconlogin(
                         imagepaht: 'assets/iconslogo/google.png',
                       ),

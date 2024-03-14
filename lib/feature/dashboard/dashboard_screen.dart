@@ -20,7 +20,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   final List <Widget> screens = [
     const HomePage(), 
     const FavoriteHomePage(),
-    const BookingHomePage(),
+     Container(),
      const NotificationHomePage(),
     const ProfileHomePage()
   ];

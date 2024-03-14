@@ -26,7 +26,7 @@ class RoomModel {
     RoomModel({
         this.id,
         this.images,
-        this.roomName,
+        this.roomName,  
         this.isActiveStatus,
         this.floor,
         this.typeRoom,
@@ -39,7 +39,7 @@ class RoomModel {
         roomName: json["roomName"],
         isActiveStatus: json["is_active_status"],
         floor: json["floor"],
-        typeRoom: json["typeRoom"],
+        typeRoom: json["type_room"],
         description: json["description"],
         isActiveBooked: json["is_active_booked"],
         images: List<String>.from(json["images"].map((x) => x ?? '')), // Replace null with an empty string
@@ -52,7 +52,7 @@ class RoomModel {
         "roomName": roomName,
         "isActiveStatus": isActiveStatus,
         "floor": floor,
-        "typeRoom": typeRoom,
+        "type_room": typeRoom,
         "description": description,
         "isActiveBooked": isActiveBooked,
         "images":

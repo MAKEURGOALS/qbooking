@@ -6,11 +6,13 @@ import 'package:qbooking/feature/booking/widget/equipment.dart';
 import 'package:qbooking/feature/booking/widget/slider_picture.dart';
 import 'package:qbooking/feature/booking/widget/text_picture_status.dart';
 import 'package:qbooking/feature/booking/widget/time_picker.dart';
+import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
 
 import '../../constant/colors_constant.dart';
 
 class BookingHomePage extends StatelessWidget {
-  const BookingHomePage({super.key});
+  const BookingHomePage({super.key, required this.roomData,});
+  final  RoomModel roomData;
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +36,15 @@ class BookingHomePage extends StatelessWidget {
         body: Container(
           decoration: const BoxDecoration(
               color: ColorsConstants.primaryBackgroundColor),
-          child: Padding(
+          child:  Padding(
             padding: const EdgeInsets.all(20.0),
-            child: SingleChildScrollView(
+            child:  SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const TextPictureStatus(),
-                  const SliderPicture(),
+                   TextPictureStatus(roomData: roomData,),
+                   SliderPicture(roomData: roomData,),
                   const SizedBox(
                     height: 20,
                   ),

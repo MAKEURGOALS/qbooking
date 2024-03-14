@@ -1,61 +1,79 @@
 import 'package:flutter/material.dart';
+import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
 
 class TextPictureStatus extends StatelessWidget {
-  const TextPictureStatus({super.key});
+  const TextPictureStatus({
+    super.key,
+    required this.roomData,
+  });
+  final RoomModel roomData;
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-     
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
-       crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "IQURI room",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              roomData.roomName ?? "",
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               textAlign: TextAlign.start,
             ),
             Row(
               children: [
-                Text("Meeting room 204"),
-                SizedBox(
+                Text(
+                  roomData.typeRoom ?? "",
+                ),
+                const SizedBox(
                   width: 15,
                 ),
-                Icon(
+                const Icon(
                   Icons.circle,
                   size: 10,
                 ),
-                SizedBox(width: 8,),
-                Text("Floor 2")
+                const SizedBox(
+                  width: 8,
+                ),
+                Text(roomData.floor ?? "")
               ],
             )
           ],
         ),
+        //left side of box
         Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Row(
               children: [
                 Icon(
                   Icons.circle,
+                  color: roomData.isActiveStatus != false
+                      ? Colors.green
+                      : Colors.red,
                   size: 10,
-                  color: Colors.green,
                 ),
-                SizedBox(width: 7,),
+                
                 Text(
-                  "Available 10am",
-                  style: TextStyle(fontSize: 12, color: Colors.green),
+                  roomData.isActiveStatus != false
+                      ? 'available now'
+                      : 'Unavailable now',
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: roomData.isActiveStatus != false
+                        ? Colors.green
+                        : Colors.red,
+                  ),
                 ),
               ],
             ),
-            Row(
+            const Row(
               children: [
-                Icon(Icons.star_border_outlined , size: 25,),
-                Text(
-                  "4.96"
-                )
+                Icon(
+                  Icons.star_border_outlined,
+                  size: 25,
+                ),
+                Text("4.96")
               ],
             )
           ],

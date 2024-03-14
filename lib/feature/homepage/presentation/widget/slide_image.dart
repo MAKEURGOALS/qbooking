@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qbooking/feature/favorite/presentation/state/favorite_room_state.dart';
 import '../../../../constant/api_path_constant.dart';
-import '../../../favorite/service/get_room_service.dart';
 import '../../data/model/room_model_one_model.dart';
 
 class SlideImage extends StatefulWidget {
@@ -29,7 +28,6 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
         controller: PageController(initialPage: 0, viewportFraction: 1.0),
         onPageChanged: (value) {
           currentIndex = value;
-          setState(() {});
         },
         itemBuilder: (context, index) {
           return Stack(
