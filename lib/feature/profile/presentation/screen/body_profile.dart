@@ -2,13 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:qbooking/feature/profile/edit_profile_page.dart';
-import 'package:qbooking/feature/profile/language_home_page.dart';
-import 'package:qbooking/feature/profile/privacy_home_page.dart';
-import 'package:qbooking/feature/profile/term_home_page.dart';
+import 'package:qbooking/feature/profile/presentation/screen/edit_profile_page.dart';
+import 'package:qbooking/feature/profile/presentation/screen/language_home_page.dart';
+import 'package:qbooking/feature/profile/presentation/screen/privacy_home_page.dart';
+import 'package:qbooking/feature/profile/presentation/screen/term_home_page.dart';
 import 'package:qbooking/feature/profile/widget/list_home_page_profile.dart';
 
-import '../login/presentation/screens/login_page.dart';
+import '../../../login/presentation/screens/login_page.dart';
 
 class BodyProfile extends StatelessWidget {
   BodyProfile({super.key});
