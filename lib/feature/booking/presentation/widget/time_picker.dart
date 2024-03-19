@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:qbooking/feature/booking/presentation/widget/time_button_pick.dart';
 
+import '../../../../widget/alert_dialog_text.dart';
+
 class TimePicker extends StatefulWidget {
   const TimePicker({super.key});
 
@@ -26,19 +28,7 @@ class _TimePickerState extends State<TimePicker> {
         showDialog(
           context: context,
           builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Error'),
-              content: const Text(
-                  'End time cannot be less than start time. Please select a new end time.'),
-              actions: <Widget>[
-                TextButton(
-                  child: const Text('OK'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            );
+            return const AlertDialogText(titleText: 'Warnning', messageText: 'Please select');
           },
         );
       } else {
@@ -65,37 +55,7 @@ class _TimePickerState extends State<TimePicker> {
         const SizedBox(
           height: 25,
         ),
-        // const SingleChildScrollView(
-        //   scrollDirection: Axis.horizontal,
-        //   child: Row(
-        //     children: [
-        //       Text("9:00"),
-        //       SizedBox(
-        //         width: 30,
-        //       ),
-        //       Text("10:00"),
-        //       SizedBox(
-        //         width: 30,
-        //       ),
-        //       Text("11:00"),
-        //       SizedBox(
-        //         width: 30,
-        //       ),
-        //       Text("12:00"),
-        //       SizedBox(
-        //         width: 30,
-        //       ),
-        //       Text("13:00"),
-        //       SizedBox(
-        //         width: 30,
-        //       ),
-        //       Text("14:00"),
-        //       SizedBox(
-        //         width: 30,
-        //       ),
-        //     ],
-        //   ),
-        // ),
+      
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
