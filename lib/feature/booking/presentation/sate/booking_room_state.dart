@@ -1,27 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:qbooking/widget/message_dialog.dart';
 
 class BookingRoomState with ChangeNotifier {
   final List _addEquipment = [];
 
-  void addEquipment(int index) {
-    _addEquipment.add(index);
-    notifyListeners();
-  }
-  void removeEquipment(int index) {
-    _addEquipment.removeAt(index);
-    notifyListeners();
-  }
-  
+  void addEquipment(
+      {required String equipment, required BuildContext context}) {
+    final listSelectEquipment =
+        _addEquipment.where((element) => element == equipment);
 
-  bool isEquipment(int index) {
-    if (index == 0) {
-      addEquipment(index);
+    if (listSelectEquipment.isNotEmpty) {
+      removeEquipment(equipment);
+    } else if (_addEquipment.isNotEmpty) {
+      messageDialod(
+          context: context, message: 'Please Select only 1 equipment');
+    } else {
+      _addEquipment.add(equipment);
+    }
+
+    notifyListeners();
+  }
+
+  void removeEquipment(String equipment) {
+    _addEquipment.removeWhere((item) => item == equipment);
+    notifyListeners();
+  }
+
+  bool isSelectEquipment(String equipment) {
+    final listSelectEquipment =
+        _addEquipment.where((element) => element == equipment);
+
+    if (listSelectEquipment.isNotEmpty) {
       return true;
     } else {
-      removeEquipment(index);
       return false;
     }
   }
 }
- 
