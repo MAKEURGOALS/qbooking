@@ -16,7 +16,7 @@ class ProfileRemoteDataSource with ChangeNotifier{
         options: Options(contentType:  "application/json"));
       final data = profileModelFromJson(jsonEncode(res.data));
       return right("success");
-      
+     
     }catch (e){
       print(e);
       return left("Something went wrong");

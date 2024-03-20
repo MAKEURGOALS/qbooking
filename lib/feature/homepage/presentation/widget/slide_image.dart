@@ -35,13 +35,14 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: CachedNetworkImage(
-                  placeholder: (context, url) =>
-                      const CircularProgressIndicator(),
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
                   errorWidget: (context, url, error) => const Center(
-                    child: Column(
+                    child:  Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        Icon( 
                           Icons.error,
                           color: Colors.red,
                           size: 50.0,
