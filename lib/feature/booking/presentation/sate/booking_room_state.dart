@@ -20,22 +20,26 @@ class BookingRoomState with ChangeNotifier {
       _addEquipment.add(equipment);
     }
 
-    notifyListeners();
+    // notifyListeners();
   }
 
   void removeEquipment(String equipment) {
     _addEquipment.removeWhere((item) => item == equipment);
-    notifyListeners();
+    
   }
 
   bool isSelectEquipment(String equipment) {
     final listSelectEquipment =
         _addEquipment.where((element) => element == equipment);
+    // notifyListeners();
+
 
     if (listSelectEquipment.isNotEmpty) {
       return true;
     } else {
       return false;
     }
+   
+
   }
 }

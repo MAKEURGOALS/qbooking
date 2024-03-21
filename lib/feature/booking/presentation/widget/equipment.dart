@@ -29,9 +29,10 @@ class _EquipmentState extends State<Equipment> {
             decoration: BoxDecoration(
                 color: context
                             .read<BookingRoomState>()
-                            .isSelectEquipment(widget.titleEq) != true
+                            .isSelectEquipment(widget.titleEq) !=
+                        true
                     ? Colors.white
-                    : Colors.blueAccent,
+                    : Colors.black,
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(20)),
             child: Padding(

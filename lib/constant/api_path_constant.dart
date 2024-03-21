@@ -5,5 +5,6 @@ class ApiPathConstant {
   static const String room = "/api/room";
   static const String baseURL = "https://iqbooking.onrender.com";
   static const String roomPicture = "/api/room/picture/";
-  static const String profile = "/api/profile/create";
+  static const String profile = "/api/profile/read";
+
 } 

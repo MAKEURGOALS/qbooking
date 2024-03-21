@@ -13,27 +13,23 @@ class _CountryPickerState extends State<CountryPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40),
-      child: CSCPicker(
-        
-        onCountryChanged: (value) {
-          setState(() {
-            countryValue = value;
-            
-          });
-        },
-        onCityChanged: (value) {
-          
-        },
-        onStateChanged: (value) {
-          
-        },
-        showStates: false,
-        showCities: false,
-        countryDropdownLabel: "Country",
-        selectedItemStyle: const TextStyle(fontSize: 20),
-      
+    return Container(
+      height: 100,
+      child: SizedBox(
+        height: 100,
+        child: CSCPicker(
+          onCountryChanged: (value) {
+            setState(() {
+              countryValue = value;
+            });
+          },
+          onCityChanged: (value) {},
+          onStateChanged: (value) {},
+          showStates: false,
+          showCities: false,
+          countryDropdownLabel: "Country",
+          selectedItemStyle: const TextStyle(fontSize: 20),
+        ),
       ),
     );
   }

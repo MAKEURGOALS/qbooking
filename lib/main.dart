@@ -8,6 +8,7 @@ import 'package:qbooking/firebase_options.dart';
 import 'feature/auth/auth_page.dart';
 import 'feature/favorite/presentation/state/favorite_room_state.dart';
 import 'feature/login/presentation/state/login_state.dart';
+import 'feature/profile/presentation/state/profile_state.dart';
 import 'feature/register/state/register_state.dart';
 
 void main() async {
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => RoomState()),
         ChangeNotifierProvider(create: (context) => FavoriteRoomState()),
         ChangeNotifierProvider(create: (context) => BookingRoomState()),
+        ChangeNotifierProvider(create: (context) => ProfileState()),
 
       ],
       child: const MaterialApp(

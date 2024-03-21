@@ -8,13 +8,18 @@ void messageDialod({
     context: context,
     builder: (context) {
       return Dialog(
-        child: Column(
-          children: [
-            Text(message, style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-            TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Ok'))
-          ],
+        child: SizedBox(
+          height: 300,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(message, style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+              TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text('Ok'))
+            ],
+          ),
         ),
       );
     },

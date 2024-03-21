@@ -50,10 +50,15 @@ class BodyProfile extends StatelessWidget {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 // user singOut from app
   Future<void> signUserOut() async {
+  try {
     await FirebaseAuth.instance.signOut();
     await _googleSignIn.signOut();
     await FacebookAuth.instance.logOut();
+  } catch (e) {
+    print("Sign out error: $e");
   }
+}
+
 
   void navigateToLoginPage(BuildContext context) {
     Navigator.pushReplacement(

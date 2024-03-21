@@ -1,5 +1,5 @@
-enum Gender{
+enum EnumGender{
   male,
   female,
   other
-}
+} 
