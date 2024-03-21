@@ -4,6 +4,7 @@ import 'package:qbooking/feature/profile/widget/country_picker.dart';
 import 'package:qbooking/feature/profile/widget/custom_input_profile.dart';
 import 'package:qbooking/feature/profile/widget/profile_edit_image.dart';
 
+import '../../../../constant/colors_constant.dart';
 import '../../../../widget/my_button_login.dart';
 import '../../widget/select_gender.dart';
 import '../state/profile_state.dart';
@@ -27,6 +28,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
           'Edit Profile',
           style: TextStyle(color: Colors.black),
         ),
+        bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(3),
+              child: Container(
+                color: ColorsConstants.borderAppbarColor,
+                height: 1,
+              )),
       ),
       body: FutureBuilder(
         future: context.read<ProfileState>().getProfile(),

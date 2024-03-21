@@ -15,8 +15,10 @@ class ProfileState with ChangeNotifier {
   Future<ProfileModel> getProfile() async {
     final data = await ProfileRemoteDataSource().getProfile();
     return data.fold((l) {
+      //tha hark mun br ni data ja hai mun sg ProfileModel pao ork ma
       return ProfileModel();
     }, (r) {
+      // tha hark mun mi data ja hai mun show detaila profile 
       nameController.text = r.name ?? "";
       print(r);
       emailController.text = r.gmail ?? "";
@@ -30,13 +32,13 @@ class ProfileState with ChangeNotifier {
     final pref = await SharedPreferences.getInstance();
 
     final profileJson = profile.toJson();
-
+    //hai pref save long keyStrongeContant.profile
     await pref.setString(KeyStorageConstant.profile, profileJson.toString());
   }
 
   Future<String> getProfileToLocalStorage() async {
     final pref = await SharedPreferences.getInstance();
-
+    // karn deubg ao profile tha hark mun br mi ja hai mun return String pao ork ma 
     String profile = pref.getString(KeyStorageConstant.profile) ?? "";
     return profile;
   }

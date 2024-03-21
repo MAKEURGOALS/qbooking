@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:qbooking/feature/profile/widget/customa_language.dart';
 
+import '../../../../constant/colors_constant.dart';
+
 class Language extends StatelessWidget {
   const Language({super.key});
 
@@ -15,6 +17,12 @@ class Language extends StatelessWidget {
           'Language',
           style: TextStyle(color: Colors.black),
         ),
+        bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(3),
+              child: Container(
+                color: ColorsConstants.borderAppbarColor,
+                height: 1,
+              )),
       ),
       body: const Padding(
         padding: EdgeInsets.all(15.0),

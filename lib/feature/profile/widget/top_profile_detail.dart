@@ -15,6 +15,7 @@ class TopProfileDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Color(0xFF282828),
+      statusBarIconBrightness: Brightness.light,
     ));
     return AppBar(
         centerTitle: true,

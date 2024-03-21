@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:qbooking/feature/profile/widget/button_agree_term_provacy.dart';
 
+import '../../../../constant/colors_constant.dart';
+
 class TermHomePage extends StatelessWidget {
   const TermHomePage({super.key});
 
@@ -15,6 +17,12 @@ class TermHomePage extends StatelessWidget {
           'Terms & Conditions',
           style: TextStyle(color: Colors.black),
         ),
+        bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(3),
+              child: Container(
+                color: ColorsConstants.borderAppbarColor,
+                height: 1,
+              )),
       ),
       body:  const Padding(
         padding: EdgeInsets.all(25.0),

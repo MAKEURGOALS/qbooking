@@ -25,7 +25,7 @@ class AllRoomPage extends StatelessWidget {
                     );
                   });
             } else if (snapshot.hasError == true) {
-              return Center(
+              return const Center(
                 child: Text("Something went wrong"),
               );
             } else {

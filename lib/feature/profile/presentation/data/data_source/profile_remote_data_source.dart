@@ -7,7 +7,7 @@ import 'package:qbooking/constant/api_path_constant.dart';
 import 'package:qbooking/core/intercaptor/dio_client.dart';
 
 import '../model/profile_model.dart';
-
+// to connect kup api profile doi me DioClient pen base url
 class ProfileRemoteDataSource extends DioClient {
   Future<Either<String,ProfileModel>> getProfile() async {
     try {
