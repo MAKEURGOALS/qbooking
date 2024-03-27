@@ -4,4 +4,8 @@ class KeyStorageConstant{
   static String refreshToken = "refreshToken";
   static String room = "room";
   static String profile = "profile";
+
+  // User profile Keystorage
+  static String userId = "userId";
+
 }

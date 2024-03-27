@@ -6,5 +6,6 @@ class ImageConstant {
 
 class LottieConstant{
   static String waiting = "assets/lottie/waiting_animation.json";
+  static String error = "assets/lottie/error_animation.json";
   
 }

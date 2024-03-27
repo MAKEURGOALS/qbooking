@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:qbooking/constant/image_constant.dart';
+import 'package:qbooking/constant/message.dart';
 import 'package:qbooking/feature/homepage/presentation/state/room_state.dart';
 import 'package:qbooking/feature/homepage/presentation/widget/box_room.dart';
 import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
@@ -25,9 +29,14 @@ class AllRoomPage extends StatelessWidget {
                     );
                   });
             } else if (snapshot.hasError == true) {
-              return const Center(
-                child: Text("Something went wrong"),
-              );
+              return  Center(
+                  child: Column(
+                children: [
+                  const Text(Message.haveWrong),
+                  Lottie.asset(LottieConstant.waiting)
+                ],
+              ));
+              // return Container();
             } else {
               return const Center(
                 child: CircularProgressIndicator(),
@@ -38,8 +47,7 @@ class AllRoomPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-        })
-        );
+        }));
 
     // const SingleChildScrollView(
     //   child: Column(

@@ -19,7 +19,7 @@ class SettingPage extends StatelessWidget {
               children: [
                 Text(
                   "Common",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),  
                 ),
                 SizedBox(height: 15,),
 
@@ -34,6 +34,7 @@ class SettingPage extends StatelessWidget {
                   "Common",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
+               
                 SizedBox(height: 15,),
 
                 SwitchButton(textSetting: 'App updates',),

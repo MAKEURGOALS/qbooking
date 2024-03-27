@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qbooking/feature/booking/presentation/qr_user_page.dart';
+import 'package:qbooking/feature/booking/presentation/sate/booking_room_state.dart';
 import 'package:qbooking/feature/booking/presentation/widget/button_booking.dart';
 import 'package:qbooking/feature/booking/presentation/widget/date_pick.dart';
 import 'package:qbooking/feature/booking/presentation/widget/equipment.dart';
@@ -122,10 +123,11 @@ class BookingHomePage extends StatelessWidget {
                         color: Colors.black,
                         titleColor: Colors.white,
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const QrUserPage()));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => const QrUserPage()));
+                          BookingRoomState().getBookingRoom(context: context, roomId: roomData.id.toString(), roomName: roomData.roomName.toString(), meetingDate: "12/3/2024", startTime: "13:00", endTime: "14:00", equipment: "TV");
                         },
                       )
                     ],
