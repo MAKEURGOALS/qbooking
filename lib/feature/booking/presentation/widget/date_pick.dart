@@ -2,7 +2,8 @@ import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 
 class DatePickUp extends StatefulWidget {
-  const DatePickUp({super.key});
+  final Function(DateTime value)  onSelectedDate;
+  const DatePickUp({super.key, required this.onSelectedDate});
 
   @override
   State<DatePickUp> createState() => _DatePickUpState();
@@ -24,7 +25,7 @@ class _DatePickUpState extends State<DatePickUp> {
         InkWell(
           onTap: () async {
             final DateTime? dateTime = await showDatePicker(
-                context: context,
+                context: context, 
                 initialDate: selectedDate,
                 firstDate: DateTime.now(),
                 lastDate: DateTime(3000));
@@ -34,6 +35,7 @@ class _DatePickUpState extends State<DatePickUp> {
                 datePickerController.animateToDate(dateTime);
                 datePickerController.setDateAndAnimate(dateTime);
                 dateTimeKey = UniqueKey();
+                widget.onSelectedDate(selectedDate);
               });
             }
           },
@@ -55,7 +57,7 @@ class _DatePickUpState extends State<DatePickUp> {
             height: 100,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children:[
                 DatePicker(
                   key: dateTimeKey,
                   DateTime.now(),

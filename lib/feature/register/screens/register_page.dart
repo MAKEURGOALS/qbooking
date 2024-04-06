@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../widget/custom_text_field.dart';
+import '../../../widget/email_text_field.dart';
 import '../../../widget/icon_login.dart';
 import '../../../widget/my_button_login.dart';
 
-
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key,required this.onTap});
+  const RegisterPage({super.key, required this.onTap});
   final Function()? onTap;
 
   @override
@@ -16,7 +16,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  bool _isObscured = true;
+
 
   final emailConttroller = TextEditingController();
   final passwordConttroller = TextEditingController();
@@ -32,17 +32,17 @@ class _RegisterPageState extends State<RegisterPage> {
           );
         });
     try {
-       if (passwordConttroller.text == confirmConttroller.text) {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailConttroller.text,
-        password: passwordConttroller.text,
-      );
-      if (!context.mounted) return;
-      Navigator.pop(context);
-    } else {
-      Navigator.pop(context);
-      showErrorDialog("Passwords do not match.");
-    }
+      if (passwordConttroller.text == confirmConttroller.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailConttroller.text,
+          password: passwordConttroller.text,
+        );
+        if (!context.mounted) return;
+        Navigator.pop(context);
+      } else {
+        Navigator.pop(context);
+        showErrorDialog("Passwords do not match.");
+      }
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
 
@@ -79,24 +79,23 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  Future<void> signInWithGoogle() async{
-  try {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  Future<void> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    final GoogleSignInAuthentication? googleAuth = 
-      await googleUser?.authentication;
-    
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
 
-     await FirebaseAuth.instance.signInWithCredential(credential);
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
 
-  } on Exception catch (e){
-    print("Can't sign with google >$e");
+      await FirebaseAuth.instance.signInWithCredential(credential);
+    } on Exception catch (e) {
+      print("Can't sign with google >$e");
+    }
   }
-} 
 
   @override
   Widget build(BuildContext context) {
@@ -114,10 +113,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 'Create your Account',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              
 
-              CustomTextField(
-                controller: emailConttroller,
+              EmailTextField(
                 textfield: 'Email or Phone number',
                 obscureText: false,
                 onPressed: () {},
@@ -125,29 +122,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
               CustomTextField(
                 controller: passwordConttroller,
-                textfield: 'Password',
-                icon: _isObscured ? Icons.visibility : Icons.visibility_off,
-                obscureText: _isObscured,
-                onPressed: () {
-                  setState(() {
-                    _isObscured = !_isObscured;
-                  });
-                },
               ),
 
               // confirm password Textfield
               CustomTextField(
                 controller: confirmConttroller,
-                textfield: 'Confirm Password',
-                icon: _isObscured ? Icons.visibility : Icons.visibility_off,
-                obscureText: _isObscured,
-                onPressed: () {
-                  setState(() {
-                    _isObscured = !_isObscured;
-                  });
-                },
               ),
-             
+
               const SizedBox(
                 height: 25,
               ),
@@ -155,16 +136,20 @@ class _RegisterPageState extends State<RegisterPage> {
                 text: 'Sign Up',
                 onTap: () => signUserUp(),
               ),
-              const SizedBox(height: 25,),
-               const Divider(
-                  thickness: 1,
-                  color: Colors.black,
-                  indent: 80,
-                  endIndent: 80,
-                ),
+              const SizedBox(
+                height: 25,
+              ),
+              const Divider(
+                thickness: 1,
+                color: Colors.black,
+                indent: 80,
+                endIndent: 80,
+              ),
 
-              const SizedBox(height: 25,),
-              
+              const SizedBox(
+                height: 25,
+              ),
+
               const Text(
                 'Or sign up with',
                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -174,17 +159,16 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 35,
               ),
               // IconBottom
-                Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // IconFaceBook
                   InkWell(
-                    onTap: ()  {
+                    onTap: () {
                       signInWithGoogle();
                     },
                     child: const Iconlogin(
                       imagepaht: 'assets/iconslogo/google.png',
-                      
                     ),
                   ),
 
@@ -201,7 +185,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 50,
               ),
 
-               Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(

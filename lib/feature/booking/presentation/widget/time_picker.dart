@@ -4,7 +4,9 @@ import 'package:qbooking/feature/booking/presentation/widget/time_button_pick.da
 import '../../../../widget/alert_dialog_text.dart';
 
 class TimePicker extends StatefulWidget {
-  const TimePicker({super.key});
+  final Function(TimeOfDay time) onselectedStartTime;
+  final Function(TimeOfDay time) onselectedEndTime;
+  const TimePicker({super.key, required this.onselectedStartTime, required this.onselectedEndTime});
 
   @override
   State<TimePicker> createState() => _TimePickerState();
@@ -15,11 +17,11 @@ class _TimePickerState extends State<TimePicker> {
   TimeOfDay endTime = TimeOfDay.now();
   int currentIndex = 0;
 
-
   void handleTimeSelection(TimeOfDay selectedTime, bool isStartTime) {
     if (isStartTime) {
       setState(() {
         startTime = selectedTime;
+        widget.onselectedStartTime(startTime);
       });
     } else {
       if (selectedTime.hour < startTime.hour ||
@@ -28,12 +30,15 @@ class _TimePickerState extends State<TimePicker> {
         showDialog(
           context: context,
           builder: (BuildContext context) {
-            return const AlertDialogText(titleText: 'Warnning', messageText: 'Please select');
+            return const AlertDialogText(
+                titleText: 'Warnning', messageText: 'Please select');
           },
         );
       } else {
         setState(() {
           endTime = selectedTime;
+          widget.onselectedEndTime(endTime);
+
         });
       }
     }
@@ -55,7 +60,6 @@ class _TimePickerState extends State<TimePicker> {
         const SizedBox(
           height: 25,
         ),
-      
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -64,7 +68,6 @@ class _TimePickerState extends State<TimePicker> {
               isStartTime: true,
               onTimeSelected: (time) => handleTimeSelection(time, true),
             ),
-        
             TimePickerButton(
               titleTime: "End Time",
               isStartTime: false,
@@ -72,7 +75,6 @@ class _TimePickerState extends State<TimePicker> {
             )
           ],
         ),
-       
       ],
     );
   }

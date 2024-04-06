@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:qbooking/feature/profile/presentation/screen/edit_profile_page.dart';
 import 'package:qbooking/feature/profile/presentation/screen/language_home_page.dart';
@@ -140,7 +139,7 @@ class BodyProfile extends StatelessWidget {
           },
         ),
         const SizedBox(
-          height: 200,
+          height: 150,
         ),
 
         // button SignOut

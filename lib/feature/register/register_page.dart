@@ -20,7 +20,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  bool _isObscured = true;
 
   final emailConttroller = TextEditingController();
   final passwordConttroller = TextEditingController();
@@ -135,32 +134,17 @@ class _RegisterPageState extends State<RegisterPage> {
 
                         CustomTextField(
                           controller: registerProvider.passwordController,
-                          textfield: 'Password',
-                          icon: _isObscured
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          obscureText: _isObscured,
-                          onPressed: () {
-                            setState(() {
-                              _isObscured = !_isObscured;
-                            });
-                          },
+                         
+                         
+                         
                         ),
 
                         // confirm password Textfield
                         CustomTextField(
                           controller:
                               registerProvider.confirmPasswordController,
-                          textfield: 'Confirm Password',
-                          icon: _isObscured
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          obscureText: _isObscured,
-                          onPressed: () {
-                            setState(() {
-                              _isObscured = !_isObscured;
-                            });
-                          },
+                          
+                          
                         ),
                         const SizedBox(
                           height: 25,

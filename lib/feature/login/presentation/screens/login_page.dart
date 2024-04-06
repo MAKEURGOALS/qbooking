@@ -22,7 +22,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoinPageState extends State<LoginPage> {
-  bool _isObscured = true;
 
   final emailConttroller = TextEditingController();
   final passwordConttroller = TextEditingController();
@@ -150,16 +149,10 @@ Future<void> signInWithGoogle() async {
                       ),
                       CustomTextField(
                         controller: loginProvider.passwordController,
-                        textfield: 'Password',
-                        icon: _isObscured
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                        obscureText: _isObscured,
-                        onPressed: () {
-                          setState(() {
-                            _isObscured = !_isObscured;
-                          });
-                        },
+                        
+                        
+                        
+                       
                       ),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 25.0),
@@ -246,7 +239,7 @@ Future<void> signInWithGoogle() async {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => RegisterPage()));
+                                  builder: (context) => const RegisterPage()));
                         },
                         child: const Text(
                           "Sign Up",

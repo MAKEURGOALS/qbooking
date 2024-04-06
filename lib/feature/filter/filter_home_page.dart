@@ -32,7 +32,7 @@ class FilterHomePage extends StatelessWidget {
              
               const LineChartSample2(),
               const Divider(),
-              const DatePickUp(),
+               DatePickUp(onSelectedDate: (DateTime value) {  },),
               const SizedBox(height: 20,),
 
               const Text("EQUIPMENT", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),

@@ -16,7 +16,7 @@ class GoogleSignInSate with ChangeNotifier {
    
 
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 }

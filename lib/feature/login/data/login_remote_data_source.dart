@@ -25,7 +25,7 @@ class LoginRemoteDataSource extends DioClient {
     } on DioException catch (e) {
       print(e.response?.data);
       // print(e.response?.statusCode);
-      return left("Something went wrong");
+      return left(e.response!.data["message"]);
     } catch (e) {
       print(e);
       return left("Something went wrong");

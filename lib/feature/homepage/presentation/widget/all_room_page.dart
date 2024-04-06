@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:qbooking/constant/image_constant.dart';
@@ -9,66 +8,42 @@ import 'package:qbooking/feature/homepage/presentation/widget/box_room.dart';
 import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
 
 class AllRoomPage extends StatelessWidget {
-  const AllRoomPage({super.key});
+ const AllRoomPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    // final allRoomPage = RoomData.allRoom;
+ @override
+ Widget build(BuildContext context) {
     return FutureBuilder<List<RoomModel>>(
-        // context.read<LoginState>().login(context);
         future: context.read<RoomState>().getAllRoom(),
-        builder: ((context, snapshot) {
+        builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasData == true) {
+            if (snapshot.hasData) {
               return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: snapshot.data?.length ?? 0,
-                  itemBuilder: (context, index) {
+                 shrinkWrap: true,
+                 itemCount: snapshot.data?.length ?? 0,
+                 itemBuilder: (context, index) {
                     return BoxRoomHomePage(
                       roomData: snapshot.data?[index] ?? RoomModel(),
                     );
-                  });
-            } else if (snapshot.hasError == true) {
-              return  Center(
-                  child: Column(
+                 });
+            } else if (snapshot.hasError) {
+              // Correctly handling the error state
+              return Center(
+                 child: Column(
                 children: [
-                  const Text(Message.haveWrong),
-                  Lottie.asset(LottieConstant.waiting)
+                 const Text(Message.haveWrong),
+                 Lottie.asset(LottieConstant.waiting)
                 ],
               ));
-              // return Container();
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
             }
-          } else {
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
-        }));
-
-    // const SingleChildScrollView(
-    //   child: Column(
-    //     children: [
-    //       BoxRoomHomePage(
-    //         roomstate: '5.00',
-    //         changeimage: 'assets/images/meeting.jpg',
-    //         statusRoom: false,
-    //       ),
-    //       BoxRoomHomePage(
-    //         roomstate: '4.00',
-    //         changeimage: 'assets/images/meeting2.jpg',
-    //         statusRoom: false,
-    //       ),
-    //       BoxRoomHomePage(
-    //         roomstate: '4.00',
-    //         changeimage: 'assets/images/meeting2.jpg',
-    //         statusRoom: false,
-    //       ),
-    //     ],
-    //   ),
-    // );
-  }
+          // Handling other states if necessary
+          return const Center(
+            child: Text('something went wrong'),
+          );
+        });
+ }
 }

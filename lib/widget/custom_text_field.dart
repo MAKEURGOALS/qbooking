@@ -1,37 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField(
-      {super.key,
-      required this.textfield,
-      this.icon,
-      required this.obscureText,
-      required this.onPressed,
-      this.widht,
-      this.height,
-      required this.controller,
-      });
+class CustomTextField extends StatefulWidget {
+  const CustomTextField({
+    super.key,
+    
 
-  final String textfield;
-  final IconData? icon;
-  final bool obscureText;
+
+    this.widht,
+    this.height,
+    required this.controller,
+  });
+
+  
+  
   final double? widht;
   final double? height;
   final TextEditingController controller;
-  final Function() onPressed;
-  
+
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+   bool isObscured = true;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: SizedBox(
-        width: widht,
-        height: height,
+        width: widget.widht,
+        height: widget.height,
         child: TextFormField(
           validator: RequiredValidator(errorText: "Please enter Password"),
-          controller: controller,
+          controller: widget.controller,
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.grey),
@@ -43,13 +47,19 @@ class CustomTextField extends StatelessWidget {
             ),
             fillColor: Colors.grey.shade100,
             filled: true,
-            label: Text(textfield),
+            label: const Text('Password'),
             suffixIcon: IconButton(
-              icon: Icon(icon),
-              onPressed: onPressed,
+              icon: Icon(
+                isObscured ? Icons.visibility_off : Icons.visibility,
+              ),
+              onPressed: (){
+                setState(() {
+                  isObscured = !isObscured;
+                });
+              },
             ),
           ),
-          obscureText: obscureText,
+          obscureText: isObscured,
         ),
       ),
     );

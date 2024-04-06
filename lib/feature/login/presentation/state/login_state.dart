@@ -22,6 +22,7 @@ class LoginState with ChangeNotifier {
       return null;
     }, (r) {
       const LoadingDialog().hide(context);
+      
       print(r);
       contactController.clear();
       passwordController.clear();

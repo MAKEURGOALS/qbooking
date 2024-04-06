@@ -8,13 +8,13 @@ class EmailTextField extends StatelessWidget {
       this.icon,
       required this.obscureText,
       required this.onPressed,
-      required this.controller,
+      this.controller,
       });
 
   final String textfield;
   final IconData? icon;
   final bool obscureText;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final Function() onPressed;
 
   @override
@@ -26,7 +26,8 @@ class EmailTextField extends StatelessWidget {
         child: TextFormField(
           validator: MultiValidator([
             RequiredValidator(errorText: "Please Enter Email Address"),
-            EmailValidator(errorText: "Wrong Type of Email")
+            EmailValidator(errorText: "Wrong Type of Email"),
+            
           ]),
           controller: controller,
           decoration: InputDecoration(

@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/feature/booking/presentation/qr_user_page.dart';
+import 'package:provider/provider.dart';
 import 'package:qbooking/feature/booking/presentation/sate/booking_room_state.dart';
 import 'package:qbooking/feature/booking/presentation/widget/button_booking.dart';
 import 'package:qbooking/feature/booking/presentation/widget/date_pick.dart';
 import 'package:qbooking/feature/booking/presentation/widget/equipment.dart';
 import 'package:qbooking/feature/booking/presentation/widget/slider_picture.dart';
 import 'package:qbooking/feature/booking/presentation/widget/text_picture_status.dart';
-import 'package:qbooking/feature/booking/presentation/widget/time_picker.dart';
 import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
 
 import '../../../constant/colors_constant.dart';
+import 'widget/time_button_pick.dart';
 
-class BookingHomePage extends StatelessWidget {
-  const BookingHomePage({super.key, required this.roomData,});
-  final  RoomModel roomData;
+class BookingHomePage extends StatefulWidget {
+  const BookingHomePage({
+    super.key,
+    required this.roomData,
+  });
+  final RoomModel roomData;
 
+  @override
+  State<BookingHomePage> createState() => _BookingHomePageState();
+}
+
+class _BookingHomePageState extends State<BookingHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,26 +45,66 @@ class BookingHomePage extends StatelessWidget {
         body: Container(
           decoration: const BoxDecoration(
               color: ColorsConstants.primaryBackgroundColor),
-          child:  Padding(
+          child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child:  SingleChildScrollView(
+            child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   TextPictureStatus(roomData: roomData,),
-                   SliderPicture(roomData: roomData,),
-                  const SizedBox(
-                    height: 20,
+                  TextPictureStatus(
+                    roomData: widget.roomData,
                   ),
-                  const DatePickUp(),
-                  const SizedBox(
-                    height: 20,
+                  SliderPicture(
+                    roomData: widget.roomData,
                   ),
-                  const TimePicker(),
-                  const SizedBox(
-                    height: 15,
+                  const SizedBox(height: 20),
+                  DatePickUp(
+                    onSelectedDate: (DateTime value) {
+                      print(value);
+                      context.read<BookingRoomState>().dateTimeToString(value);
+                    },
                   ),
+                  const SizedBox(height: 20),
+               
+                  const Row(
+                    children: [
+                      Icon(Icons.access_time_sharp),
+                      Text(
+                        "Time",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                  //Selected Time button
+                  Row(
+                    children: [
+                      TimePickerButton(
+                        titleTime: "Start Time",
+                        isStartTime: true,
+                        onTimeSelected: (time) {
+                         
+                          context
+                              .read<BookingRoomState>()
+                              .startTimeToString(time);
+                        },
+                      ),
+                      const SizedBox(width: 8),
+                      TimePickerButton(
+                        titleTime: "End Time",
+                        isStartTime: false,
+                        onTimeSelected: (time) {
+                        
+                          context
+                              .read<BookingRoomState>()
+                              .endtimeToString(time);
+                        },
+                      )
+                    ],
+                  ),
+
+                  const SizedBox(height: 15),
                   const Text(
                     "EQUIPMENT",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -123,11 +171,13 @@ class BookingHomePage extends StatelessWidget {
                         color: Colors.black,
                         titleColor: Colors.white,
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => const QrUserPage()));
-                          BookingRoomState().getBookingRoom(context: context, roomId: roomData.id.toString(), roomName: roomData.roomName.toString(), meetingDate: "12/3/2024", startTime: "13:00", endTime: "14:00", equipment: "TV");
+                          context.read<BookingRoomState>().createBookingRoom(
+                            context: context,
+                            roomId: widget.roomData.id ?? "",
+                            roomName: widget.roomData.roomName ?? "", 
+                       
+                            
+                          );
                         },
                       )
                     ],

@@ -51,13 +51,8 @@ class _TimePickerButtonState extends State<TimePickerButton> {
                       timeOfDay.minute < now.minute)) {
                      
                
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return const AlertDialogText(
-                        titleText: 'Alert', messageText: 'Starting ');
-                  },
-                );
+              
+                const AlertDialogText(titleText: 'Selected Time', messageText: 'Time is less than Time now',);
               } else {
                 // The selected time is after the current time, accept the selection
                 setState(() {
@@ -76,8 +71,7 @@ class _TimePickerButtonState extends State<TimePickerButton> {
               Text(
                   selectedTime.format(context)), // Display time in AM/PM format
               const SizedBox(width: 5),
-              // Display AM/PM based on the selected time
-              Text(selectedTime.period == DayPeriod.am ? "AM" : "PM"),
+             
             ],
           ),
         ),
