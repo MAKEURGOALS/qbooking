@@ -32,7 +32,7 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
           child: Card(
             child: Column(
               children: [
-                SlideImage(roomData: widget.roomData),
+                SlideImage(images: widget.roomData.images ??[]),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Column(

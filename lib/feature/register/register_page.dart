@@ -43,13 +43,11 @@ class _RegisterPageState extends State<RegisterPage> {
           password: passwordConttroller.text,
         );
         if (!context.mounted) return;
-        Navigator.pop(context);
       } else {
         Navigator.pop(context);
         showErrorDialog("Passwords do not match.");
       }
     } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
 
       String errorMessage = 'An error occurred.';
 
@@ -98,7 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
       await FirebaseAuth.instance.signInWithCredential(credential);
     } on Exception catch (e) {
-      print("Can't sign with google >$e");
+      debugPrint("Can't sign with google >$e");
     }
   }
 

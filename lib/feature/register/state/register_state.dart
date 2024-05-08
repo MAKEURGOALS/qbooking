@@ -57,11 +57,12 @@ class RegisterState with ChangeNotifier {
         // Handle the registration response
         data.fold((left) {
           const LoadingDialog().hide(context);
-          print(left);
+          debugPrint(left);
           // Handle registration error (e.g., show an error message)
         }, (right) {
           const LoadingDialog().hide(context);
-          print(right);
+          debugPrint(right);
+
            Navigator.push(context,
           MaterialPageRoute(builder: (context) => const LoginPage()));
           contactController.clear();
@@ -70,9 +71,8 @@ class RegisterState with ChangeNotifier {
           // Registration successful, you can navigate to a different screen or show a success message
         });
       } catch (e) {
-        const LoadingDialog().hide(context);
+          debugPrint("something went wrong : $e");
         
-        print(e);
         // Handle other potential errors during registration
       }
     } else {

@@ -23,6 +23,7 @@ class BookingHomePage extends StatefulWidget {
 }
 
 class _BookingHomePageState extends State<BookingHomePage> {
+  final time = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,12 +62,11 @@ class _BookingHomePageState extends State<BookingHomePage> {
                   const SizedBox(height: 20),
                   DatePickUp(
                     onSelectedDate: (DateTime value) {
-                      print(value);
                       context.read<BookingRoomState>().dateTimeToString(value);
                     },
                   ),
                   const SizedBox(height: 20),
-               
+
                   const Row(
                     children: [
                       Icon(Icons.access_time_sharp),
@@ -84,7 +84,6 @@ class _BookingHomePageState extends State<BookingHomePage> {
                         titleTime: "Start Time",
                         isStartTime: true,
                         onTimeSelected: (time) {
-                         
                           context
                               .read<BookingRoomState>()
                               .startTimeToString(time);
@@ -95,7 +94,6 @@ class _BookingHomePageState extends State<BookingHomePage> {
                         titleTime: "End Time",
                         isStartTime: false,
                         onTimeSelected: (time) {
-                        
                           context
                               .read<BookingRoomState>()
                               .endtimeToString(time);
@@ -172,12 +170,9 @@ class _BookingHomePageState extends State<BookingHomePage> {
                         titleColor: Colors.white,
                         onTap: () {
                           context.read<BookingRoomState>().createBookingRoom(
-                            context: context,
-                            roomId: widget.roomData.id ?? "",
-                            roomName: widget.roomData.roomName ?? "", 
-                       
-                            
-                          );
+                              context: context,
+                              roomId: widget.roomData.id ?? "",
+                              roomName: widget.roomData.roomName ?? "");
                         },
                       )
                     ],

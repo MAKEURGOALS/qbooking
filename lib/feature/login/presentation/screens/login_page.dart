@@ -22,7 +22,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoinPageState extends State<LoginPage> {
-
   final emailConttroller = TextEditingController();
   final passwordConttroller = TextEditingController();
 
@@ -37,12 +36,11 @@ class _LoinPageState extends State<LoginPage> {
         password: passwordConttroller.text,
       );
       if (!context.mounted) return;
-      const LoadingDialog().hide(context);
     } on FirebaseAuthException catch (e) {
-      print(e);
+      debugPrint(e.message);
+
       if (!context.mounted) return;
 
-      const LoadingDialog().hide(context);
 
       String errorMessage = 'An error occurred.';
 
@@ -78,29 +76,30 @@ class _LoinPageState extends State<LoginPage> {
   }
 
 // login With google
-Future<void> signInWithGoogle() async {
- try {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+  Future<void> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
 
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
 
-    await FirebaseAuth.instance.signInWithCredential(credential);
- } on FirebaseAuthException catch (e) {
-    if (e.code == 'account-exists-with-different-credential') {
-      // Handle the error when the account already exists with a different credential
-    } else if (e.code == 'invalid-credential') {
-      // Handle the error when the credential is invalid
+      await FirebaseAuth.instance.signInWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'account-exists-with-different-credential') {
+        // Handle the error when the account already exists with a different credential
+      } else if (e.code == 'invalid-credential') {
+        // Handle the error when the credential is invalid
+      }
+      debugPrint(e.message);
+    } catch (e) {
+      debugPrint(e.toString());
+
     }
-    print("FirebaseAuthException: $e");
- } catch (e) {
-    print("Can't sign with Google > $e");
- }
-}
-
+  }
 
   Future<UserCredential> signInWithFacebook() async {
     final LoginResult loginResult = await FacebookAuth.instance.login();
@@ -113,7 +112,7 @@ Future<void> signInWithGoogle() async {
   @override
   Widget build(BuildContext context) {
     final loginProvider = context.read<LoginState>();
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
     return Scaffold(
       body: Consumer<LoginState>(
@@ -137,48 +136,42 @@ Future<void> signInWithGoogle() async {
 
                   // form input
                   Form(
-                    key: formKey,
-
+                      key: formKey,
                       child: Column(
-                    children: [
-                      EmailTextField(
-                        controller: loginProvider.contactController,
-                        textfield: 'Email or Phone number',
-                        obscureText: false,
-                        onPressed: () {},
-                      ),
-                      CustomTextField(
-                        controller: loginProvider.passwordController,
-                        
-                        
-                        
-                       
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 25.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              'Forgot Password?',
-                              style: TextStyle(fontSize: 14),
+                        children: [
+                          EmailTextField(
+                            controller: loginProvider.contactController,
+                            textfield: 'Email or Phone number',
+                            obscureText: false,
+                            onPressed: () {},
+                          ),
+                          CustomTextField(
+                            controller: loginProvider.passwordController,
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 25.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  'Forgot Password?',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      Mybutton(
-                          text: 'Sign In',
-                          onTap: () {
-                            if ( formKey.currentState!.validate()) {
-                              context.read<LoginState>().login(context);
-                            }
-                                  
-                          }),
-                    ],
-                  )),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          Mybutton(
+                              text: 'Sign In',
+                              onTap: () {
+                                if (formKey.currentState!.validate()) {
+                                  context.read<LoginState>().login(context);
+                                }
+                              }),
+                        ],
+                      )),
                   const Padding(
                     padding: EdgeInsets.all(15.0),
                     child: Divider(
@@ -201,7 +194,7 @@ Future<void> signInWithGoogle() async {
                     children: [
                       // IconFaceBook
                       InkWell(
-                        onTap: ()=> GoogleSignInSate().googleSignIn(),
+                        onTap: () => GoogleSignInSate().googleSignIn(),
                         child: const Iconlogin(
                           imagepaht: 'assets/iconslogo/google.png',
                         ),

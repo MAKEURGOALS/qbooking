@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qbooking/feature/booking/model/response_booking_model.dart';
 import 'package:qbooking/feature/booking/presentation/widget/button_booking.dart';
-import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
 
-import '../../profile/presentation/state/profile_state.dart';
-import 'widget/barcode_user.dart';
-import 'widget/circle_pic_user.dart';
-import 'widget/text_container_user_qr.dart';
+import '../booking/presentation/widget/barcode_user.dart';
+import '../booking/presentation/widget/circle_pic_user.dart';
+import '../booking/presentation/widget/text_container_user_qr.dart';
+import '../profile/presentation/state/profile_state.dart';
 
 class QrUserPage extends StatelessWidget {
-  const QrUserPage({super.key, required this.roomData});
-  final RoomModel roomData;
+  const QrUserPage({
+    super.key,
+    required this.bookingData,
+  });
+
+  final ResponseBookingModel bookingData;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,8 +56,8 @@ class QrUserPage extends StatelessWidget {
                                     .text,
                                 style: const TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(
                                 height: 20,
@@ -67,7 +72,7 @@ class QrUserPage extends StatelessWidget {
                                     width: 15,
                                   ),
                                   Text(
-                                    roomData.roomName ?? "",
+                                    bookingData.roomName ?? "",
                                     style: const TextStyle(color: Colors.white),
                                   ),
                                 ],
@@ -78,10 +83,10 @@ class QrUserPage extends StatelessWidget {
                                 // indent: 30,
                                 // endIndent: 30,
                               ),
-                              const TextContainerUser(
+                              TextContainerUser(
                                 titleCon: 'Schedule',
                                 iconContainer: Icons.calendar_month_outlined,
-                                endtitleCon: 'Now',
+                                endtitleCon: bookingData.meetingDate ?? "",
                               ),
                               const TextContainerUser(
                                 titleCon: 'Hours',
@@ -101,7 +106,9 @@ class QrUserPage extends StatelessWidget {
                                 height: 50,
                               ),
                               // Qrcodedetail()
-                              const BarCodeUser()
+                              BarCodeUser(
+                                qrData: bookingData.id ?? "",
+                              )
                             ],
                           ),
                         ),

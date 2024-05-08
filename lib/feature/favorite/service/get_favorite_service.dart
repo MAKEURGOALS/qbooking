@@ -22,7 +22,7 @@ class GetFavoriteProvider extends ChangeNotifier{
     final isExit = _getRoom.contains(getRoom);
     return isExit;
   }
-  void ClearFavorite () {
+  void clearFavorite () {
     _getRoom = [];
     notifyListeners();
   }

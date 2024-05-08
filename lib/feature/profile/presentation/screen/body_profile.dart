@@ -54,7 +54,7 @@ class BodyProfile extends StatelessWidget {
     await _googleSignIn.signOut();
     // await FacebookAuth.instance.logOut(); facebook y sai br dai
   } catch (e) {
-    print("Sign out error: $e");
+    debugPrint("Sign out error: $e");
   }
 }
 

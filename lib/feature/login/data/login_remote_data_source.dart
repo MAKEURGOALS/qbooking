@@ -23,12 +23,10 @@ class LoginRemoteDataSource extends DioClient {
       pref.setString(KeyStorageConstant.refreshToken, data.refreshToken ?? "");
       return right("login success");
     } on DioException catch (e) {
-      print(e.response?.data);
       // print(e.response?.statusCode);
       return left(e.response!.data["message"]);
     } catch (e) {
-      print(e);
-      return left("Something went wrong");
+      return left(e.toString());
     }
   }
 }

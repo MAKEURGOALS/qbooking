@@ -20,10 +20,10 @@ class ProfileState with ChangeNotifier {
     }, (r) {
       // tha hark mun mi data ja hai mun show detaila profile 
       nameController.text = r.name ?? "";
-      print(r);
       emailController.text = r.gmail ?? "";
       phoneController.text = r.phone ?? "";
       _saveProfileToLocalStorage(r);
+      debugPrint("Something go Wrong $r");
       return r;
     });
   }

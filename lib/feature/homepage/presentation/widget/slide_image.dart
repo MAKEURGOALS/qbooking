@@ -6,9 +6,9 @@ import '../../../../constant/api_path_constant.dart';
 import '../../data/model/room_model_one_model.dart';
 
 class SlideImage extends StatefulWidget {
-  const SlideImage({super.key, required this.roomData});
-  final RoomModel roomData;
-
+  const SlideImage({super.key, required this.images});
+  final List<String> images ;
+  
   @override
   State<SlideImage> createState() => _SlideImageState();
 }
@@ -23,7 +23,7 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
     return SizedBox(
       height: 270,
       child: PageView.builder(
-        itemCount: widget.roomData.images?.length ?? 0,
+        itemCount: widget.images.length ,
         physics: const BouncingScrollPhysics(),
         controller: PageController(initialPage: 0, viewportFraction: 1.0),
         onPageChanged: (value) {
@@ -54,49 +54,49 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
                     ),
                   ),
                   imageUrl:
-                      '${ApiPathConstant.baseURL}${ApiPathConstant.roomPicture}${widget.roomData.images?[index]}',
+                      '${ApiPathConstant.baseURL}${ApiPathConstant.roomPicture}${widget.images[index]}',
                   fit: BoxFit.cover,
                   width: double.infinity,
                 ),
               ),
-              Positioned(
-                bottom: 15,
-                left: 0,
-                right: 0,
-                child: Center(
-                  child: TabPageSelector(
-                    selectedColor: Colors.black,
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                    controller: TabController(
-                      length: widget.roomData.images?.length ?? 0,
-                      initialIndex: currentIndex,
-                      vsync: this,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 8,
-                right: 8,
-                child: Consumer<FavoriteRoomState>(
-                  builder: (context, state, child) {
-                    return IconButton(
-                      onPressed: () {
-                        state.saveFavorite(widget.roomData);
-                      },
-                      icon: Icon(
-                        state.isRoomFavorited(widget.roomData.id ?? "")
-                            ? Icons.favorite
-                            : Icons.favorite_border,
-                        size: 30,
-                      ),
-                      color: state.isRoomFavorited(widget.roomData.id ?? "")
-                          ? Colors.red
-                          : null,
-                    );
-                  },
-                ),
-              ),
+              // Positioned(
+              //   bottom: 15,
+              //   left: 0,
+              //   right: 0,
+              //   child: Center(
+              //     child: TabPageSelector(
+              //       selectedColor: Colors.black,
+              //       color: const Color.fromARGB(255, 255, 255, 255),
+              //       controller: TabController(
+              //         length: widget.images.length ,
+              //         initialIndex: currentIndex,
+              //         vsync: this,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // Positioned(
+              //   top: 8,
+              //   right: 8,
+              //   child: Consumer<FavoriteRoomState>(
+              //     builder: (context, state, child) {
+              //       return IconButton(
+              //         onPressed: () {
+              //           state.saveFavorite(widget.roomData);
+              //         },
+              //         icon: Icon(
+              //           state.isRoomFavorited(widget.roomData.id ?? "")
+              //               ? Icons.favorite
+              //               : Icons.favorite_border,
+              //           size: 30,
+              //         ),
+              //         color: state.isRoomFavorited(widget.roomData.id ?? "")
+              //             ? Colors.red
+              //             : null,
+              //       );
+              //     },
+              //   ),
+              // ),
             ],
           );
         },

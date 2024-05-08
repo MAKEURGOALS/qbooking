@@ -9,7 +9,7 @@ import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
 import 'package:qbooking/feature/profile/presentation/state/profile_state.dart';
 
 import 'button_booking.dart';
-
+//br dai sai
 class ContainerUserProfile extends StatelessWidget {
   const ContainerUserProfile({super.key, required this.roomData});
   
@@ -95,7 +95,7 @@ class ContainerUserProfile extends StatelessWidget {
                             height: 50,
                           ),
                           // Qrcodedetail()
-                          const BarCodeUser()
+                          //const BarCodeUser(bookingId: '',)
                         ],
                       ),
                     ),

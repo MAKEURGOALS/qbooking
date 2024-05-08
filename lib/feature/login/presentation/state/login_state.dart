@@ -16,14 +16,15 @@ class LoginState with ChangeNotifier {
         contact: contactController.text, password: passwordController.text);
     data.fold((l) {
       const LoadingDialog().hide(context);
-      print(l);
+      debugPrint(l);
+
       showErrorDialog(context, "Username Or Password is incorrect");
 
       return null;
     }, (r) {
       const LoadingDialog().hide(context);
-      
-      print(r);
+      debugPrint(r);
+
       contactController.clear();
       passwordController.clear();
       Navigator.push(context,

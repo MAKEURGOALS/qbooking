@@ -68,6 +68,7 @@ class _DatePickUpState extends State<DatePickUp> {
                   selectedTextColor: Colors.white,
                   onDateChange: (dateTime) {
                     setState(() {
+                      widget.onSelectedDate(dateTime);
                       selectedDate = dateTime;
                       dateTimeKey = UniqueKey();
                     });

@@ -13,7 +13,7 @@ class _CountryPickerState extends State<CountryPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 100,
       child: SizedBox(
         height: 100,

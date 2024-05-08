@@ -9,7 +9,7 @@ class RoomState  with ChangeNotifier {
     return data.fold((l) => [], (r) => r);
   }
   
-}
+} 
 
 
   // Future<void> saveFavorite(RoomModel roomData) async {

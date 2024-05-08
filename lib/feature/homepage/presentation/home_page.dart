@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Color.fromRGBO(255, 255, 255, 1),
-      statusBarIconBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark, 
     ));
     return  Scaffold(
       backgroundColor:const Color.fromRGBO(232, 232, 232, 0.2),
