@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qbooking/feature/booking/data_source/booking_remote_data_source.dart';
-import 'package:qbooking/feature/booking/model/response_booking_model.dart';
-import 'package:qbooking/feature/homepage/presentation/widget/box_room.dart';
-
 import '../../constant/colors_constant.dart';
+import 'model/response_find_many_booking_model.dart';
 import 'presentation/widget/box_booking.dart';
 
 class BookingPage extends StatelessWidget {
@@ -28,15 +26,15 @@ class BookingPage extends StatelessWidget {
       body: FutureBuilder(
           future: BookingRemoteDataSource().fetchBooking(),
           builder: (context, snapshot) {
-          
+            debugPrint("Current : $snapshot");
             return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: snapshot.data?.length??0,
-                    itemBuilder:(context, index) {
-                      return BoxBooking(bookingData:snapshot.data?[index]?? ResponseBookingModel() );
-                    });
-          }
-          ),
+                shrinkWrap: true,
+                itemCount: snapshot.data?.length ?? 0,
+                itemBuilder: (context, index) {
+                  return BoxBooking(
+                      bookingData:  snapshot.data?[index]?? ResponseFindManyBookingModel() );
+                });
+          }),
     );
   }
 }

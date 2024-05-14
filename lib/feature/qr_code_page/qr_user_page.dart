@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qbooking/feature/booking/model/response_booking_model.dart';
+import 'package:qbooking/feature/booking/model/response_create_booking_model.dart';
 import 'package:qbooking/feature/booking/presentation/widget/button_booking.dart';
 
 import '../booking/presentation/widget/barcode_user.dart';
@@ -14,7 +14,7 @@ class QrUserPage extends StatelessWidget {
     required this.bookingData,
   });
 
-  final ResponseBookingModel bookingData;
+  final ResponseCreateBookingModel bookingData;
 
   @override
   Widget build(BuildContext context) {

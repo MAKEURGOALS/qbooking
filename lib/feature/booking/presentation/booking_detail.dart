@@ -170,9 +170,10 @@ class _BookingHomePageState extends State<BookingHomePage> {
                         titleColor: Colors.white,
                         onTap: () {
                           context.read<BookingRoomState>().createBookingRoom(
-                              context: context,
-                              roomId: widget.roomData.id ?? "",
-                              roomName: widget.roomData.roomName ?? "");
+                              context: context, roomID: widget.roomData.id, roomName: widget.roomData.roomName,
+                              );
+                              
+                              
                         },
                       )
                     ],

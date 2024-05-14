@@ -1,9 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:qbooking/feature/favorite/presentation/state/favorite_room_state.dart';
 import '../../../../constant/api_path_constant.dart';
-import '../../data/model/room_model_one_model.dart';
 
 class SlideImage extends StatefulWidget {
   const SlideImage({super.key, required this.images});

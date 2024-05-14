@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/feature/booking/model/response_booking_model.dart';
 
 import '../../../homepage/presentation/widget/slide_image.dart';
+import '../../model/response_find_many_booking_model.dart';
 
 
 class BoxBooking extends StatefulWidget {
   const BoxBooking({super.key, required this.bookingData});
-  final ResponseBookingModel bookingData;
+  final ResponseFindManyBookingModel bookingData;
 
   @override
   State<BoxBooking> createState() => _BoxBookingState();
@@ -31,7 +31,7 @@ class _BoxBookingState extends State<BoxBooking> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          widget.bookingData.roomName.toString(),
+                          widget.bookingData.roomName ??"",
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),

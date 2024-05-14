@@ -1,16 +1,16 @@
 // To parse this JSON data, do
 //
-//     final responseBookingModel = responseBookingModelFromJson(jsonString);
+//     final responseFindManyBookingModel = responseFindManyBookingModelFromJson(jsonString);
 
 import 'dart:convert';
 
-List<ResponseBookingModel> responseBookingModelFromJson(String str) => List<ResponseBookingModel>.from(json.decode(str).map((x) => ResponseBookingModel.fromJson(x)));
+List<ResponseFindManyBookingModel> responseFindManyBookingModelFromJson(String str) => List<ResponseFindManyBookingModel>.from(json.decode(str).map((x) => ResponseFindManyBookingModel.fromJson(x)));
 
-String responseBookingModelToJson(List<ResponseBookingModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String responseFindManyBookingModelToJson(List<ResponseFindManyBookingModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class ResponseBookingModel {
+class ResponseFindManyBookingModel {
     String? id;
-    dynamic customerId;
+    String? customerId;
     RoomId? roomId;
     String? roomName;
     String? meetingDate;
@@ -19,9 +19,8 @@ class ResponseBookingModel {
     bool? statusBookingDone;
     DateTime? createdAt;
     DateTime? updatedAt;
-    int? v;
 
-    ResponseBookingModel({
+    ResponseFindManyBookingModel({
         this.id,
         this.customerId,
         this.roomId,
@@ -32,10 +31,9 @@ class ResponseBookingModel {
         this.statusBookingDone,
         this.createdAt,
         this.updatedAt,
-        this.v,
     });
 
-    factory ResponseBookingModel.fromJson(Map<String, dynamic> json) => ResponseBookingModel(
+    factory ResponseFindManyBookingModel.fromJson(Map<String, dynamic> json) => ResponseFindManyBookingModel(
         id: json["_id"],
         customerId: json["customerID"],
         roomId: json["roomID"] == null ? null : RoomId.fromJson(json["roomID"]),
@@ -46,7 +44,6 @@ class ResponseBookingModel {
         statusBookingDone: json["status_booking_done"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -60,7 +57,6 @@ class ResponseBookingModel {
         "status_booking_done": statusBookingDone,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
-        "__v": v,
     };
 }
 

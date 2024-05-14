@@ -138,8 +138,8 @@ class BodyProfile extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(
-          height: 150,
+        const Spacer(
+        
         ),
 
         // button SignOut
@@ -161,7 +161,7 @@ class BodyProfile extends StatelessWidget {
                 Text('LogOut', style: TextStyle(color: Colors.white)),
               ],
             ),
-          ),
+          ),  
         )
       ],
     );

@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:qbooking/constant/api_path_constant.dart';
 
 import 'package:qbooking/core/intercaptor/dio_client.dart';
-import 'package:qbooking/feature/booking/model/response_booking_model.dart';
+import 'package:qbooking/feature/booking/model/response_create_booking_model.dart';
+
+import '../model/response_find_many_booking_model.dart';
 
 class BookingRemoteDataSource extends DioClient {
-  Future<Either<String, ResponseBookingModel>> getBooking({
+  Future<Either<String, ResponseCreateBookingModel>> createBooking({
     required String customerId,
     required String roomId,
     required String roomName,
@@ -36,23 +38,29 @@ class BookingRemoteDataSource extends DioClient {
           data: data);
 
       debugPrint(res.toString());
-      final responseBookingModel = ResponseBookingModel.fromJson(res.data);
-      return Right(responseBookingModel);
+    
+       final responseCreateBookingModel = ResponseCreateBookingModel.fromJson(res.data);
+      return Right(responseCreateBookingModel);
     } on DioException catch (e) {
-      return Left(e.response!.data["message"]);
+      return Left(e.response?.data["message"]);
     }
   }
 
-  ///connect api booking
 
-  Future< List<ResponseBookingModel>> fetchBooking() async {
+
+ ///connect api booking
+
+  Future< List<ResponseFindManyBookingModel>> fetchBooking() async {
   try {
     final res = await dio.get(
       ApiPathConstant.allBooking,
       options: Options(contentType: "application/json"),
     );
-    final data = responseBookingModelFromJson(jsonEncode(res.data));
+    final data = responseFindManyBookingModelFromJson(json.encode(res.data) );
     return data;
+    } on DioException catch (e)  {
+      print(e);
+    return [];
   } catch (e) {
     return [];
   }
