@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qbooking/feature/booking/presentation/sate/booking_room_state.dart';
+import 'package:qbooking/feature/booking/data/sate/booking_room_state.dart';
 import 'package:qbooking/feature/homepage/presentation/state/room_state.dart';
 import 'package:qbooking/firebase_options.dart';
 

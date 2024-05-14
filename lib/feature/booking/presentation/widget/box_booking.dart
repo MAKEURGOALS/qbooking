@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../homepage/presentation/widget/slide_image.dart';
-import '../../model/response_find_many_booking_model.dart';
+import '../../data/model/response_find_many_booking_model.dart';
 
 
 class BoxBooking extends StatefulWidget {

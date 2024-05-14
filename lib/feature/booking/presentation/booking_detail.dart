@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qbooking/feature/booking/presentation/sate/booking_room_state.dart';
+import 'package:qbooking/feature/booking/data/sate/booking_room_state.dart';
 import 'package:qbooking/feature/booking/presentation/widget/button_booking.dart';
 import 'package:qbooking/feature/booking/presentation/widget/date_pick.dart';
 import 'package:qbooking/feature/booking/presentation/widget/equipment.dart';

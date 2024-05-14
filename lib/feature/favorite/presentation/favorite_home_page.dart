@@ -19,6 +19,12 @@ class FavoriteHomePage extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
           backgroundColor: Colors.white,
+          bottom: const PreferredSize(
+              preferredSize: Size.fromHeight(4.0),
+              child: Divider(
+                color: Colors.grey,
+                height: 1,
+              )),
         ),
         body: FutureBuilder<List<RoomModel>>(
           future: context.read<FavoriteRoomState>().getFavoriteRoom(),
@@ -33,14 +39,14 @@ class FavoriteHomePage extends StatelessWidget {
                 // Check if the list of favorite rooms is empty
                 if (snapshot.data?.isEmpty ?? true) {
                   // Display a message if there are no favorite rooms
-                  return  Center(
+                  return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Lottie.asset(LottieConstant.waiting),
                         const Text(
-                          'You have no favorite rooms.',
+                          ' have no favorite rooms.',
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),

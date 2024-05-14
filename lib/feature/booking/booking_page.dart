@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/feature/booking/data_source/booking_remote_data_source.dart';
+import 'package:qbooking/feature/booking/data/data_source/booking_remote_data_source.dart';
 import '../../constant/colors_constant.dart';
-import 'model/response_find_many_booking_model.dart';
+import 'data/model/response_find_many_booking_model.dart';
 import 'presentation/widget/box_booking.dart';
 
 class BookingPage extends StatelessWidget {

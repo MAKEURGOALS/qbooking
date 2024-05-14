@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qbooking/feature/booking/model/response_create_booking_model.dart';
+import 'package:qbooking/feature/booking/data/model/response_create_booking_model.dart';
 import 'package:qbooking/feature/booking/presentation/widget/button_booking.dart';
+import 'package:qbooking/feature/homepage/presentation/home_page.dart';
 
 import '../booking/presentation/widget/barcode_user.dart';
 import '../booking/presentation/widget/circle_pic_user.dart';
@@ -130,7 +131,9 @@ class QrUserPage extends StatelessWidget {
                 titleButton: 'Done',
                 color: const Color.fromARGB(255, 35, 32, 32),
                 titleColor: Colors.white,
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                },
               )
             ],
           ),

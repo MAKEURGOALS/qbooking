@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:qbooking/constant/api_path_constant.dart';
 
 import 'package:qbooking/core/intercaptor/dio_client.dart';
-import 'package:qbooking/feature/booking/model/response_create_booking_model.dart';
+import 'package:qbooking/feature/booking/data/model/response_create_booking_model.dart';
 
 import '../model/response_find_many_booking_model.dart';
 
@@ -59,7 +59,7 @@ class BookingRemoteDataSource extends DioClient {
     final data = responseFindManyBookingModelFromJson(json.encode(res.data) );
     return data;
     } on DioException catch (e)  {
-      print(e);
+      debugPrint(e.toString());
     return [];
   } catch (e) {
     return [];
