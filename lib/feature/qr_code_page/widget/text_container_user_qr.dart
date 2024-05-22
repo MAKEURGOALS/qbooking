@@ -6,7 +6,6 @@ class TextContainerUser extends StatelessWidget {
   final IconData iconContainer;
   final String endtitleCon;
 
-  
 
   @override
   Widget build(BuildContext context) {

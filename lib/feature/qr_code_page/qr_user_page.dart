@@ -89,10 +89,10 @@ class QrUserPage extends StatelessWidget {
                                 iconContainer: Icons.calendar_month_outlined,
                                 endtitleCon: bookingData.meetingDate ?? "",
                               ),
-                              const TextContainerUser(
+                               TextContainerUser(
                                 titleCon: 'Hours',
                                 iconContainer: Icons.access_time,
-                                endtitleCon: 'Now',
+                                endtitleCon: bookingData.startTime ?? "",
                               ),
                               const Divider(
                                 color: Colors.white54,

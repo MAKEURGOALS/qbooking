@@ -4,8 +4,8 @@ import '../../../../constant/api_path_constant.dart';
 
 class SlideImage extends StatefulWidget {
   const SlideImage({super.key, required this.images});
-  final List<String> images ;
-  
+  final List<String> images;
+
   @override
   State<SlideImage> createState() => _SlideImageState();
 }
@@ -18,9 +18,9 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 270,
+      height: 250,
       child: PageView.builder(
-        itemCount: widget.images.length ,
+        itemCount: widget.images.length,
         physics: const BouncingScrollPhysics(),
         controller: PageController(initialPage: 0, viewportFraction: 1.0),
         onPageChanged: (value) {
@@ -30,16 +30,18 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
           return Stack(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10)),
                 child: CachedNetworkImage(
                   placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
                   ),
                   errorWidget: (context, url, error) => const Center(
-                    child:  Column(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon( 
+                        Icon(
                           Icons.error,
                           color: Colors.red,
                           size: 50.0,
@@ -52,7 +54,7 @@ class _SlideImageState extends State<SlideImage> with TickerProviderStateMixin {
                   ),
                   imageUrl:
                       '${ApiPathConstant.baseURL}${ApiPathConstant.roomPicture}${widget.images[index]}',
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                   width: double.infinity,
                 ),
               ),

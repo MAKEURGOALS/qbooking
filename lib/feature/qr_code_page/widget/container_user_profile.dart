@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qbooking/feature/booking/presentation/widget/circle_pic_user.dart';
@@ -8,11 +6,12 @@ import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
 import 'package:qbooking/feature/profile/presentation/state/profile_state.dart';
 
 import '../../booking/presentation/widget/button_booking.dart';
+
 //br dai sai
 class ContainerUserProfile extends StatelessWidget {
   const ContainerUserProfile({super.key, required this.roomData});
-  
-    final RoomModel roomData;
+
+  final RoomModel roomData;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,7 +38,6 @@ class ContainerUserProfile extends StatelessWidget {
                           const SizedBox(
                             height: 50,
                           ),
-
                           Text(
                             context.read<ProfileState>().nameController.text,
                             style: const TextStyle(
@@ -50,7 +48,7 @@ class ContainerUserProfile extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                           Row(
+                          Row(
                             children: [
                               const Icon(
                                 Icons.sensor_door_outlined,
@@ -79,7 +77,7 @@ class ContainerUserProfile extends StatelessWidget {
                           const TextContainerUser(
                             titleCon: 'Hours',
                             iconContainer: Icons.access_time,
-                            endtitleCon: 'Now',
+                            endtitleCon: "Now",
                           ),
                           const Divider(
                             color: Colors.white54,
@@ -93,8 +91,6 @@ class ContainerUserProfile extends StatelessWidget {
                           const SizedBox(
                             height: 50,
                           ),
-                          // Qrcodedetail()
-                          //const BarCodeUser(bookingId: '',)
                         ],
                       ),
                     ),

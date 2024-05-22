@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../homepage/data/model/room_model_one_model.dart';
@@ -38,14 +39,15 @@ class _SliderPictureState extends State<SliderPicture>
                   margin: const EdgeInsets.all(8),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
-                    child: Image.network(
+                    child:Image.network(
                       widget.roomData.images![index],
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
-                        // Return a widget to display in case of an error
+                         //Return a widget to display in case of an error
                         return   const Center(child:  Text('Failed to load image'));
                       },
                     ),
+                    
                   ),
                 );
               },
