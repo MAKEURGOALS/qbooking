@@ -10,10 +10,11 @@ String responseFindManyBookingModelToJson(List<ResponseFindManyBookingModel> dat
 
 class ResponseFindManyBookingModel {
     String? id;
-    String? customerId;
+    CustomerId? customerId;
     RoomId? roomId;
     String? roomName;
     String? meetingDate;
+    String? meetingTime;
     String? startTime;
     String? endTime;
     bool? statusBookingDone;
@@ -26,6 +27,7 @@ class ResponseFindManyBookingModel {
         this.roomId,
         this.roomName,
         this.meetingDate,
+        this.meetingTime,
         this.startTime,
         this.endTime,
         this.statusBookingDone,
@@ -35,10 +37,11 @@ class ResponseFindManyBookingModel {
 
     factory ResponseFindManyBookingModel.fromJson(Map<String, dynamic> json) => ResponseFindManyBookingModel(
         id: json["_id"],
-        customerId: json["customerID"],
+        customerId: json["customerID"] == null ? null : CustomerId.fromJson(json["customerID"]),
         roomId: json["roomID"] == null ? null : RoomId.fromJson(json["roomID"]),
         roomName: json["roomName"],
         meetingDate: json["meetingDate"],
+        meetingTime: json["meetingTime"],
         startTime: json["startTime"],
         endTime: json["endTime"],
         statusBookingDone: json["status_booking_done"],
@@ -48,10 +51,11 @@ class ResponseFindManyBookingModel {
 
     Map<String, dynamic> toJson() => {
         "_id": id,
-        "customerID": customerId,
+        "customerID": customerId?.toJson(),
         "roomID": roomId?.toJson(),
         "roomName": roomName,
         "meetingDate": meetingDate,
+        "meetingTime": meetingTime,
         "startTime": startTime,
         "endTime": endTime,
         "status_booking_done": statusBookingDone,
@@ -60,9 +64,45 @@ class ResponseFindManyBookingModel {
     };
 }
 
+class CustomerId {
+    String? id;
+    String? profileId;
+    String? contact;
+    String? password;
+    DateTime? createdAt;
+    DateTime? updatedAt;
+
+    CustomerId({
+        this.id,
+        this.profileId,
+        this.contact,
+        this.password,
+        this.createdAt,
+        this.updatedAt,
+    });
+
+    factory CustomerId.fromJson(Map<String, dynamic> json) => CustomerId(
+        id: json["_id"],
+        profileId: json["profileId"],
+        contact: json["contact"],
+        password: json["password"],
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "_id": id,
+        "profileId": profileId,
+        "contact": contact,
+        "password": password,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+    };
+}
+
 class RoomId {
     String? id;
-    List<String>? images;
+    List<String>? images; 
     String? roomName;
     bool? isActiveStatus;
     String? floor;
@@ -71,7 +111,6 @@ class RoomId {
     bool? isActiveBooked;
     DateTime? createdAt;
     DateTime? updatedAt;
-    int? v;
 
     RoomId({
         this.id,
@@ -84,7 +123,6 @@ class RoomId {
         this.isActiveBooked,
         this.createdAt,
         this.updatedAt,
-        this.v,
     });
 
     factory RoomId.fromJson(Map<String, dynamic> json) => RoomId(
@@ -98,7 +136,6 @@ class RoomId {
         isActiveBooked: json["is_active_booked"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -112,6 +149,5 @@ class RoomId {
         "is_active_booked": isActiveBooked,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
-        "__v": v,
     };
 }

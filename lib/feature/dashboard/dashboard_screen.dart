@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/feature/booking/booking_page.dart';
+import 'package:qbooking/feature/booking/presentation/screen/booking_page.dart';
 import 'package:qbooking/feature/favorite/presentation/favorite_home_page.dart';
 import 'package:qbooking/feature/homepage/presentation/home_page.dart';
 import 'package:qbooking/feature/homepage/presentation/widget/bottom_navigation_bar.dart';

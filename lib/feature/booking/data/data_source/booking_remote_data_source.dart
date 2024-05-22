@@ -12,7 +12,7 @@ import '../model/response_find_many_booking_model.dart';
 
 class BookingRemoteDataSource extends DioClient {
   Future<Either<String, ResponseCreateBookingModel>> createBooking({
-    required String customerId,
+    // required String customerId,
     required String roomId,
     required String roomName,
     required String meetingDate,
@@ -21,7 +21,7 @@ class BookingRemoteDataSource extends DioClient {
   }) async {
     try {
       final data = {
-        "customerID": customerId,
+        // "customerID": customerId,
         "roomID": roomId,
         "roomName": roomName,
         "meetingDate": meetingDate,
@@ -35,7 +35,7 @@ class BookingRemoteDataSource extends DioClient {
               "Content-Type": "application/json",
             },
           ),
-          data: data);
+          data: data);  
 
       debugPrint(res.toString());
     
@@ -48,7 +48,7 @@ class BookingRemoteDataSource extends DioClient {
 
 
 
- ///connect api booking
+ ///connect api booking to get booking
 
   Future< List<ResponseFindManyBookingModel>> fetchBooking() async {
   try {

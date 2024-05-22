@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
-import 'package:qbooking/feature/profile/presentation/data/data_source/profile_remote_data_source.dart';
 import 'package:qbooking/widget/show_dialog.dart';
 
 import '../../../qr_code_page/qr_user_page.dart';
@@ -48,10 +47,10 @@ class BookingRoomState with ChangeNotifier {
     required roomName
     
   }) async {
-    final customerId = await ProfileRemoteDataSource().getUserId();
+    // final customerId = await ProfileRemoteDataSource().getUserId();
     
     final res = await BookingRemoteDataSource().createBooking(
-      customerId: customerId,
+      // customerId: customerId,
       roomId: roomID,
       roomName: roomName,
       meetingDate: dateTime,

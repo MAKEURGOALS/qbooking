@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 import 'package:qbooking/feature/profile/presentation/screen/edit_profile_page.dart';
 import 'package:qbooking/feature/profile/presentation/screen/language_home_page.dart';
 import 'package:qbooking/feature/profile/presentation/screen/privacy_home_page.dart';
 import 'package:qbooking/feature/profile/presentation/screen/term_home_page.dart';
+import 'package:qbooking/feature/profile/presentation/state/profile_state.dart';
 import 'package:qbooking/feature/profile/widget/list_home_page_profile.dart';
 
 import '../../../login/presentation/screens/login_page.dart';
@@ -148,7 +150,8 @@ class BodyProfile extends StatelessWidget {
           height: 50,
           child: ElevatedButton(
             onPressed: () {
-              _showLogoutConfirmationDialog(context);
+              context.read<ProfileState>().showAlertDialog(context);
+              // _showLogoutConfirmationDialog(context);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.black, // Background color

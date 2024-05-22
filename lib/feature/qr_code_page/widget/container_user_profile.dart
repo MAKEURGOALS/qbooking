@@ -3,11 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qbooking/feature/booking/presentation/widget/circle_pic_user.dart';
-import 'package:qbooking/feature/booking/presentation/widget/text_container_user_qr.dart';
+import 'package:qbooking/feature/qr_code_page/widget/text_container_user_qr.dart';
 import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
 import 'package:qbooking/feature/profile/presentation/state/profile_state.dart';
 
-import 'button_booking.dart';
+import '../../booking/presentation/widget/button_booking.dart';
 //br dai sai
 class ContainerUserProfile extends StatelessWidget {
   const ContainerUserProfile({super.key, required this.roomData});

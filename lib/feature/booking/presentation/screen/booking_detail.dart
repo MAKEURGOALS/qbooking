@@ -8,21 +8,21 @@ import 'package:qbooking/feature/booking/presentation/widget/slider_picture.dart
 import 'package:qbooking/feature/booking/presentation/widget/text_picture_status.dart';
 import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
 
-import '../../../constant/colors_constant.dart';
-import 'widget/time_button_pick.dart';
+import '../../../../constant/colors_constant.dart';
+import '../widget/time_button_pick.dart';
 
-class BookingHomePage extends StatefulWidget {
-  const BookingHomePage({
+class BookingDetail extends StatefulWidget {
+  const BookingDetail({
     super.key,
     required this.roomData,
   });
   final RoomModel roomData;
 
   @override
-  State<BookingHomePage> createState() => _BookingHomePageState();
+  State<BookingDetail> createState() => _BookingDetailState();
 }
 
-class _BookingHomePageState extends State<BookingHomePage> {
+class _BookingDetailState extends State<BookingDetail> {
   final time = "";
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 // import 'package:qbooking/data/room_data.dart';
 import 'package:qbooking/feature/homepage/presentation/widget/box_room.dart';
 
+import '../../../../constant/image_constant.dart';
 import '../../data/model/room_model_one_model.dart';
 import '../state/room_state.dart';
 
@@ -11,7 +13,6 @@ class AvailableRoomStatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final List<RoomModel> availableRoom = [];
-   
 
     return FutureBuilder<List<RoomModel>>(
       future: context.read<RoomState>().getAllRoom(),
@@ -31,8 +32,18 @@ class AvailableRoomStatus extends StatelessWidget {
               },
             );
           } else if (snapshot.hasError == true) {
-            return const Center(
-              child: Text("Something went wrong"),
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Error ${snapshot.error}",
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  Lottie.asset(LottieConstant.error),
+                ],
+              ),
             );
           } else {
             return const Center(

@@ -21,6 +21,7 @@ class LoginRemoteDataSource extends DioClient {
       final data = responseLogInModelFromJson(jsonEncode(res.data));
       pref.setString(KeyStorageConstant.token, data.accessToken ?? "");
       pref.setString(KeyStorageConstant.refreshToken, data.refreshToken ?? "");
+      // pref.setString(KeyStorageConstant.userId, );
       return right("login success");
     } on DioException catch (e) {
       // print(e.response?.statusCode);

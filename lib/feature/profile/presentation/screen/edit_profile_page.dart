@@ -19,6 +19,7 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
+    final profileState = context.watch<ProfileState>();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -29,11 +30,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
           style: TextStyle(color: Colors.black),
         ),
         bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(3),
-              child: Container(
-                color: ColorsConstants.borderAppbarColor,
-                height: 1,
-              )),
+            preferredSize: const Size.fromHeight(3),
+            child: Container(
+              color: ColorsConstants.borderAppbarColor,
+              height: 1,
+            )),
       ),
       body: FutureBuilder(
         future: context.read<ProfileState>().getProfile(),
@@ -51,7 +52,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   CustomInputProfile(
                     textfield: 'Name',
                     onPressed: () {},
-                    controller: context.read<ProfileState>().nameController,
+                    controller: profileState.nameController,
                   ),
                   const SizedBox(
                     height: 40,
@@ -59,26 +60,35 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   CustomInputProfile(
                     textfield: 'Gmail Adress',
                     onPressed: () {},
-                    controller: context.read<ProfileState>().emailController,
+                    controller: profileState.emailController,
                   ),
                   const SizedBox(
                     height: 40,
                   ),
-                  const SelectGender(),
+                  SelectGender(
+                    selectedGender: profileState.selectedGender,
+                    onSelectGender: (String value) =>
+                        profileState.onSelectGender(value),
+                  ),
                   const SizedBox(
                     height: 40,
                   ),
                   CustomInputProfile(
                     textfield: 'Phone number',
                     onPressed: () {},
-                    controller: context.read<ProfileState>().phoneController,
+                    controller: profileState.phoneController,
                   ),
                   const SizedBox(
                     height: 40,
                   ),
-                  const CountryPicker(),
+                  CountryPicker(
+                    selectedContry: profileState.selectedCountry,
+                    onSelectedContry: (String value) => profileState.onselectedContry(value),
+                  ),
                   Mybutton(
-                    onTap: () {},
+                    onTap: () async {
+                      await profileState.updateUserProfile(context);
+                    },
                     text: 'Submit',
                   )
                 ]),

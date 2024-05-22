@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qbooking/feature/booking/data/model/response_create_booking_model.dart';
 import 'package:qbooking/feature/booking/presentation/widget/button_booking.dart';
-import 'package:qbooking/feature/homepage/presentation/home_page.dart';
 
 import '../booking/presentation/widget/barcode_user.dart';
 import '../booking/presentation/widget/circle_pic_user.dart';
-import '../booking/presentation/widget/text_container_user_qr.dart';
+import '../dashboard/dashboard_screen.dart';
+import 'widget/text_container_user_qr.dart';
 import '../profile/presentation/state/profile_state.dart';
 
 class QrUserPage extends StatelessWidget {
@@ -132,7 +132,7 @@ class QrUserPage extends StatelessWidget {
                 color: const Color.fromARGB(255, 35, 32, 32),
                 titleColor: Colors.white,
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const DashboardScreen()));
                 },
               )
             ],

@@ -1,5 +1,8 @@
 enum EnumGender{
-  male,
-  female,
-  other
+  male("Male"),
+  female("Female"),
+  other("Other");
+  const EnumGender(this.title);
+  final String title;
+    
 } 

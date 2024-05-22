@@ -1,8 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 
 import '../../../../widget/show_dialog.dart';
+import '../../../widget/alert_dialog_text.dart';
 import '../../../widget/show_error_dialog.dart';
 import '../../login/presentation/screens/login_page.dart';
 import '../data/register_remote_data_source.dart';
@@ -10,22 +9,20 @@ import '../data/register_remote_data_source.dart';
 class RegisterState with ChangeNotifier {
   final TextEditingController contactController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   String? passwordError;
   String? confirmPasswordError;
-
-
 
   bool validatePassword(BuildContext text) {
     if (passwordController.text.length < 6) {
       passwordError = 'Password must be at least 6 characters';
       showErrorDialog(text, "Password must be at least 6 characters");
       return false;
-      
     } else {
       passwordError = null;
-      return true; 
+      return true;
     }
   }
 
@@ -39,11 +36,9 @@ class RegisterState with ChangeNotifier {
       return true;
     }
   }
-  
 
   Future<void> register(BuildContext context) async {
     if (validatePassword(context) && validateConfirmPassword(context)) {
-      
       // Password and confirm password are valid, proceed with registration
       const LoadingDialog().show(context);
 
@@ -62,17 +57,20 @@ class RegisterState with ChangeNotifier {
         }, (right) {
           const LoadingDialog().hide(context);
           debugPrint(right);
-
-           Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const LoginPage()));
+          const AlertDialogText(
+            titleText: 'LogIn Successfully',
+            messageText: '',
+          );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const LoginPage()));
           contactController.clear();
           passwordController.clear();
           confirmPasswordController.clear();
           // Registration successful, you can navigate to a different screen or show a success message
         });
       } catch (e) {
-          debugPrint("something went wrong : $e");
-        
+        debugPrint("something went wrong : $e");
+
         // Handle other potential errors during registration
       }
     } else {
@@ -81,6 +79,3 @@ class RegisterState with ChangeNotifier {
     }
   }
 }
-
-
-

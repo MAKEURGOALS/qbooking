@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SelectGender extends StatefulWidget {
-  const SelectGender({super.key});
+  final String selectedGender;
+  final Function(String value) onSelectGender;
+  const SelectGender({super.key, required this.selectedGender, required this.onSelectGender});
 
   @override
   State<SelectGender> createState() => _SelectGenderState();
@@ -9,6 +11,11 @@ class SelectGender extends StatefulWidget {
 
 class _SelectGenderState extends State<SelectGender> {
   String? dropdownValue;
+  @override
+  void initState() {
+    dropdownValue = widget.selectedGender;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,6 +37,7 @@ class _SelectGenderState extends State<SelectGender> {
             hint: const Text('Gender'),
             onChanged: (String? newValue) {
               setState(() {
+                widget.onSelectGender(newValue ?? "");
                 dropdownValue = newValue;
               });
             },

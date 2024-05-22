@@ -16,13 +16,14 @@ class RoomRemoteDataSource extends DioClient {
         options: Options(contentType: "application/json"),
       );
       final data = roomModelFromJson(jsonEncode(response.data));
+
       return right(data);
     } on DioException catch (e) {
       debugPrint(e.toString());
-      return left("Something went wrong");
+      return left("Error: $e");
     } catch (e) {
       debugPrint(e.toString());
-      return left("Something went wrong");
+      return left("Error: $e");
     }
   }
 }

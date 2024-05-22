@@ -6,7 +6,12 @@ import '../../data/model/room_model_one_model.dart';
 class RoomState  with ChangeNotifier {
   Future<List<RoomModel>> getAllRoom () async{
     final data = await RoomRemoteDataSource().getAllRoom();
-    return data.fold((l) => [], (r) => r);
+    return data.fold((l){
+       // Log the error
+        debugPrint('Error fetching rooms: $l');
+        // Throw an exception to propagate the error to the FutureBuilder
+        throw Exception('Failed to load rooms');
+    }, (r) => r);
   }
   
 } 

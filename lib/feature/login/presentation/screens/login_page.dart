@@ -41,7 +41,6 @@ class _LoinPageState extends State<LoginPage> {
 
       if (!context.mounted) return;
 
-
       String errorMessage = 'An error occurred.';
 
       if (e.code == 'user_not_found') {
@@ -97,7 +96,6 @@ class _LoinPageState extends State<LoginPage> {
       debugPrint(e.message);
     } catch (e) {
       debugPrint(e.toString());
-
     }
   }
 

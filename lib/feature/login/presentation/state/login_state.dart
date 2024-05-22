@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qbooking/feature/login/data/login_remote_data_source.dart';
 import 'package:qbooking/widget/show_error_dialog.dart';
 
+import '../../../../widget/alert_dialog_text.dart';
 import '../../../../widget/show_dialog.dart';
 import '../../../dashboard/dashboard_screen.dart';
 
@@ -23,8 +24,11 @@ class LoginState with ChangeNotifier {
       return null;
     }, (r) {
       const LoadingDialog().hide(context);
+      const AlertDialogText(
+            titleText: 'LogIn Successfully',
+            messageText: '',
+          );
       debugPrint(r);
-
       contactController.clear();
       passwordController.clear();
       Navigator.push(context,

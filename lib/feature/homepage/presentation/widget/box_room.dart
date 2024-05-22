@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qbooking/feature/booking/presentation/booking_detail.dart';
+import 'package:qbooking/feature/booking/presentation/screen/booking_detail.dart';
 import '../../../favorite/presentation/state/favorite_room_state.dart';
 import '../../data/model/room_model_one_model.dart';
 import 'slide_image.dart';
@@ -23,7 +23,7 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => BookingHomePage(
+            builder: (context) => BookingDetail(
               roomData: widget.roomData,
             ),
           ),
