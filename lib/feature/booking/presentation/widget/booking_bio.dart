@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
+import 'package:qbooking/feature/booking/data/model/response_find_many_booking_model.dart';
 
-class TextPictureStatus extends StatelessWidget {
-  const TextPictureStatus({
-    super.key,
-    required this.roomData,
-  });
-  final RoomModel roomData;
+class BookingBio extends StatelessWidget {
+  final RoomId roomData;
+  const BookingBio({super.key, required this.roomData});
 
   @override
   Widget build(BuildContext context) {

@@ -30,17 +30,16 @@ class BookingPage extends StatelessWidget {
           builder: (context, snapshot) {
             debugPrint("Current : $snapshot");
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child:  CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasData) {
                 if (snapshot.data?.isEmpty ?? true) {
                   return Center(
-                    
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Lottie.asset(LottieConstant.waiting),
-                      const Text('Waiting For Your Booking')
-                      
+                      children: [
+                        Lottie.asset(LottieConstant.waiting),
+                        const Text('Waiting For Your Booking')
                       ],
                     ),
                   );
@@ -50,8 +49,9 @@ class BookingPage extends StatelessWidget {
                       itemCount: snapshot.data?.length ?? 0,
                       itemBuilder: (context, index) {
                         return BoxBooking(
-                            bookingData: snapshot.data?[index] ??
-                                ResponseFindManyBookingModel());
+                          bookingData: snapshot.data?[index] ??
+                              ResponseFindManyBookingModel(),
+                        );
                       });
                 }
               } else {

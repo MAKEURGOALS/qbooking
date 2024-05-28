@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qbooking/feature/booking/data/sate/booking_room_state.dart';
+import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
 import 'package:qbooking/feature/homepage/presentation/state/room_state.dart';
 import 'package:qbooking/firebase_options.dart';
 
@@ -30,9 +31,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => RegisterState()),
         ChangeNotifierProvider(create: (context) => RoomState()),
         ChangeNotifierProvider(create: (context) => FavoriteRoomState()),
-        ChangeNotifierProvider(create: (context) => BookingRoomState()),
+        ChangeNotifierProvider(create: (context) => BookingRoomState(RoomModel())),
         ChangeNotifierProvider(create: (context) => ProfileState()),
-
       ],
       child: const MaterialApp(
         home: AuthPage(), // Fix the typo here

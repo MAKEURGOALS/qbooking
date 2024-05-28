@@ -110,7 +110,7 @@ class ContainerUserProfile extends StatelessWidget {
           ),
           ButtonBooking(
             titleButton: 'Done',
-            color: const Color.fromARGB(255, 35, 32, 32),
+            backgroundColor: const Color.fromARGB(255, 35, 32, 32),
             titleColor: Colors.white,
             onTap: () {},
           )

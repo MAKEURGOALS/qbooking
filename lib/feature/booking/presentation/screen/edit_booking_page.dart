@@ -1,29 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qbooking/feature/booking/data/model/response_find_many_booking_model.dart';
 import 'package:qbooking/feature/booking/data/sate/booking_room_state.dart';
+import 'package:qbooking/feature/booking/presentation/widget/booking_bio.dart';
 import 'package:qbooking/feature/booking/presentation/widget/button_booking.dart';
 import 'package:qbooking/feature/booking/presentation/widget/date_pick.dart';
 import 'package:qbooking/feature/booking/presentation/widget/equipment.dart';
-import 'package:qbooking/feature/booking/presentation/widget/slider_picture.dart';
-import 'package:qbooking/feature/booking/presentation/widget/text_picture_status.dart';
-import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
-
 import '../../../../constant/colors_constant.dart';
+import '../widget/booking_picture.dart';
 import '../widget/time_button_pick.dart';
 
-class BookingDetail extends StatefulWidget {
-  const BookingDetail({
+class EditBookingPage extends StatefulWidget {
+  final ResponseFindManyBookingModel bookingData;
+
+  const EditBookingPage({
     super.key,
-    required this.roomData,
+    required this.bookingData,
   });
-  final RoomModel roomData;
 
   @override
-  State<BookingDetail> createState() => _BookingDetailState();
+  State<EditBookingPage> createState() => _BookingDetailState();
 }
 
-class _BookingDetailState extends State<BookingDetail> {
+class _BookingDetailState extends State<EditBookingPage> {
   final time = "";
+  // late DateTime startTime;
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   startTime = DateTime.parse(widget.bookingData.startTime.toString());
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,16 +60,15 @@ class _BookingDetailState extends State<BookingDetail> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextPictureStatus(
-                    roomData: widget.roomData,
-                  ),
-                  SliderPicture(
-                    roomData: widget.roomData,
+                  BookingBio(roomData: widget.bookingData.roomId!),
+
+                  BookingPicture(
+                    roomData: widget.bookingData.roomId!,
                   ),
                   const SizedBox(height: 20),
                   DatePickUp(
                     onSelectedDate: (DateTime value) {
-                      context.read<BookingRoomState>().dateTimeToString(value);
+                      widget.bookingData.meetingDate;
                     },
                   ),
                   const SizedBox(height: 20),
@@ -77,6 +83,10 @@ class _BookingDetailState extends State<BookingDetail> {
                       )
                     ],
                   ),
+                  Text("Start Time: ${widget.bookingData.startTime}"),
+                  Text("End Time: ${widget.bookingData.endTime}"),
+                  Text("Date Booking: ${widget.bookingData.meetingDate}"),
+
                   //Selected Time button
                   Row(
                     children: [
@@ -84,9 +94,7 @@ class _BookingDetailState extends State<BookingDetail> {
                         titleTime: "Start Time",
                         isStartTime: true,
                         onTimeSelected: (time) {
-                          context
-                              .read<BookingRoomState>()
-                              .startTimeToString(time);
+                          // startTime = time;
                         },
                       ),
                       const SizedBox(width: 8),
@@ -94,9 +102,7 @@ class _BookingDetailState extends State<BookingDetail> {
                         titleTime: "End Time",
                         isStartTime: false,
                         onTimeSelected: (time) {
-                          context
-                              .read<BookingRoomState>()
-                              .endtimeToString(time);
+                          widget.bookingData.endTime;
                         },
                       )
                     ],
@@ -162,19 +168,30 @@ class _BookingDetailState extends State<BookingDetail> {
                     height: 20,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       ButtonBooking(
-                        titleButton: 'Booking now',
-                        backgroundColor: Colors.black,
-                        titleColor: Colors.white,
+                        titleButton: 'Edit Booking',
+                        backgroundColor: Colors.white,
+                        titleColor: Colors.black,
                         onTap: () {
-                          context.read<BookingRoomState>().createBookingRoom(
-                                context: context,
-                                roomID: widget.roomData.id,
-                                roomName: widget.roomData.roomName,
-                              );
+                          // context.read<BookingRoomState>().createBookingRoom(
+                          //       context: context,
+                          //       roomID: widget.roomData.id,
+                          //       roomName: widget.roomData.roomName,
+                          //     );
                         },
+                      ),
+                      ButtonBooking(
+                        titleButton: 'Cancel Booking',
+                        backgroundColor: Colors.black,
+                        onTap: () {
+                          context.read<BookingRoomState>().deleteBookingRoom(
+                              id: widget.bookingData.id ?? "",
+                              context: context);
+                        },
+                        titleColor: Colors.white,
                       )
                     ],
                   )

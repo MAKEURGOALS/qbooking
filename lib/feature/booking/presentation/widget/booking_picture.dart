@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:qbooking/feature/booking/data/model/response_find_many_booking_model.dart';
 
-import '../../../homepage/data/model/room_model_one_model.dart';
-
-class SliderPicture extends StatefulWidget {
-  const SliderPicture({Key? key, required this.roomData}) : super(key: key);
-  final RoomModel roomData;
+class BookingPicture extends StatefulWidget {
+  const BookingPicture({Key? key, required this.roomData}) : super(key: key);
+  final RoomId roomData;
 
   @override
-  State<SliderPicture> createState() => _SliderPictureState();
+  State<BookingPicture> createState() => _BookingPictureState();
 }
 
-class _SliderPictureState extends State<SliderPicture>
+class _BookingPictureState extends State<BookingPicture>
     with TickerProviderStateMixin {
   int currentIndex = 0;
 
@@ -38,15 +37,15 @@ class _SliderPictureState extends State<SliderPicture>
                   margin: const EdgeInsets.all(8),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
-                    child:Image.network(
+                    child: Image.network(
                       widget.roomData.images![index],
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
-                         //Return a widget to display in case of an error
-                        return   const Center(child:  Text('Failed to load image'));
+                        //Return a widget to display in case of an error
+                        return const Center(
+                            child: Text('Failed to load image'));
                       },
                     ),
-                    
                   ),
                 );
               },

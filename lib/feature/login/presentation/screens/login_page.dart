@@ -109,12 +109,12 @@ class _LoinPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final loginProvider = context.read<LoginState>();
+    // final loginProvider = context.read<LoginState>();
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
     return Scaffold(
       body: Consumer<LoginState>(
-        builder: (context, value, child) {
+        builder: (context, loginState, child) {
           return SingleChildScrollView(
             child: SafeArea(
               child: Center(
@@ -138,13 +138,13 @@ class _LoinPageState extends State<LoginPage> {
                       child: Column(
                         children: [
                           EmailTextField(
-                            controller: loginProvider.contactController,
+                            controller: loginState.contactController,
                             textfield: 'Email or Phone number',
                             obscureText: false,
                             onPressed: () {},
                           ),
                           CustomTextField(
-                            controller: loginProvider.passwordController,
+                            controller: loginState.passwordController,
                           ),
                           const Padding(
                             padding: EdgeInsets.symmetric(horizontal: 25.0),

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ButtonBooking extends StatelessWidget {
-  const ButtonBooking({super.key, required this.titleButton, required this.color, required this.onTap, required this.titleColor,  });
+  const ButtonBooking({
+    super.key,
+    required this.titleButton,
+    required this.backgroundColor,
+    required this.onTap,
+    required this.titleColor,
+  });
   final String titleButton;
-  final Color color;
+  final Color backgroundColor;
   final Function() onTap;
   final Color titleColor;
 
@@ -14,13 +20,12 @@ class ButtonBooking extends StatelessWidget {
       child: Container(
         width: 150,
         decoration: BoxDecoration(
-            color: const Color(0xFF282828),
-            borderRadius: BorderRadius.circular(7)),
-        child:  Padding(
+            color: backgroundColor, borderRadius: BorderRadius.circular(7)),
+        child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Text(
             titleButton,
-            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(color: titleColor, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
         ),

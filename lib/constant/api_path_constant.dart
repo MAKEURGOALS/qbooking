@@ -9,8 +9,8 @@ class ApiPathConstant {
   //booking path
   static const String booking = "/api/create/booking";
   static const String allBooking = "/api/booking";
+  static const String deleteBooking = "/api/delete/booking/";
 
   //profile path
   static const String profileUpdate = "/api/profile/update";
-
-} 
+}

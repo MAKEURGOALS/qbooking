@@ -89,10 +89,11 @@ class QrUserPage extends StatelessWidget {
                                 iconContainer: Icons.calendar_month_outlined,
                                 endtitleCon: bookingData.meetingDate ?? "",
                               ),
-                               TextContainerUser(
+                              TextContainerUser(
                                 titleCon: 'Hours',
                                 iconContainer: Icons.access_time,
-                                endtitleCon: bookingData.startTime ?? "",
+                                endtitleCon:
+                                    "${bookingData.startTime}  - ${bookingData.endTime}",
                               ),
                               const Divider(
                                 color: Colors.white54,
@@ -129,10 +130,13 @@ class QrUserPage extends StatelessWidget {
               ),
               ButtonBooking(
                 titleButton: 'Done',
-                color: const Color.fromARGB(255, 35, 32, 32),
+                backgroundColor: const Color.fromARGB(255, 35, 32, 32),
                 titleColor: Colors.white,
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const DashboardScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DashboardScreen()));
                 },
               )
             ],
