@@ -1,9 +1,12 @@
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:qbooking/util/date_time_util.dart';
 
 class DatePickUp extends StatefulWidget {
-  final Function(DateTime value)  onSelectedDate;
-  const DatePickUp({super.key, required this.onSelectedDate});
+  final Function(DateTime value) onSelectedDate;
+  const DatePickUp(
+      {super.key, required this.onSelectedDate, required this.datePickUp});
+  final DateTime datePickUp;
 
   @override
   State<DatePickUp> createState() => _DatePickUpState();
@@ -19,13 +22,17 @@ class _DatePickUpState extends State<DatePickUp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        
-        const Text("When's your meet?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-        const SizedBox(height: 15,),
+        const Text(
+          "When's your meet?",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+        const SizedBox(
+          height: 15,
+        ),
         InkWell(
           onTap: () async {
             final DateTime? dateTime = await showDatePicker(
-                context: context, 
+                context: context,
                 initialDate: selectedDate,
                 firstDate: DateTime.now(),
                 lastDate: DateTime(3000));
@@ -39,14 +46,10 @@ class _DatePickUpState extends State<DatePickUp> {
               });
             }
           },
-          
           child: Row(
             children: <Widget>[
-              
               const Icon(Icons.date_range_outlined),
-              Text(
-                  "${selectedDate.year} - ${selectedDate.month} - ${selectedDate.day}",style: const TextStyle(fontWeight: FontWeight.bold),), 
-                  
+              Text(DateTimeUtil.dateTimeToString(widget.datePickUp)),
               const Icon(Icons.arrow_drop_down)
             ],
           ),
@@ -57,13 +60,13 @@ class _DatePickUpState extends State<DatePickUp> {
             height: 100,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children:[
+              children: [
                 DatePicker(
                   key: dateTimeKey,
                   DateTime.now(),
                   height: 90,
                   controller: datePickerController,
-                  initialSelectedDate:  DateTime.now(),
+                  initialSelectedDate: DateTime.now(),
                   selectionColor: Colors.black,
                   selectedTextColor: Colors.white,
                   onDateChange: (dateTime) {

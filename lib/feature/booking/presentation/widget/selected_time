@@ -1,39 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/util/time_utll.dart';
 
-import '../../../../util/time_picker.dart';
 import '../../../../widget/alert_dialog_text.dart';
 
-class TimePickerButton extends StatefulWidget {
-  const TimePickerButton({
+class SelectedTime extends StatefulWidget {
+  const SelectedTime({
     super.key,
     required this.titleTime,
     required this.isStartTime,
     required this.onTimeSelected,
-    required this.time,
   });
   final String titleTime;
   final bool isStartTime;
-  final TimeOfDay time;
   final Function(TimeOfDay) onTimeSelected;
 
   @override
-  State<TimePickerButton> createState() => _TimePickerButtonState();
+  State<SelectedTime> createState() => _SelectedTimeState();
 }
 
-class _TimePickerButtonState extends State<TimePickerButton> {
+class _SelectedTimeState extends State<SelectedTime> {
   TimeOfDay selectedTime = TimeOfDay.now();
 
-  @override
-  void initState() {
-    setState(() {
-      selectedTime = widget.time;
-    });
-
-    super.initState();
-  }
-
-  @override
+  @override 
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,24 +31,34 @@ class _TimePickerButtonState extends State<TimePickerButton> {
         ),
         ElevatedButton(
           onPressed: () async {
-            final TimeOfDay? timeOfDay =
-                await timePicker(context: context, initValue: selectedTime);
+            final TimeOfDay? timeOfDay = await showTimePicker(
+              context: context,
+              initialTime: selectedTime,
+              initialEntryMode: TimePickerEntryMode.dial,
+              builder: (BuildContext context, Widget? child) {
+                return MediaQuery(
+                  data: MediaQuery.of(context)
+                      .copyWith(alwaysUse24HourFormat: false),
+                  child: child!,
+                );
+              },
+            );
             if (timeOfDay != null) {
               // Check if the selected time is before the current time
               final now = TimeOfDay.now();
               if (timeOfDay.hour < now.hour ||
                   (timeOfDay.hour == now.hour &&
                       timeOfDay.minute < now.minute)) {
-                const AlertDialogText(
-                  titleText: 'Selected Time',
-                  messageText: 'Time is less than Time now',
-                );
+                     
+               
+              
+                const AlertDialogText(titleText: 'Selected Time', messageText: 'Time is less than Time now',);
               } else {
                 // The selected time is after the current time, accept the selection
                 setState(() {
                   selectedTime = timeOfDay;
-                  widget.onTimeSelected(selectedTime);
                 });
+                widget.onTimeSelected(selectedTime);
               }
             }
           },
@@ -71,8 +68,10 @@ class _TimePickerButtonState extends State<TimePickerButton> {
             children: [
               const Icon(Icons.access_time),
               const SizedBox(width: 20),
-              Text(TimeUtil.timeOfDayToString(widget.time)),
+              Text(
+                  selectedTime.format(context)), // Display time in AM/PM format
               const SizedBox(width: 5),
+             
             ],
           ),
         ),

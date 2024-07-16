@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:qbooking/feature/booking/presentation/screen/booking_detail.dart';
 import '../../../favorite/presentation/state/favorite_room_state.dart';
 import '../../data/model/room_model_one_model.dart';
-import 'slide_image.dart';
+import 'room_image.dart';
 
 class BoxRoomHomePage extends StatefulWidget {
   const BoxRoomHomePage({super.key, required this.roomData});
@@ -35,7 +35,7 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
               children: [
                 Column(
                   children: [
-                    SlideImage(images: widget.roomData.images ?? []),
+                    RoomImage(roomData: widget.roomData),
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Column(
@@ -54,9 +54,10 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
                                 children: [
                                   Icon(
                                     Icons.circle,
-                                    color: widget.roomData.isActiveStatus != false
-                                        ? Colors.green
-                                        : Colors.red,
+                                    color:
+                                        widget.roomData.isActiveStatus != false
+                                            ? Colors.green
+                                            : Colors.red,
                                     size: 10,
                                   ),
                                   const SizedBox(
@@ -68,7 +69,8 @@ class _BoxRoomHomePageState extends State<BoxRoomHomePage> {
                                         : 'Unavailable now',
                                     style: TextStyle(
                                       fontSize: 13,
-                                      color: widget.roomData.isActiveStatus != false
+                                      color: widget.roomData.isActiveStatus !=
+                                              false
                                           ? Colors.green
                                           : Colors.red,
                                     ),

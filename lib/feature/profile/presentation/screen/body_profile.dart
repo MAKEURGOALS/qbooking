@@ -14,52 +14,17 @@ import '../../../login/presentation/screens/login_page.dart';
 class BodyProfile extends StatelessWidget {
   BodyProfile({super.key});
 
-  // Function to confirm the logout action
-  Future<void> _showLogoutConfirmationDialog(BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // User must tap button to close the dialog
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Confirm Sign Out'),
-          content: const Text('Are you sure you want to sign out?'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(), // Close the dialog
-              child: const Text('Cancel'),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                Navigator.of(context).pop(); // Close the dialog first
-                await signUserOut(); // Perform the sign out action
-                if (!context.mounted) return;
-                navigateToLoginPage(context);         // Navigate to the login page after signing out
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    Colors.black, // Use red color for the sign out button
-              ),
-              child: const Text('Sign Out', style: TextStyle(color: Colors.white),),
-            ),
-          ],
-        );
-      },
-    );
-    
-  }
-
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 // user singOut from app
   Future<void> signUserOut() async {
-  try {
-    await FirebaseAuth.instance.signOut();
-    await _googleSignIn.signOut();
-    // await FacebookAuth.instance.logOut(); facebook y sai br dai
-  } catch (e) {
-    debugPrint("Sign out error: $e");
+    try {
+      await FirebaseAuth.instance.signOut();
+      await _googleSignIn.signOut();
+      // await FacebookAuth.instance.logOut(); facebook y sai br dai
+    } catch (e) {
+      debugPrint("Sign out error: $e");
+    }
   }
-}
-
 
   void navigateToLoginPage(BuildContext context) {
     Navigator.pushReplacement(
@@ -140,9 +105,7 @@ class BodyProfile extends StatelessWidget {
             );
           },
         ),
-        const Spacer(
-        
-        ),
+        const Spacer(),
 
         // button SignOut
         SizedBox(
@@ -164,7 +127,7 @@ class BodyProfile extends StatelessWidget {
                 Text('LogOut', style: TextStyle(color: Colors.white)),
               ],
             ),
-          ),  
+          ),
         )
       ],
     );

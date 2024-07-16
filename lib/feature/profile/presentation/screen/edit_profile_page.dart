@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qbooking/feature/profile/presentation/data/model/profile_model.dart';
 import 'package:qbooking/feature/profile/widget/country_picker.dart';
 import 'package:qbooking/feature/profile/widget/custom_input_profile.dart';
 import 'package:qbooking/feature/profile/widget/profile_edit_image.dart';
@@ -45,7 +46,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(children: [
-                  const ProfileEditImage(),
+                  // const ProfileEditImage(imageProfile: ProfileModel().image,),
                   const SizedBox(
                     height: 40,
                   ),
@@ -83,7 +84,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                   CountryPicker(
                     selectedContry: profileState.selectedCountry,
-                    onSelectedContry: (String value) => profileState.onselectedContry(value),
+                    onSelectedContry: (String value) =>
+                        profileState.onselectedContry(value),
                   ),
                   Mybutton(
                     onTap: () async {

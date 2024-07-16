@@ -9,6 +9,7 @@ import 'package:qbooking/feature/booking/presentation/widget/text_picture_status
 import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
 
 import '../../../../constant/colors_constant.dart';
+import '../widget/selected_time';
 import '../widget/time_button_pick.dart';
 
 class BookingDetail extends StatefulWidget {
@@ -23,7 +24,6 @@ class BookingDetail extends StatefulWidget {
 }
 
 class _BookingDetailState extends State<BookingDetail> {
-  final time = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +64,7 @@ class _BookingDetailState extends State<BookingDetail> {
                     onSelectedDate: (DateTime value) {
                       context.read<BookingRoomState>().dateTimeToString(value);
                     },
+                    datePickUp: DateTime.now(),
                   ),
                   const SizedBox(height: 20),
 
@@ -79,15 +80,19 @@ class _BookingDetailState extends State<BookingDetail> {
                   ),
                   //Selected Time button
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TimePickerButton(
                         titleTime: "Start Time",
                         isStartTime: true,
                         onTimeSelected: (time) {
-                          context
-                              .read<BookingRoomState>()
-                              .startTimeToString(time);
+                          setState(() {
+                            context.read<BookingRoomState>().startTimeToString(
+                                time: time, context: context);
+                            print(time);
+                          });
                         },
+                        time: TimeOfDay.now(),
                       ),
                       const SizedBox(width: 8),
                       TimePickerButton(
@@ -98,6 +103,7 @@ class _BookingDetailState extends State<BookingDetail> {
                               .read<BookingRoomState>()
                               .endtimeToString(time);
                         },
+                        time: TimeOfDay.now(),
                       )
                     ],
                   ),

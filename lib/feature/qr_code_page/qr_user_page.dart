@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:qbooking/feature/booking/data/model/response_create_booking_model.dart';
 import 'package:qbooking/feature/booking/presentation/widget/button_booking.dart';
 
-import '../booking/presentation/widget/barcode_user.dart';
+import 'widget/barcode_user.dart';
 import '../booking/presentation/widget/circle_pic_user.dart';
 import '../dashboard/dashboard_screen.dart';
 import 'widget/text_container_user_qr.dart';
@@ -52,7 +52,7 @@ class QrUserPage extends StatelessWidget {
 
                               Text(
                                 context
-                                    .read<ProfileState>()
+                                    .watch<ProfileState>()
                                     .nameController
                                     .text,
                                 style: const TextStyle(

@@ -6,7 +6,10 @@ import '../../../../widget/alert_dialog_text.dart';
 class TimePicker extends StatefulWidget {
   final Function(TimeOfDay time) onselectedStartTime;
   final Function(TimeOfDay time) onselectedEndTime;
-  const TimePicker({super.key, required this.onselectedStartTime, required this.onselectedEndTime});
+  const TimePicker(
+      {super.key,
+      required this.onselectedStartTime,
+      required this.onselectedEndTime});
 
   @override
   State<TimePicker> createState() => _TimePickerState();
@@ -38,7 +41,6 @@ class _TimePickerState extends State<TimePicker> {
         setState(() {
           endTime = selectedTime;
           widget.onselectedEndTime(endTime);
-
         });
       }
     }
@@ -67,11 +69,13 @@ class _TimePickerState extends State<TimePicker> {
               titleTime: "Start Time",
               isStartTime: true,
               onTimeSelected: (time) => handleTimeSelection(time, true),
+              time: TimeOfDay.now(),
             ),
             TimePickerButton(
               titleTime: "End Time",
               isStartTime: false,
               onTimeSelected: (time) => handleTimeSelection(time, false),
+              time: TimeOfDay.now(),
             )
           ],
         ),

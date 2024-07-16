@@ -39,6 +39,7 @@ class FilterHomePage extends StatelessWidget {
               const Divider(),
               DatePickUp(
                 onSelectedDate: (DateTime value) {},
+                datePickUp: DateTime.now(),
               ),
               const SizedBox(
                 height: 20,

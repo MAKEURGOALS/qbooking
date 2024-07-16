@@ -22,7 +22,7 @@ class ProfileRemoteDataSource extends DioClient {
       return right(data);
     } catch (e) {
       debugPrint(e.toString());
-      return left("Something went wrong");
+      return left("Something went wrong $e");
     }
   }
 

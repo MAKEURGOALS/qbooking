@@ -11,9 +11,17 @@ class ProfileState with ChangeNotifier {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+
   String selectedGender = "Other";
   String selectedCountry = '';
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    super.dispose();
+  }
 
   void onSelectGender(String gender) {
     selectedGender = gender;
@@ -89,11 +97,12 @@ class ProfileState with ChangeNotifier {
   //Update profiel
   Future<void> updateUserProfile(BuildContext context) async {
     final res = await ProfileRemoteDataSource().updateProfile(
-        name: nameController.text,
-        gmail: emailController.text,
-        gender: selectedGender,
-        phone: phoneController.text,
-        country: selectedCountry);
+      name: nameController.text,
+      gmail: emailController.text,
+      gender: selectedGender,
+      phone: phoneController.text,
+      country: selectedCountry,
+    );
 
     res.fold((l) {
       notifyListeners();

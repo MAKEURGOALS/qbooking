@@ -23,7 +23,7 @@ class _SliderPictureState extends State<SliderPicture>
             height: 30,
           ),
           SizedBox(
-            height: 200,
+            height: 250,
             width: MediaQuery.of(context).size.width,
             child: PageView.builder(
               itemCount: widget.roomData.images?.length ?? 0,
@@ -38,15 +38,15 @@ class _SliderPictureState extends State<SliderPicture>
                   margin: const EdgeInsets.all(8),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
-                    child:Image.network(
+                    child: Image.network(
                       widget.roomData.images![index],
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
-                         //Return a widget to display in case of an error
-                        return   const Center(child:  Text('Failed to load image'));
+                        //Return a widget to display in case of an error
+                        return const Center(
+                            child: Text('Failed to load image'));
                       },
                     ),
-                    
                   ),
                 );
               },
@@ -54,7 +54,7 @@ class _SliderPictureState extends State<SliderPicture>
           ),
           TabPageSelector(
             selectedColor: Colors.black,
-            color: Colors.grey,
+            color: Colors.white,
             controller: TabController(
               length: widget.roomData.images!.length,
               initialIndex: currentIndex,

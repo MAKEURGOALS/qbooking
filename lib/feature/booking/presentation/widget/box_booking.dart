@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:qbooking/feature/booking/data/model/response_create_booking_model.dart';
-import 'package:qbooking/feature/homepage/data/model/room_model_one_model.dart';
 
-
-import '../../../homepage/presentation/widget/slide_image.dart';
+import '../../../homepage/presentation/widget/booking_picture_box.dart';
 import '../../data/model/response_find_many_booking_model.dart';
 import '../screen/edit_booking_page.dart';
 
 class BoxBooking extends StatefulWidget {
-  const BoxBooking(
-      {super.key, required this.bookingData});
+  const BoxBooking({super.key, required this.bookingData});
   final ResponseFindManyBookingModel bookingData;
-
-
-
 
   @override
   State<BoxBooking> createState() => _BoxBookingState();
@@ -28,13 +21,17 @@ class _BoxBookingState extends State<BoxBooking> {
         onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>  EditBookingPage(bookingData: widget.bookingData))),
+                builder: (context) =>
+                    EditBookingPage(bookingData: widget.bookingData))),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Card(
             child: Column(
               children: [
-                SlideImage(images: widget.bookingData.roomId?.images ?? []),
+                BookingPictureBox(
+                  roomData: widget.bookingData.roomId ?? RoomId(),
+                ),
+                // RoomImage(roomData: RoomModel()),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Column(
@@ -52,27 +49,27 @@ class _BoxBookingState extends State<BoxBooking> {
                               Icon(
                                 Icons.circle,
                                 color:
-                                    widget.bookingData.roomId?.isActiveStatus !=
+                                    widget.bookingData.roomId?.isActiveBooked !=
                                             false
-                                        ? Colors.green
-                                        : Colors.red,
+                                        ? Colors.red
+                                        : Colors.green,
                                 size: 10,
                               ),
                               const SizedBox(
                                 width: 5,
                               ),
                               Text(
-                                widget.bookingData.roomId?.isActiveStatus !=
+                                widget.bookingData.roomId?.isActiveBooked !=
                                         false
-                                    ? 'available now'
-                                    : 'Unavailable now',
+                                    ? 'UnBooking now'
+                                    : 'Booking now',
                                 style: TextStyle(
                                   fontSize: 13,
                                   color: widget.bookingData.roomId
                                               ?.isActiveStatus !=
                                           false
-                                      ? Colors.green
-                                      : Colors.red,
+                                      ? Colors.red
+                                      : Colors.green,
                                 ),
                               ),
                             ],

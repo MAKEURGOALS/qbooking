@@ -8,14 +8,12 @@ class BarCodeUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BarcodeWidget(
       data: qrData,
       barcode: Barcode.code128(),
       color: Colors.white,
       height: 100,
       drawText: true,
-      
     );
   }
 }

@@ -38,7 +38,7 @@ class _BookingPictureState extends State<BookingPicture>
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
                     child: Image.network(
-                      widget.roomData.images![index],
+                      widget.roomData.images?[index] ?? "",
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         //Return a widget to display in case of an error
@@ -55,7 +55,7 @@ class _BookingPictureState extends State<BookingPicture>
             selectedColor: Colors.black,
             color: Colors.grey,
             controller: TabController(
-              length: widget.roomData.images!.length,
+              length: widget.roomData.images?.length ?? 0,
               initialIndex: currentIndex,
               vsync: this,
             ),
